@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>RoboSense Challenge</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="navbar-top-fixed.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="icon" href="logo.png" type="image/png">
+
+    <link href="jiaun.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet/less" type="text/css" href="styles.less">
+    <link href="carousel.css" rel="stylesheet">
+    <link href="pricing.css" rel="stylesheet">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script type="text/javascript">
+        // alert(window.location.href);
+    var index = "http://seasondepth-challenge.org/index/";
+    var index_ = "http://seasondepth-challenge.org/index";
+    if ((index == window.location.href) || (index_ == window.location.href))
+        window.location.href = "http://seasondepth-challenge.org/";
+</script>
+
+
+    <style>
+        .container1 {
+            position: relative;
+            width: 100%;
+            max-width: 5000px;
+        }
+        
+        .modal-content {
+            border: 2px solid rgb(0, 128, 204);
+            background-color: rgb(0, 0, 0);
+            border-radius: 15px;
+        }
+        
+        .modal-header {
+            background-color: rgb(0, 128, 204);
+            border: 2px solid rgb(0, 128, 204);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        
+        .modal-footer {
+            border-top: 0 none;
+        }
+        
+        .container1 img {
+            width: 100%;
+            height: auto;
+        }
+        
+         :target:before {
+            content: "";
+            display: block;
+            height: 100px;
+            margin: -90px 0 0;
+        }
+        
+        .container1 .btn {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: rgb(0, 128, 204);
+            color: white;
+            font-size: 20px;
+            padding: 18px 280px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            text-align: center;
+        }
+        
+        .container1 .btn:hover {
+            background-color: black;
+        }
+        
+        .mx-a {}
+        
+        .text-cen {}
+        
+        .mb-6 {}
+    </style>
+
+
+
+
+</head>
+
+<body>
+    <div class="modal" id="signup" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="text-black modal-title">Welcome to sign up!</h4>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                    <!-- <h4 id="myModalLabel" class="text-black modal-title">Sign Up</h4>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col control-label">User Name</label>
+                            <div class="col">
+                                <input type="text" name="userName" class="form-control" id="userName_add_input" placeholder="e.g. Alice">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col control-label">Email</label>
+                            <div class="col">
+                                <input type="text" name="eMail" class="form-control" id="eMail_add_input" placeholder="e.g. alice@example.com">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col control-label">Password</label>
+                            <div class="col">
+                                <input type="password" name="passWord" class="form-control" id="passWord_add_input" placeholder="e.g. 123456">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col control-label">Confirm Password</label>
+                            <div class="col">
+                                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword_add_input" placeholder="e.g. 123456">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col control-label">Verification Code</label>
+                            <div class="col">
+                                <input type="text" name="verifyCode" class="form-control" id="verify_code_input" placeholder="4-digit code sent to your email address">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" id="send_code_btn">SendCode</button>
+                    <button type="button" class="btn btn-warning" id="user_save_btn">Sign up now</button>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="text-black modal-title">Welcome back!</h4>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                    <!-- <h4 id="myModalLabel" class="text-black modal-title">Sign Up</h4>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col control-label">User Name</label>
+                            <div class="col">
+                                <input type="text" name="userName" class="form-control" id="userName_add_input" placeholder="e.g. Alice">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col control-label">Password</label>
+                            <div class="col">
+                                <input type="password" name="passWord" class="form-control" id="passWord_add_input" placeholder="e.g. 123456">
+                                <span class="help-block"></span>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                    <button type="button" class="btn btn-warning" id="user_save_btn">Login</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="bg-black">
+        <header class="p-3 text-white fixed-top" style="background-color:#252727;">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center">
+
+                    <a href="./index.html"><img src="brand.png" class="navbar-brand" width="50"></a>
+                    <ul class="nav col-lg-auto me-lg-auto mb-md-0">
+                        <li class="align-content-center nav-item">
+                            <a href="#introduction" class="nav-link text-white">
+                                <a1>Intro</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#venue" class="nav-link text-white">
+                                <a1>Venue</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="nav-link text-white">
+                                <a1>Contact</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#timeline" class="nav-link text-white">
+                                <a1>Timeline</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#awards" class="nav-link text-white">
+                                <a1>Awards</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#toolkit" class="nav-link text-white">
+                                <a1>Toolkit</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tracks" class="nav-link text-white">
+                                <a1>Tracks</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#evaluation" class="nav-link text-white">
+                                <a1>Evaluation</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#faq" class="nav-link text-white">
+                                <a1>FAQ</a1>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#organizers" class="nav-link text-white">
+                                <a1>Organizer</a1>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- <div class="text-end">
+                        <button type="button" class="btn btn-outline-light me-2" id="login_btn" data-bs-toggle="modal" data-bs-target="#login">Login</button>
+                        <button type="button" class="btn btn-warning" id="signup_btn" data-bs-toggle="modal" data-bs-target="#signup">Login</button>
+                    </div> -->
+                </div>
+            </div>
+        </header>
+
+
+
+        <div class="container1">
+            <img1><img src="cover.png" class="img-fluid" alt="img-responsive"></img1>
+        </div>
+        <div class="container p-4 anchor">
+            <h1 class="text-white" id="introduction">Introduction</h1>
+            <hr>
+            <p class="text-white-50">
+                The <strong>RoboSense Challenge</strong> aims to advance the state of <strong>robust robot sensing</strong> across diverse robot platforms, sensor types, and challenging sensing environments.
+            </p>
+
+            <p class="text-white-50">
+                Five distinct tracks are designed to push the boundaries of resilience in robot sensing systems, covering critical tasks such as driving with language, social navigation, sensor placement optimization, cross-view image retrieval, and robust 3D object detection. 
+                Each track challenges participants to address real-world conditions such as platform discrepancies, sensor failures, environmental noises, and adverse weather conditions, ensuring that robot sensing models remain accurate and reliable under real-world scenarios.
+            </p>
+
+            <p class="text-white-50">
+                The competition provides participants with datasets and baseline models relevant to each track, facilitating the development of novel algorithms that improve robot sensing performance across both standard and out-of-distribution scenarios. A focus on robustness, accuracy, and adaptability ensures that models developed in this challenge can generalize effectively across different conditions and sensor configurations, making them applicable to a wide range of autonomous systems, including vehicles, drones, and quadrupeds.
+            </p>
+
+
+            <img1><img src="teaser.png" class="img-fluid" alt="img-responsive"></img1>
+
+
+            
+            <p class="text-white"><strong>Challenge Tracks</strong></p>
+
+            <p class="text-white-50">
+                There are <strong>five</strong> tracks in the <strong>RoboSense Challenge</strong>, with emphasis on the following <strong>robust robot sensing topics</strong>:
+            </p>
+
+            <p class="text-white-50">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                - Track <a style="color: #76b900;">#1</a>: Driving with Language.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+                - Track <a style="color: #76b900;">#2</a>: Social Navigation.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+                - Track <a style="color: #76b900;">#3</a>: Cross-Sensor Placement 3D Object Detection.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+                - Track <a style="color: #76b900;">#4</a>: Cross-Modal Drone Navigation.
+                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+                - Track <a style="color: #76b900;">#5</a>: Cross-Platform 3D Object Detection.
+            </p>
+
+            <p class="text-white-50">
+                For additional implementation details, kindly refer to our 
+                <a href="https://drive-bench.github.io/" target="_blank" style="color: #ffc000;">DriveBench</a>,
+                <a href="https://github.com/Zeying-Gong/Falcon" target="_blank" style="color: #ffc000;">Falcon</a>,
+                <a href="https://github.com/ywyeli/Place3D" target="_blank" style="color: #ffc000;">Place3D</a>,
+                <a href="https://github.com/MultimodalGeo/GeoText-1652" target="_blank" style="color: #ffc000;">GeoText-1652</a>, and
+                <a href="https://pi3det.github.io/" target="_blank" style="color: #ffc000;">Pi3DET</a> projects.
+            </p>
+
+
+            <p class="text-white-50">
+                <strong>E-mail:</strong> <a href="mailto:robosense2025@gmail.com" target="_blank" style="color: #ffc000;">robosense2025@gmail.com</a>.
+            </p>
+
+
+
+            <br/><br/>
+
+            <h1 class="text-white" id="venue">Venue</h1>
+            <hr/>
+
+            <!-- <img1>
+                <div style="text-align: center;">
+                    <img src="icra2024.png" class="img-fluid" alt="img-responsive" width="20%">
+                </div>
+            </img1> -->
+
+            <p>
+                <img src="iros2025.png" align="right" width="28.5%" hspace="22" vspace="5">
+            </p>
+
+
+            <p class="text-white-50">
+                The RoboSense Challenge is affiliated with the 2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS 2025).
+            </p>
+
+            <p class="text-white-50">
+                IROS is IEEE Robotics and Automation Society's flagship conference. IROS 2025 will be held from October 19th to 25th, 2025, in Hangzhou, China.
+            </p>
+
+            <p class="text-white-50">
+                The IROS competitions provide a unique venue for state-of-the-art technical demonstrations from research labs throughout academia and industry.
+                For additional details, kindly refer to the IROS 2025 <a href="http://www.iros25.org/" target="_blank" style="color: #ffc000;">website</a>.
+            </p>
+
+
+
+            <!-- <br/><br/>
+
+            <h1 class="text-white" id="venue">RoboSense Workshop</h1>
+            <hr/>
+
+            <p>
+                <img src="workshop.png" align="right" width="50%" hspace="15" vspace="15">
+            </p>
+
+
+            <p class="text-white-50">
+                Our workshop is scheduled to be held on Wednesday, May 15th, 2024, from 1:00 P.M. to 5:00 P.M. JST (UTC+9).
+            </p>
+
+            <p class="text-white-50">
+                For <strong>on-site</strong> attendance:
+                Visit us at the Competition Hall, Pacific Convention Plaza Yokohama (PACIFICO Yokohama) 1-1-1, Minato Mirai, Nishi-ku, Yokohama 220-0012, Japan.
+            </p>
+
+            <p class="text-white-50">
+                For <strong>online</strong> attendance:
+                Join us using <a href="https://cmu.zoom.us/j/96870741709?pwd=UjI1bUhtU1k2MCt5c2Z5VFlaNnc4QT09" target="_blank">this</a> ZOOM link.
+            </p>
+
+            <p class="text-white-50">
+                The workshop slides can be found from <a href="https://robodrive-24.github.io/workshop.pdf" target="_blank">here</a>.
+            </p> -->
+
+
+
+            <br/><br/>
+
+            
+            <h1 class="text-white" id="contact">Contact</h1>
+            <hr>
+            
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col"> <img src="static/logo-image/email.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="mailto:robodrive.2024@gmail.com" target="_blank" style="color: #ffc000;">E-mail</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/twitter.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://x.com/RoboSense2025" target="_blank" style="color: #ffc000;">Twitter</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/wechat.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="wechat_qr.JPG" target="_blank" style="color: #ffc000;">WeChat</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/slack.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://join.slack.com/t/robosense2025/shared_invite/zt-372hfvfep-Vpk6wLBAxC9Mg4lUpNvpGQ" target="_blank" style="color: #ffc000;">Slack</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/zhihu.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://zhuanlan.zhihu.com/p/1920462802293887673" target="_blank" style="color: #ffc000;">Zhihu</a></h4>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+            <br/><br/>
+
+
+            <h1 class="text-white" id="timeline">Timeline</h1>
+            <hr>
+
+            <div id="timeline-content">
+                <ul class="timeline">
+                    <li class="event" data-date="&nbsp;&nbsp;&nbsp;Registration">
+                        <h3>Team Up</h3>
+                        <p>Register for your team by filling in <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform?usp=sharing&ouid=111184461807593368933" target="_blank" style="color: #ffc000;">this</a> Google Form.&nbsp;</p>
+                    </li>
+                    <li class="event" data-date="June 01, 2025">
+                        <h3>Release of Training and Evaluation Data</h3>
+                        <p>Download the data from the competition toolkit.&nbsp;</p>
+                    </li>
+                    <li class="event" data-date="June 15, 2025">
+                        <h3>Competition Servers Online @ CodaBench</h3>
+                    </li>
+                    <li class="event" id="date" data-date="Aug 15, 2025">
+                        <h3>Phase One Deadline</h3>
+                        <p></p>
+                        <p>Shortlisted teams are invited to participate in the next phase.&nbsp;</p>
+                    </li>
+                    <li class="event" id="date" data-date="Sep 15, 2025">
+                        <h3>Phase Two Deadline</h3>
+                        <p></p>
+                        <p>Don't forget to include the code link in your submissions.&nbsp;</p>
+                    </li>
+                    <li class="event" data-date="Oct 19, 2025">
+
+                        <h3>Award Decision Announcement</h3>
+                        <p></p>
+                        <p>Associated with the IROS 2025 conference formality.&nbsp;</p>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+            <h1 class="text-white" id="awards">Awards</h1>
+            <hr />
+            <div class="row row-cols-1 row-cols-md-2 mb-3 text-center align-content-center text-white">
+                <div class="col">
+                    <div class="card rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">1st Place</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Cash $ 5000 + Certificate</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>This award will be given to five awardees; an amount of $ 1000 will be given to each track.</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">2nd Place</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Cash $ 3000 + Certificate</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>This award will be given to five awardees; an amount of $ 600 will be given to each track.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">3rd Place</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Cash $ 2000 + Certificate</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>This award will be given to five awardees; an amount of $ 400 will be given to each track.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-warning">
+                            <h4 class="my-0 fw-normal text-black">Innovative Award</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Certificate</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>This award will be selected by the program committee and given to ten awardees; two per track.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <br/><br/>
+
+            <h1 class="text-white" id="toolkit">Toolkit</h1>
+            <hr/>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col"> <img src="static/logo-image/github.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/robosense2025" target="_blank" style="color: #ffc000;">GitHub</a></h4>
+                        <p></p>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/arxiv.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://arxiv.org/abs/2601.05014" target="_blank" style="color: #ffc000;">Tech Report</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/robobev.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/Daniel-xsy/RoboBEV" target="_blank" style="color: #ffc000;">RoboBEV</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/place3d.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/ywyeli/Place3D" target="_blank" style="color: #ffc000;">Place3D</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/openmmlab.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/open-mmlab/mmdetection3d" target="_blank" style="color: #ffc000;">MMDetection3D</a></h4>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col"> <img src="static/logo-image/drivebench.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/drive-bench/toolkit" target="_blank" style="color: #ffc000;">DriveBench</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/falcon.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/Zeying-Gong/Falcon" target="_blank" style="color: #ffc000;">Falcon</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/geotext-1652.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/MultimodalGeo/GeoText-1652" target="_blank" style="color: #ffc000;">GeoText-1652</a></h4>
+                    </div>
+
+                    <div class="col"> <img src="static/logo-image/logo_pi3det.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://pi3det.github.io/" target="_blank" style="color: #ffc000;">Pi3DET</a></h4>
+                    </div>
+
+                    <!-- <div class="col"> <img src="static/logo-image/geotext-1652.png" class="rounded-circle" width="136">
+                        <p></p>
+                        <h4><a href="https://github.com/MultimodalGeo/GeoText-1652" target="_blank" style="color: #ffc000;">Pi3DET</a></h4>
+                    </div> -->
+
+                    <div class="col"></div>
+
+                </div>
+            </div>
+
+            
+            
+            
+            <br/><br/><br/>
+
+            <h1 class="text-white" id="tracks">Competition Tracks</h1>
+            <hr/>
+
+            
+
+            <h2 class="text-white" id="tracks">Track <a style="color: #76b900;">#1</a>: Driving with Language</h2>
+
+            <p><img src="logo_track1.png" align="right" width="28%" hspace="0" vspace="0"></p>
+
+            <p class="text-white-50">
+                This track challenges participants to develop vision-language models that enhance the robustness of autonomous driving systems under real-world conditions, including sensor corruptions and environmental noises.
+            </p>
+
+            <p class="text-white-50">
+                Participants are expected to design multimodal language models that fuse driving perception, prediction, and planning with natural language understanding, enabling the vehicle to make accurate, human-like decisions under all kinds of real-world sensing conditions.
+            </p>
+
+            <p class="text-white-50">
+                Kindly refer to <a href="https://robosense2025.github.io/track1" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
+            </p>
+
+            <p class="text-white"><strong>Track Organizers</strong></p>
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://daniel-xsy.github.io/" target="_blank">
+                            <img src="static/people-image/shaoyuan.jpeg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://ldkong.com/" target="_blank">
+                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://github.com/dongyh20" target="_blank">
+                            <img src="static/people-image/yuhao.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://zhangwenwei.cn/" target="_blank">
+                            <img src="static/people-image/wenwei.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://liuziwei7.github.io/" target="_blank">
+                            <img src="static/people-image/ziwei.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+
+
+
+
+            <br/><hr/><br/>
+
+            <h2 class="text-white" id="tracks">Track <a style="color: #76b900;">#2</a>: Social Navigation</h2>
+
+            <p><img src="logo_track2.png" align="right" width="28%" hspace="0" vspace="0"></p>
+
+            <p class="text-white-50">
+                This track challenges participants to develop RGBD-based perception and navigation systems that enable autonomous agents to interact safely, efficiently, and socially in dynamic human environments.
+            </p>
+
+            <p class="text-white-50">
+                Participants will design algorithms that interpret human behaviors and contextual cues. Submissions should generate navigation strategies balancing efficiency and social compliance, while addressing challenges like real-time adaptability, occlusion handling, and ethical decision-making.
+            </p>
+
+            <p class="text-white-50">
+                Kindly refer to <a href="https://robosense2025.github.io/track2" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
+            </p>
+
+            <p class="text-white"><strong>Track Organizers</strong></p>
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://zeying-gong.github.io/" target="_blank">
+                            <img src="static/people-image/zeying.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://hutslib.github.io/" target="_blank">
+                            <img src="static/people-image/tianshuai.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a>
+                            <img src="static/people-image/ronghe.jpeg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://rongli.tech/" target="_blank">
+                            <img src="static/people-image/rong.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://junweiliang.me/" target="_blank">
+                            <img src="static/people-image/junwei.jpeg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+
+
+
+
+            <br/><hr/><br/>
+
+            <h2 class="text-white" id="tracks">Track <a style="color: #76b900;">#3</a>: Cross-Sensor Placement 3D Object Detection</h2>
+
+            <p><img src="logo_track3.png" align="right" width="28%" hspace="0" vspace="0"></p>
+
+            <p class="text-white-50">
+                This track challenges participants to design LiDAR-based 3D perception models, including those for 3D object detection and LiDAR semantic segmentation, that can adapt to diverse sensor placements in autonomous systems.
+            </p>
+
+            <p class="text-white-50">
+                Participants will be tasked with developing novel algorithms that can adapt to and optimize LiDAR sensor placements, ensuring high-quality 3D scene understanding across a wide range of environmental conditions, such as weather variances, motion disturbances, and sensor failures.
+            </p>
+
+            <p class="text-white-50">
+                Kindly refer to <a href="https://robosense2025.github.io/track3" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
+            </p>
+
+            <p class="text-white"><strong>Track Organizers</strong></p>
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://ywyeli.github.io/" target="_blank">
+                            <img src="static/people-image/ye.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://ldkong.com/" target="_blank">
+                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://hanjianghu.net/" target="_blank">
+                            <img src="static/people-image/hanjiang.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+
+
+
+
+            <br/><hr/><br/>
+
+            <h2 class="text-white" id="tracks">Track <a style="color: #76b900;">#4</a>: Cross-Modal Drone Navigation</h2>
+
+            <p><img src="logo_track4.png" align="right" width="28%" hspace="0" vspace="0"></p>
+
+            <p class="text-white-50">
+                This track aims at the development of models for natural language-guided cross-view image retrieval, specifically for scenarios where input data is captured from drastically different viewpoints, such as aerial (drone or satellite) and ground-level images.
+            </p>
+
+            <p class="text-white-50">
+                Participants are tasked with designing models that can effectively retrieve corresponding images from large-scale cross-view image databases based on natural language text descriptions, even under the presence of common corruptions such as blurriness, occlusions, or sensory noises.
+            </p>
+
+            <p class="text-white-50">
+                Kindly refer to <a href="https://robosense2025.github.io/track4" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
+            </p>
+
+            <p class="text-white"><strong>Track Organizers</strong></p>
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a>
+                            <img src="static/people-image/meng_chu.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://www.zdzheng.xyz/" target="_blank">
+                            <img src="static/people-image/zhedong.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+
+
+
+            <br/><hr/><br/>
+
+            <h2 class="text-white" id="tracks">Track <a style="color: #76b900;">#5</a>: Cross-Platform 3D Object Detection</h2>
+
+            <p><img src="logo_track5.png" align="right" width="28%" hspace="0" vspace="0"></p>
+
+            <p class="text-white-50">
+                This track focuses on the development of robust 3D object detectors that can seamlessly adapt across different robot platforms, including vehicles, drones, and quadrupeds.
+            </p>
+
+            <p class="text-white-50">
+                Participants are expected to develop new adaptation algorithms that can effectively adapt 3D perception tasks, specifically object detection, across three robot platforms that use different sensor configurations and movement dynamics. 
+                The models are expected to be trained using vehicle data, and achieve promising performance on drone and quadruped platforms.
+            </p>
+
+            <p class="text-white-50">
+                Kindly refer to <a href="https://robosense2025.github.io/track5" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
+            </p>
+
+            <p class="text-white"><strong>Track Organizers</strong></p>
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://alanliang.vercel.app/" target="_blank">
+                            <img src="static/people-image/ao.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://ldkong.com/" target="_blank">
+                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://dylanorange.github.io/" target="_blank">
+                            <img src="static/people-image/dongyue.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://ipal.cnrs.fr/lai-xing-ng/" target="_blank">
+                            <img src="static/people-image/lai_xing.png" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://ipal.cnrs.fr/benoit-cottereau-personal-page/" target="_blank">
+                            <img src="static/people-image/benoit.jpg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col">
+                        <a href="https://www.comp.nus.edu.sg/cs/people/ooiwt/" target="_blank">
+                            <img src="static/people-image/weitsang.jpeg" class="rounded-circle" width="89">
+                        </a>
+                    </div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                </div>
+            </div>
+            <br/><br/>
+
+
+
+
+
+
+
+
+
+            <br/><br/>
+
+            <h1 class="text-white" id="evaluation">Evaluation Servers</h1>
+            <hr/>
+
+            <div class="row row-cols-1 row-cols-md-2 mb-3 text-center align-content-center text-white">
+
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">Track #1</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Driving with Language</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Facilitating driving perception, prediction, and planning robustness with rich language understanding</li>
+                            </ul>
+
+                            <a href="https://www.codabench.org/competitions/9285/" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 1</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">Track #2</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Social Navigation</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Testing the accuracy and resilience of navigation algorithms in dynamic and unpredictable real-world environments</li>
+                            </ul>
+
+                            <a href="https://eval.ai/web/challenges/challenge-page/2557/overview" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 2</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">Track #3</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Sensor Placement</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Focusing on the optimization of sensor placement strategies under challenging driving conditions</li>
+                            </ul>
+                            <a href="https://www.codabench.org/competitions/9284/" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 3</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">Track #4</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Cross-Modal Drone Navigation</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Assessing the cross-modal image retrieval ability from multiple perspectives for comprehensive scene perception</li>
+                            </ul>
+
+                            <!-- <a href="https://www.codabench.org/competitions/9219/" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 4</button></a> -->
+                            <a href="https://www.codabench.org/competitions/10311/" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 4</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3 bg-openmmlab">
+                            <h4 class="my-0 fw-normal text-black">Track #5</h4>
+                        </div>
+                        <div class="card-body bg-black">
+                            <h3>Cross-Platform 3D Object Detection</h3>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Tailored for enhancing the robustness of 3D object detectors across vehicle, drone, and quadruped platforms</li>
+                            </ul>
+
+                            <a href="https://www.codabench.org/competitions/9179/" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 5</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <br/><br/>
+
+            <h1 class="text-white" id="faq">FAQs</h1>
+            <hr>
+
+            <p class="text-white-50">
+                Please refer to <a href="https://github.com/robosense2025/toolkit?tab=readme-ov-file#frequently-asked-questions-faqs" target="_blank" style="color: #ffc000;">Frequently Asked Questions</a> for more detailed rules and conditions of this competition.
+            </p>
+            <br/>
+
+
+
+
+            <!-- <br/><br/>
+
+
+            <h1 class="text-white" id="evaluation">Submission & Evaluation</h1>
+            <hr>
+
+            <p class="text-white-50">
+                In this competition, all participants are expected to adopt the official <a href="https://www.nuscenes.org/nuscenes" target="_blank">nuScenes</a> dataset for model training and our robustness probing sets for model evaluation.
+                Additional data sources are <strong>NOT</strong> allowed in this competition.
+            </p>
+
+            <p class="text-white-50">
+                Kindly refer to <a href="https://github.com/robodrive-24/toolkit/blob/main/docs/DATA_PREPARE.md" target="_blank">DATA_PREPARE.md</a> for the details to prepare the training and evaluation data.
+            </p>
+
+            <p class="text-white-50">
+                For all five tracks in this RoboDrive competition, the participants are expected to submit their predictions to the <strong>EvalAI</strong> servers for model evaluation. 
+            </p>
+
+            <p class="text-white-50">
+                To facilitate the training and evaluation, we have provided detailed instructions and a baseline model for each track. Kindly refer to <a href="https://github.com/robodrive-24/toolkit/blob/main/docs/GET_STARTED.md" target="_blank">GET_STARTED.md</a> for additional details.
+            </p> -->
+
+
+
+
+
+            
+            <br/><br/>
+
+
+
+
+            <h1 class="text-white" id="organizers">Organizing Team</h1>
+            <hr>
+
+            <h2 class="text-white" id="tracks">Challenge Organizers</h2><br/>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://ldkong.com/" target="_blank">
+                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Lingdong Kong</h4> 
+                        <p>
+                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                            NUS Computing
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://alanliang.vercel.app/" target="_blank">
+                            <img src="static/people-image/ao.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Ao Liang</a></h4>
+                        <p>
+                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                            NUS Computing
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://dylanorange.github.io/" target="_blank">
+                            <img src="static/people-image/dongyue.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Dongyue Lu</h4>
+                        <p>
+                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                            NUS Computing
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://github.com/dongyh20" target="_blank">
+                            <img src="static/people-image/yuhao.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Yuhao Dong</h4>
+                        <p>
+                            <img src="static/logo-image/logo_ntu.png" alt="NTU Logo" height="27" style="padding-bottom: 5px;">
+                            NTU, S-Lab
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://daniel-xsy.github.io/" target="_blank">
+                            <img src="static/people-image/shaoyuan.jpeg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Shaoyuan Xie</h4>
+                        <p>
+                            <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
+                            UC, Irvine
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://ywyeli.github.io/" target="_blank">
+                            <img src="static/people-image/ye.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Ye Li</h4>
+                        <p>
+                            <img src="static/logo-image/logo_umich.png" alt="UMich Logo" height="21" style="padding-bottom: 3px;">
+                            UMich Robotics
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://hutslib.github.io/" target="_blank">
+                            <img src="static/people-image/tianshuai.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Tianshuai Hu</h4>
+                        <p>
+                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
+                            HKUST
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a>
+                            <img src="static/people-image/meng_chu.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Meng Chu</h4>
+                        <p>
+                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
+                            HKUST
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://zeying-gong.github.io/" target="_blank">
+                            <img src="static/people-image/zeying.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Zeying Gong</h4>
+                        <p>
+                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
+                            HKUST(GZ)
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://rongli.tech/" target="_blank">
+                            <img src="static/people-image/rong.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Rong Li</h4>
+                        <p>
+                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
+                            HKUST(GZ)
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a>
+                            <img src="static/people-image/ronghe.jpeg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Ronghe Qiu</h4>
+                        <p>
+                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
+                            HKUST(GZ)
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://hanjianghu.net/" target="_blank">
+                            <img src="static/people-image/hanjiang.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Hanjiang Hu</h4>
+                        <p>
+                            <img src="static/logo-image/logo_cmu.png" alt="CMU Logo" height="27" style="padding-bottom: 5px;">
+                            Carnegie Mellon
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr/>
+
+
+            <h2 class="text-white" id="tracks">Program Committee</h2><br/>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://www.comp.nus.edu.sg/cs/people/ooiwt/" target="_blank">
+                            <img src="static/people-image/weitsang.jpeg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Wei Tsang Ooi</h4>
+                        <p>
+                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                            NUS Computing
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://ipal.cnrs.fr/benoit-cottereau-personal-page/" target="_blank">
+                            <img src="static/people-image/benoit.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Benoit R. Cottereau</h4> 
+                        <p>
+                            <img src="static/logo-image/logo_cnrs.png" alt="CNRS Logo" height="29" style="padding-bottom: 5px;">
+                            CNRS & IPAL
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://ipal.cnrs.fr/lai-xing-ng/" target="_blank">
+                            <img src="static/people-image/lai_xing.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Lai Xing Ng</h4> 
+                        <p>
+                            <img src="static/logo-image/logo_astar.png" alt="A*STAR Logo" height="28" style="padding-bottom: 5px;">
+                            A*STAR, I2R
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://www.zdzheng.xyz/" target="_blank">
+                            <img src="static/people-image/zhedong.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Zhedong Zheng</h4>
+                        <p>
+                            <img src="static/logo-image/logo_umacau.png" alt="UMacau Logo" height="28" style="padding-bottom: 5px;">
+                            University of Macau
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://zhangwenwei.cn/" target="_blank">
+                            <img src="static/people-image/wenwei.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Wenwei Zhang</h4>
+                        <p>
+                            <img src="static/logo-image/logo_shanghai_ai_lab.png" alt="PJLab Logo" height="23" style="padding-bottom: 5px;">
+                            Shanghai AI Lab
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://yuexinma.me/aboutme.html" target="_blank">
+                            <img src="static/people-image/yuexin_ma.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Yuexin Ma</h4>
+                        <p>
+                            <img src="static/logo-image/logo_shanghaitech.png" alt="ShanghaiTech Logo" height="28" style="padding-bottom: 5px;">
+                            ShanghaiTech
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://junweiliang.me/" target="_blank">
+                            <img src="static/people-image/junwei.jpeg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Junwei Liang</a></h4>
+                        <p>
+                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
+                            HKUST(GZ)
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://liuziwei7.github.io/" target="_blank">
+                            <img src="static/people-image/ziwei.png" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Ziwei Liu</h4> 
+                        <p>
+                            <img src="static/logo-image/logo_ntu.png" alt="NTU Logo" height="27" style="padding-bottom: 5px;">
+                            NTU, S-Lab
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr/>
+            
+            
+            <h2 class="text-white" id="tracks">Industry Mentors</h2><br/>
+
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://haoxiaoshuai.github.io/homepage/" target="_blank">
+                            <img src="static/people-image/xiaoshuai_hao.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Xiaoshuai Hao</h4> 
+                        <p>
+                            <img src="static/logo-image/logo_baai.png" alt="Logo" height="26" style="padding-bottom: 5px;">
+                            BAAI
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://scholar.google.com/citations?user=ZIf_rtcAAAAJ&hl=en" target="_blank">
+                            <img src="static/people-image/wei_yin.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Wei Yin</h4> 
+                        <p>
+                            <img src="static/logo-image/logo_horizon_robotics.png" alt="Logo" height="28" style="padding-bottom: 5px;">
+                            Horizon Robotics
+                        </p>
+                    </div>
+
+                    <div class="col">
+                        <a href="https://wenhao.pub/" target="_blank">
+                            <img src="static/people-image/wenhao_ding.jpg" class="rounded-circle" width="145">
+                        </a>
+                        <h4>Wenhao Ding</h4>
+                        <p>
+                            <img src="static/logo-image/logo_nvidia.png" alt="Logo" height="25" style="padding-bottom: 5px;">
+                            NVIDIA
+                        </p>
+                    </div>
+
+                    <div class="col"></div>
+                </div>
+            </div>
+
+
+
+
+            <!-- <br/><br/>
+
+            <h1 class="text-white" id="organizers">Sponsors</h1>
+            <hr>
+
+            <p class="text-white-50">
+                This competition is generously supported by <a href="https://www.noahlab.com.hk/#/home" target="_blank">HUAWEI Noah's Ark Lab</a>.
+            </p>
+            
+            <img1><img src="logo_sponsor.png" class="img-fluid" alt="img-responsive"></img1>
+ -->
+
+
+
+
+
+            <!-- <br/><br/>
+
+
+            <h1 class="text-white" id="organizers">Program Committee</h1>
+            <hr>
+            <div class="container text-center p-1 text-white">
+                <div class="row">
+                    <div class="col">
+                        <a href="https://www.linkedin.com/in/wei-zhang-428b4298/?originalSubdomain=uk" target="_blank">
+                            <img src="static/people-image/wei_zhang.jpg" class="rounded-circle" width="139">
+                        </a>
+                        <h4>Wei Zhang</h4> <p><small>HUAWEI Noah's Ark Lab</small></p>
+                    </div>
+                    <div class="col">
+                        <a href="https://scholar.google.com.hk/citations?user=9_AUwFUAAAAJ" target="_blank">
+                            <img src="static/people-image/weichao.jpeg" class="rounded-circle" width="139">
+                        </a>
+                        <h4>Weichao Qiu</a></h4> <p><small>HUAWEI Noah's Ark Lab</small></p>
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div> -->
+            
+
+            
+
+            <!-- <br/><br/>
+
+            <h1 class="text-white" id="organizers">References</h1>
+            <hr>
+
+            <p class="text-white-50">
+                [1] S. Xie, L. Kong, W. Zhang, J. Ren, L. Pan, K. Chen, and Z. Liu. "<strong>Benchmarking and Analyzing Bird's Eye View Perception Robustness to Corruptions</strong>," Preprint, 2023.
+                <a href="https://daniel-xsy.github.io/robobev/static/pdf/RoboBEV.pdf" target="_blank">[Link]</a> <a href="https://github.com/Daniel-xsy/RoboBEV" target="_blank">[Code]</a>
+            </p>
+
+            <p class="text-white-50">
+                [2] L. Kong, S. Xie, H. Hu, L. X. Ng, B. R. Cottereau, and W. T. Ooi. "<strong>RoboDepth: Robust Out-of-Distribution Depth Estimation under Corruptions</strong>," NeurIPS, 2023.
+                <a href="https://arxiv.org/abs/2310.15171" target="_blank">[Link]</a> <a href="https://github.com/ldkong1205/RoboDepth" target="_blank">[Code]</a>
+            </p>
+            
+            <p class="text-white-50">
+                [3] L. Kong, Y. Liu, X. Li, R. Chen, W. Zhang, J. Ren, L. Pan, K. Chen, and Z. Liu. "<strong>Robo3D: Towards Robust and Reliable 3D Perception against Corruptions</strong>," ICCV, 2023.
+                <a href="https://arxiv.org/abs/2303.17597" target="_blank">[Link]</a> <a href="https://github.com/ldkong1205/Robo3D" target="_blank">[Code]</a>
+            </p> -->
+
+
+
+
+
+            
+            <!-- <br/><br/>
+
+            <h1 class="text-white" id="organizers">Affiliations</h1>
+            <hr>
+            
+            
+            <p class="text-white-50">
+                This competition is hosted by <a href="https://shlab.org.cn/" target="_blank">Shanghai AI Laboratory</a>.
+            </p>
+            
+            <img1><img src="logos.png" class="img-fluid" alt="img-responsive"></img1> -->
+
+
+
+
+            <!-- <br/><br/>
+
+
+            <h1 class="text-white" id="organizers">Acknowledgements</h1>
+            <hr>
+
+            <p class="text-white-50">
+                This competition is developed based on the <a href="https://github.com/Daniel-xsy/RoboBEV" target="_blank">RoboBEV</a>, <a href="https://github.com/ldkong1205/RoboDepth" target="_blank">RoboDepth</a>, and <a href="https://github.com/ldkong1205/Robo3D" target="_blank">Robo3D</a> projects.
+            </p>
+
+            <p class="text-white-50">
+                The evaluation sets of this competition are constructed based on the <a href="https://www.nuscenes.org/nuscenes" target="_blank">nuScenes</a> dataset from <a href="https://motional.com/" target="_blank">Motional AD LLC</a>.
+            </p>
+
+            <p class="text-white-50">
+                Part of the content of this website is adopted from <a href="https://robodepth.github.io/" target="_blank">The RoboDepth Challenge @ ICRA 2023</a>.
+                We would like to thank Jiarun Wei and Shuai Wang for building up the template from the <a href="http://seasondepth-challenge.org/" target="_blank">SeasonDepth</a> website.
+            </p> -->
+
+
+
+
+
+
+
+            <br/><br/><br/>
+
+
+            <h1 class="text-white" id="organizers">Associated Project</h1>
+            <hr>
+
+            <p class="text-white-50">
+                This project is affiliated with <a href="https://descartes.cnrsatcreate.cnrs.fr/" target="_blank" style="color: #ffc000;">DesCartes</a>, a <a href="https://www.cnrsatcreate.cnrs.fr/" target="_blank" style="color: #ffc000;">CNRS@CREATE</a> program on Intelligent Modeling for Decision-Making in Critical Urban Systems.
+            </p>
+
+            <img1><img src="logo_descartes.png" class="img-fluid" alt="img-responsive"></img1>
+
+
+
+
+
+
+
+
+
+
+            <br/><br/><br/>
+
+            <h1 class="text-white" id="organizers">Terms & Conditions</h1>
+            <hr>
+
+            <p class="text-white-50">
+            This competition is made freely available to academic and non-academic entities for non-commercial purposes such as academic research, teaching, scientific publications, or personal experimentation.
+            Permission is granted to use the data given that you agree:
+            </p>
+            <p class="text-white-50">
+            1. That the data in this competition comes “AS IS”, without express or implied warranty. Although every effort has been made to ensure accuracy, we do not accept any responsibility for errors or omissions.<br/>
+            2. That you may not use the data in this competition or any derivative work for commercial purposes as, for example, licensing or selling the data, or using the data with a purpose to procure a commercial gain.<br/>
+            3. That you include a reference to RoboSense (including the benchmark data and the specially generated data for academic challenges) in any work that makes use of the benchmark. For research papers, please cite our preferred publications as listed on our webpage.
+            </p>
+
+            <p class="text-white-50">
+            To ensure a fair comparison among all participants, we require:
+            </p>
+
+            <p class="text-white-50">
+            1. All participants must follow the exact same data configuration when training and evaluating their algorithms. Please do not use any public or private datasets other than those specified for model training.<br/>
+            2. The theme of this competition is to probe the out-of-distribution robustness of autonomous driving perception models. Theorefore, any use of the corruption and sensor failure types designed in this benchmark is strictly prohibited, including any atomic operation that is comprising any one of the mentioned corruptions.<br/>
+            3. To ensure the above two rules are followed, each participant is requested to submit the code with reproducible results before the final result is announced; the code is for examination purposes only and we will manually verify the training and evaluation of each participant's model.
+            </p>
+            
+
+
+            <footer class="container p-5">
+                <p class="float-lg-end"><a href="#" style="color: #ffc000;">Back to Top</a></p>
+                <p class="text-white">&copy; The RoboSense Organizing Team. All Rights Researved.</p>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
