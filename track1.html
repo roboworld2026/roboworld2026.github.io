@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="3D Scene Understanding, 3D Visual Grounding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RoboSense: Track 1</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static2/css/bulma.min.css">
+  <link rel="stylesheet" href="./static2/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  
+  <script defer src="./static2/js/fontawesome.all.min.js"></script>
+  <link rel="icon" href="../logo.png" type="image/x-icon">
+
+  <style>
+    .a {
+      color: #ffc000;
+    }
+    .columns {
+      display: flex; justify-content: flex-start; padding: 5px; text-align: left;
+    }
+    .tag {
+      background-color: #f5f5f5; border-radius: 3px; padding: 5px; margin-right: 5px; font-size: 14px; color: #333;
+    }
+  </style>
+
+<style>
+  a.external-link:hover {
+    background-color: rgb(109,109,109) !important;
+    border-color: rgb(109,109,109) !important;
+  }
+  </style>
+
+  <style>
+    #backToTopBtn {
+      position: fixed; bottom: 20px; right: 50px; z-index: 999;
+      background-color: #ffc000; color: white; border: none;
+      border-radius: 50%; padding: 12px 16px; font-size: 20px; cursor: pointer;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.2); transition: opacity 0.3s; display: none;
+    }
+    
+    #backToTopBtn:hover {
+      background-color: #76b900;
+    }
+    
+    @media (max-width: 768px) {
+      #backToTopBtn {
+        font-size: 18px; padding: 10px 14px;
+      }
+    }
+
+    .img-hover-effect {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .img-hover-effect:hover {
+      transform: scale(1.05); /* Zoom to 105% */
+    }
+    </style>
+
+</head>
+
+
+
+
+<body>
+
+
+  <button onclick="scrollToTop()" id="backToTopBtn" title="Go to top">↑</button>
+  <script>
+    window.onscroll = function() {
+      scrollFunction();
+    };
+    function scrollFunction() {
+      const button = document.getElementById("backToTopBtn");
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        button.style.display = "block";
+      } else {
+        button.style.display = "none";
+      }
+    }
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+  
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <a class="navbar-item">
+          <span class="icon"><i class="fas fa-home"></i></span>
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">RoboSense 2025</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://robosense2025.github.io/" target="_blank">RoboSense 2025 Main Page</a>
+            <a class="navbar-item" href="https://robosense2025.github.io/track1" target="_blank">- Track #1: Driving with Language</a>
+            <a class="navbar-item" href="https://robosense2025.github.io/track2" target="_blank">- Track #2: Social Navigation</a>
+            <a class="navbar-item" href="https://robosense2025.github.io/track3" target="_blank">- Track #3: Sensor Placement</a>
+            <a class="navbar-item" href="https://robosense2025.github.io/track4" target="_blank">- Track #4: Cross-Modal Drone Navigation</a>
+            <a class="navbar-item" href="https://robosense2025.github.io/track5" target="_blank">- Track #5: Cross-Platform 3D Object Detection</a>
+            <a class="navbar-item" href="https://www.iros25.org/" target="_blank">IROS 2025 Main Page</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <i class="fas fa-car fa-2x" style="color: #76b900; margin-bottom: 12px;"></i>
+              <br>
+              The <a style="color: #ffc000;">Robo</a><a style="color: #76b900;">Sense</a> Challenge 2025
+            </h1>
+            <h2 class="title is-2 publication-title">
+              Track <a style="color: #76b900;">#1</a>: Driving with Language
+            </h2>
+            <h3 class="title is-4 publication-title" style="color: #666;">
+              Towards Robust Driving Perception and Decision-Making Using VLMs
+            </h3>
+            <p style="margin-top: 16px;">
+              <a class="button is-medium" 
+              style="background-color: #76b900; color: white; border: none;" 
+              href="https://www.codabench.org/competitions/9285/" 
+              target="_blank">
+                🚀 Submit on CodaBench
+              </a>
+            </p> 
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="section" style="margin-top: 0px;">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered">
+        <div class="column is-full-width left">
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              <img src="./images/track1/teaser.png" alt="Track 1 Image" style="max-width: 100%; height: auto;">
+            </p>
+            <p>
+              👋 Welcome to <strong>Track <a style="color: #76b900;">#1</a>: Driving with Language</strong> of the <a href="https://robosense2025.github.io/" target="_blank"><strong>2025 RoboSense Challenge</strong></a>!
+            </p>
+            <p>
+              In the era of autonomous driving, it is increasingly critical for intelligent agents to understand and act upon language-based instructions. 
+              Human drivers naturally interpret complex commands involving spatial, semantic, and temporal cues (e.g., "turn left after the red truck" or "stop at the next gas station on your right"). 
+            </p>
+            <p>
+              To enable such capabilities in autonomous systems, vision-language models (VLMs) must be able to perceive dynamic driving scenes, understand natural language commands, and make informed driving decisions accordingly.
+            </p>
+            <p>
+              🏆 <b>Prize Pool:</b> <a style="color: #76b900;"><b>$2,000 USD</b></a> (1st: $1,000, 2nd: $600, 3rd: $400) + Innovation Awards
+            </p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">🎯 Objective</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              This track evaluates the capability of VLMs to answer high-level driving questions in complex urban environments. Given question including perception, prediction, and planning, and a multi-view camera input, participants are expected to answer the question given the visual corrupted images.
+            </p>
+          </div>
+
+
+          <hr>
+
+
+          <h2 class="title is-3" style="margin-top: 50px;">🗂️ Phases & Requirements</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+          
+            <h4 class="title is-4">Phase <a style="color: #76b900;">#1</a>: Clean Image Evaluation</h4>
+            <p>
+              <strong>Duration:</strong> June <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth) - August <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth)
+            </p>
+            <p>
+              In this phase, participants are expected to answer the high-level driving questions given the clean images. 
+            </p>
+            <p>
+              Specifically, participants are expected to:
+            </p>
+            <ul>
+              <li>Fine-tune the VLM on custom datasets (including nuScenes, DriveBench, etc.)</li>
+              <li>Develop and test the approaches</li>
+              <li>Submit results as a json file</li>
+              <li>Iterate and improve their models based on public leaderboard feedback</li>
+            </ul>
+            <p>
+              <strong>Ranking Metric:</strong> The weighted score combining:
+            </p>
+            <ul>
+              <li>Accuracy</li>
+              <li>LLM-based score</li>
+            </ul>
+            </p>
+          
+            <hr>
+          
+            <h4 class="title is-4" style="margin-top: 40px;">Phase <a style="color: #76b900;">#2</a>: Corruption Image Evaluation</h4>
+            <p>
+              <strong>Duration:</strong> August <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth) - September <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth)
+            </p>
+            <p>
+              In this phase, participants are expected to answer the high-level driving questions given the corrupted images.
+            <p>
+              Specifically, participants are expected to:
+            </p>
+            <ul>
+              <li>Fine-tune the VLM on custom datasets (including nuScenes, DriveBench, etc.)</li>
+              <li>Develop and test their approaches</li>
+              <li>Submit results as a json file</li>
+              <li>Iterate and improve their models based on public leaderboard feedback</li>
+            </ul>
+            <p>
+              <strong>Ranking Metric:</strong> The weighted score combining:
+            </p>
+            <ul>
+              <li>Accuracy</li>
+              <li>LLM-based score</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">🚗 Dataset Examples</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              <img src="./images/track1/data_example1.png" alt="Track 1 Image" style="max-width: 100%; height: auto;">
+            </p>
+            <p>
+              <img src="./images/track1/data_example2.png" alt="Track 1 Image" style="max-width: 100%; height: auto;">
+            </p>
+            <p>
+              <img src="./images/track1/data_example3.png" alt="Track 1 Image" style="max-width: 100%; height: auto;">
+            </p>
+            <p>
+              <img src="./images/track1/data_example4.png" alt="Track 1 Image" style="max-width: 100%; height: auto;">
+            </p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">📊 Metrics</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              The evaluation uses <a style="color: #76b900;"><b>two primary metrics</b></a> to assess the model performance:
+            </p>
+            
+            <h4 class="title is-4">Primary Metrics</h4>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Usage</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Accuracy</strong></td>
+                    <td>Multi-Choice Questions (MCQs)</td>
+                    <td>Exact match between predicted and ground truth answers</td>
+                  </tr>
+                  <tr>
+                    <td><strong>LLM Score</strong></td>
+                    <td>Visual Question Answering (VQA)</td>
+                    <td>Score from 0-10 assigned by an LLM evaluator using detailed rubrics</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+            <hr>
+
+            <h4 class="title is-4" style="margin-top: 50px;">Final Score Calculation</h4>
+            <p>
+              The <a style="color: #76b900;"><b>final ranking</b></a> is determined by a <a style="color: #76b900;"><b>weighted combination</b></a> of both Phase <a style="color: #76b900;"><b>1</b></a> and Phase <a style="color: #76b900;"><b>2</b></a>:
+            </p>
+            <div style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; text-align: center; font-size: 1.2em; margin: 20px 0;">
+              <strong>Final Score = 0.2 x Score<sub>Phase 1</sub> + 0.8 x Score<sub>Phase 2</sub></strong>
+            </div>
+            <p>
+              This weighting aims to emphasize the importance of robust performance under different visual corruptions (Phase 2), while maintaining baseline capabilities on clean images (Phase 1).
+            </p>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">🛠️ Baseline Model</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              In this track, we adopt the popular <a style="color: #76b900;"><b>Qwen2.5-VL<sub>7B</sub></b></a> as our baseline model. 
+              The <a style="color: #76b900;"><b>code</b></a> is available and free to use at our GitHub repository: <a target="_blank">https://github.com/robosense2025/track1</a>. 
+            </p>
+            <p>
+              The <a style="color: #76b900;"><b>model weights</b></a> can be downloaded from here: <a target="_blank">https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct</a>.
+            </p>
+            <p>
+              Beyond the provided baseline, participants are free and encouraged to explore alternative strategies to further boost performance:
+            </p>
+            <ul>
+              <li>Retrieval-augmented reasoning</li>
+              <li>Multi-frame visual reasoning</li>
+              <li>Chain-of-thought reasoning</li>
+              <li>Graph-based reasoning</li>
+              <li>Vision-based object reference prompting</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">📊 Baseline Results</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              The baseline performance of the <a style="color: #76b900;"><b>Qwen2.5-VL<sub>7B</sub></b></a> model on Phase <a style="color: #76b900;"><b>1</b></a> is as follows:
+            </p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Task</th>
+                    <th>Question Type</th>
+                    <th>Accuracy (%)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3"><strong>Perception</strong></td>
+                    <td>MCQ</td>
+                    <td>75.5</td>
+                  </tr>
+                  <tr>
+                    <td>VQAobj</td>
+                    <td>29.2</td>
+                  </tr>
+                  <tr>
+                    <td>VQAscene</td>
+                    <td>22.2</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Prediction</strong></td>
+                    <td>MCQ</td>
+                    <td>59.2</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="2"><strong>Planning</strong></td>
+                    <td>VQAobj</td>
+                    <td>29.6</td>
+                  </tr>
+                  <tr>
+                    <td>VQAscene</td>
+                    <td>31.2</td>
+                  </tr>
+                  <tr style="background-color: #f0f8ff;">
+                    <td><strong>Average</strong></td>
+                    <td>All Types</td>
+                    <td><strong>42.5</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p>
+              The baseline performance of the <a style="color: #76b900;"><b>Qwen2.5-VL<sub>7B</sub></b></a> model on Phase <a style="color: #76b900;"><b>2</b></a> is as follows:
+            </p>
+            <p>
+              <i>To be updated.</i>
+            </p>
+
+          </div>
+
+
+
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">🔗 Resources</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              We provide the following resources to support the development of models in this track:
+            </p>
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Resource</th>
+                    <th>Link</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>GitHub Repository</strong></td>
+                    <td><a href="https://github.com/robosense2025/track1" target="_blank">github.com/robosense2025/track1</a></td>
+                    <td>Baseline code and setup instructions</td>
+                  </tr>
+                  <tr>
+                    <td><strong>HuggingFace Dataset</strong></td>
+                    <td><a href="https://huggingface.co/datasets/robosense/datasets" target="_blank">huggingface.co/datasets/robosense/datasets</a></td>
+                    <td>Dataset with training and test splits</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Baseline Model</strong></td>
+                    <td><a href="https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct" target="_blank">Qwen2.5-VL-7B-Instruct</a></td>
+                    <td>Weights of the baseline model</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Registration Form</strong></td>
+                    <td><a href="https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform?usp=sharing&ouid=111184461807593368933" target="_blank">Google Form</a>&nbsp;(Closed on August 15th)</td>
+                    <td>Team registration for the challenge</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Evaluation Server</strong></td>
+                    <td><a href="https://www.codabench.org/competitions/9285/" target="_blank">CodaBench Platform</a></td>
+                    <td>Online evaluation platform</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+
+
+          <!-- <hr>
+
+          <h2 class="title is-3">📧 Contact</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              For questions, technical support, or clarifications about Track 2, please contact:
+            </p>
+            <ul>
+              <li><strong>Email</strong>: <a href="mailto:robosense2025@gmail.com">robosense2025@gmail.com</a></li>
+              <li><strong>GitHub Issues</strong>: <a href="https://github.com/robosense2025/track2/issues" target="_blank">https://github.com/robosense2025/track2/issues</a></li>
+            </ul>
+          </div> -->
+
+
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">❓ Frequently Asked Questions</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+
+          <p>
+            Here, we provide a list of Frequently Asked Questions (FAQs) below for better clarity. 
+            If you have additional questions on the details about this competition, please reach out at <a>robosense2025@gmail.com</a>.
+          </p>
+
+          <hr>
+            
+            <div style="margin-bottom: 25px;">
+              <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">What VLMs can we use?</h4>
+              <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+                The participants are free to use any VLMs that are <strong>open-sourced</strong>, such as Qwen, Phi, LLaVA, or your own VLMs. However, the closed-source VLMs, including <code>GPT-4o</code>, <code>Claude 3.5 Sonnet</code>, <code>Gemini 2.0 Pro</code>, <code>Grok 4</code>, etc., are <strong>NOT</strong> allowed to use in this track.
+              </p>
+            </div>
+
+            <hr>
+
+            <div style="margin-bottom: 25px;">
+              <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">What should I submit for reproducibility?</h4>
+              <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+                If using an existing open-source VLM, please submit your code. If you have performed any fine-tuning, you must also submit the trained weights. Additionally, we <strong>strongly recommend</strong> including:
+                <br><br>• A README file explaining environment setup and usage
+                <br>• An inference script to directly launch for reproduction
+                <br><br>Submissions that <strong>CAN NOT</strong> be reproduced on our end will be considered <strong>INVALID</strong>.
+              </p>
+            </div>
+
+            <hr>
+
+            <div style="margin-bottom: 25px;">
+              <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">Why are the evaluation results different using the same prediction file?</h4>
+              <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+                We use LLM to evaluate open-ended questions. The MCQs result should the the same, while open-ended questions might vary within a small numerical range.
+              </p>
+            </div>
+
+            <hr>
+
+            <div style="margin-bottom: 25px;">
+              <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">Can we modify the prompt?</h4>
+              <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+                Yes, you are free to modify the prompts. This includes techniques such as prompt engineering, retrieval-augmented generation (RAG), and in-context learning. However, to ensure correct evaluation, please <strong>DO NOT</strong> alter the <code>question</code> field in your submission JSON file.
+              </p>
+            </div>
+
+            <hr>
+
+            <div style="margin-bottom: 25px;">
+              <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">Can we use external models?</h4>
+              <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+                No. This competition is intended to evaluate the <strong>capabilities of VLMs</strong> specifically. The use of task-specific models (e.g., object detectors, trajectory predictors) that directly address the task or provide extra information to the VLMs is <strong>NOT</strong> allowed. Modification within the VLM architectures is allowed, such as the vision encoder.
+              </p>
+            </div>
+          </div>
+
+          
+
+
+
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">📖 References</h2>
+          <div class="content has-text-justified" style="padding-top: 0px;">
+            <div style="
+              max-width: 100%;
+              overflow-x: auto;
+              background-color: #f9f9f9;
+              border-radius: 5px;
+              padding: 1em;
+              font-size: 0.9em;
+              box-sizing: border-box;
+            ">
+              <pre style="
+                margin: 0;
+                font-family: monospace;
+                white-space: pre;
+                overflow-x: auto;
+              ">
+@misc{robosense2025track1,
+  title        = {RoboSense Challenge 2025: Track 1 - Driving with Language},
+  author       = {RoboSense Challenge 2025 Organizers},
+  year         = {2025},
+  howpublished = {https://robosense2025.github.io/track1}
+}
+              </pre>
+            </div>
+          </div>
+
+
+
+
+
+<!--           
+          <hr>
+
+          <h2 class="title is-3">📖 References</h2>
+          <div class="content has-text-justified" style="padding-top: 0px;">
+            <div style="
+              max-width: 100%;
+              overflow-x: auto;
+              background-color: #f9f9f9;
+              border-radius: 5px;
+              padding: 1em;
+              font-size: 0.9em;
+              box-sizing: border-box;
+            ">
+              <pre style="
+                margin: 0;
+                font-family: monospace;
+                white-space: pre;
+                overflow-x: auto;
+              ">
+@article{gong2024cognition,
+  title   = {From Cognition to Precognition: A Future-Aware Framework for Social Navigation},
+  author  = {Gong, Zeying and Hu, Tianshuai and Qiu, Ronghe and Liang, Junwei},
+  journal = {arXiv preprint arXiv:2409.13244},
+  year    = {2024}
+}
+
+@misc{robosense2025track2,
+  title        = {RoboSense Challenge 2025: Track 2 - Social Navigation},
+  author       = {RoboSense Challenge 2025 Organizers},
+  year         = {2025},
+  howpublished = {https://robosense2025.github.io/track2}
+}
+              </pre>
+            </div>
+          </div>
+ -->
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <br>
+  </section>
+
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International</a> license.
+            </p>
+            <p>
+              Copyright © <a style="color: #ffc000;">Robo</a><a style="color: #76b900;">Sense</a> 2025 All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+</body>
+
+</html>
