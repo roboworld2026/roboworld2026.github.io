@@ -57,6 +57,12 @@
       transition: transform 0.3s ease-in-out;
     }
 
+    /* Allow the content column to shrink so long single-line blocks (for example the
+       bibliography) scroll inside their own container instead of widening the page. */
+    .column.is-full-width {
+      min-width: 0;
+    }
+
     .img-hover-effect:hover {
       transform: scale(1.05); /* Zoom to 105% */
     }
@@ -202,17 +208,20 @@
                 </thead>
                 <tbody>
                   <tr><td>Competition server online</td><td>September 2026</td></tr>
-                  <tr><td>Phase 1 (Validation) opens</td><td>September 30, 2026</td></tr>
-                  <tr><td><b>Phase 1 deadline</b></td><td><b>October 31, 2026</b></td></tr>
+                  <tr><td>Phase 1 (Validation) opens</td><td>September 30, 2026 (16:00 UTC)</td></tr>
+                  <tr><td><b>Phase 1 deadline</b></td><td><b>October 31, 2026 (15:59 UTC)</b></td></tr>
                   <tr><td>Phase 2 (Final Evaluation) opens</td><td>November 2026</td></tr>
                   <tr><td><b>Phase 2 deadline</b></td><td><b>November 20, 2026</b></td></tr>
                   <tr><td>Award decision announcement</td><td>December 2026 (NeurIPS 2026 Competition Track)</td></tr>
                 </tbody>
               </table>
             </div>
+            <p>
+              Each participant may submit <b>5 times per day</b> and <b>100 times in total</b> in a phase. CodaBench keeps the best-scoring submission of each team on the leaderboard; a submission that fails validation produces no score, so it is worth checking the archive with the starting kit before spending a submission.
+            </p>
             <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Phase #1: Validation</h4>
             <p>
-              Participants receive the released validation inputs (initial observation, instruction, initial pose and number of steps per episode) for the <code>val_seen</code> and <code>val_unseen</code> splits, and submit one ZIP archive containing <code>val_seen.json</code> and <code>val_unseen.json</code>. The <b>val_unseen Score</b> determines the Phase 1 ranking; <code>val_seen</code> metrics are reported in the scoring log of each submission. Because Phase 1 is scored on the publicly released validation splits, the Phase 1 leaderboard is a development and validation signal: the final ranking and the awards are decided by the Phase 2 (test) Score.
+              Participants receive the released validation inputs (initial observation, instruction, initial pose and number of steps per episode) for the <code>val_seen</code> and <code>val_unseen</code> splits, and submit one ZIP archive containing <code>val_seen.json</code> and <code>val_unseen.json</code>. The episode inputs come from the extracted split: the <code>episode_id</code> is the trajectory folder name, the instruction and the poses are in <code>traj_data.pkl</code>, and <code>num_steps</code> is listed for every expected episode in the <b>Phase 1 starting kit</b> attached to the CodaBench Phase 1 task (the kit also contains a complete example submission, the packaging instructions and reference scores). The <b>val_unseen Score</b> determines the Phase 1 ranking; <code>val_seen</code> metrics are reported in the scoring log of each submission (the leaderboard itself shows <code>val_unseen</code> columns only). Because Phase 1 is scored on the publicly released validation splits, a submission built from the released trajectories can reach about 100 points: the Phase 1 leaderboard is a development and validation signal that is not used for shortlisting decisions, and the final ranking and the awards are decided by the Phase 2 (test) Score. The scoring log marks submissions that replay the released ground truth, without changing their score.
             </p>
             <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Phase #2: Final Evaluation</h4>
             <p>
@@ -235,6 +244,9 @@
               Track 5 uses the <b>LCVN dataset</b>, released on Hugging Face at <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">fly1113/LCVN</a>: 39,016 trajectories and 117,048 human-verified instructions, with three instruction styles (Concise, Intricate, Landmark-grounded). Training and in-domain evaluation use Go Stanford, ReCon, SCAND and HuRoN; TartanDrive is reserved for unseen-environment evaluation. Each trajectory provides egocentric RGB frames plus <code>traj_data.pkl</code> with <code>position</code>, <code>yaw</code>, <code>delta</code> and <code>instruction</code>.
             </p>
             <p>
+              Frames are named <code>0.jpg, 1.jpg, ...</code> in <code>val_seen</code> and <code>0000.jpg, 0001.jpg, ...</code> in <code>val_unseen</code>. Each trajectory is released as three episodes, one per instruction style, with identifiers ending in <code>_0</code>, <code>_1</code> or <code>_2</code>; the <code>episode_id</code> is the trajectory folder name, so <code>val_seen</code> contains 10,806 scored episodes (3,602 trajectories) and <code>val_unseen</code> 4,500 (1,500 trajectories), with 7 to 34 environment steps each. Download only <code>val_seen.tar</code> (7.4 GB) and <code>val_unseen.tar</code> (20.3 GB) for a Phase 1 setup; <code>train.tar</code> is 57.6 GB.
+            </p>
+            <p>
               The <code>train</code>, <code>val_seen</code> and <code>val_unseen</code> splits are public; the official test split is withheld. Phase 1 submissions follow the same schema as Phase 2, so participants can validate their complete pipeline before the final evaluation.
             </p>
             <p>Each split file is a JSON object with this structure (the identifier below is a real val_unseen episode with 16 steps; the action list is abbreviated - a real entry must contain exactly num_steps actions):</p>
@@ -251,15 +263,17 @@
 }
             </pre>
             <ul>
+              <li><code>format_version</code> is the JSON number <code>1</code> (<code>1.0</code> and the strings <code>"1"</code>/<code>"1.0"</code> are also accepted); <code>split</code> must match the file name and the phase.</li>
               <li><code>actions</code> is the ordered list of relative motion commands <code>[dx, dy, dyaw]</code> (metres, metres, radians), one command per environment step.</li>
-              <li><code>dx</code> and <code>dy</code> are displacements in the dataset (global) axes: they are added directly to the previous position and are <b>not</b> rotated by the current heading of the agent. In the released data the first command of a trajectory is aligned with the initial heading of the episode.</li>
+              <li><code>dx</code> and <code>dy</code> are displacements in the dataset (global) axes: they are added directly to the previous position and are <b>not</b> rotated by the current heading of the agent. In the released data the first command of a trajectory is approximately aligned with the initial heading of the episode.</li>
               <li>The heading component <code>dyaw</code> is part of the action representation, but the official metrics are position-based: SR, ATE and RPE do not use the predicted heading.</li>
-              <li>Episode identifiers must be unique and must cover every expected episode exactly once; the number of actions must equal the <code>num_steps</code> of that episode.</li>
+              <li>Episode identifiers must be unique and must cover every expected episode exactly once; the number of actions must equal the <code>num_steps</code> of that episode (listed per episode in the starting-kit manifests).</li>
+              <li>Hidden entries such as <code>.DS_Store</code> and the macOS metadata directory <code>__MACOSX/</code> are ignored; nested folders and any other extra file are rejected with a message that includes the packaging command.</li>
               <li>Accepted per-step bounds: <code>|dx|, |dy| &lt;= 2.46 m</code> and <code>|dyaw| &lt;= 6.29 rad</code>.</li>
             </ul>
           </div>
 
-          <hr>
+        <hr>
 
           <h2 class="title is-3" style="margin-top: 50px;">📏 Evaluation Metrics &amp; Score</h2>
           <div class="content has-text-justified" style="padding-top: 0px">
@@ -276,17 +290,17 @@
                   <tr>
                     <td><b>SR</b> (Success Rate)</td>
                     <td>higher is better</td>
-                    <td>Fraction of episodes whose final predicted position lies within the success threshold of the goal position (the average ground-truth step length of that episode, with a lower bound of 0.05 m).</td>
+                    <td>Fraction of episodes whose final predicted position is <b>strictly closer</b> than the episode success threshold to the goal position. The threshold is the average ground-truth step length of that episode (the mean distance between consecutive ground-truth positions), with a lower bound of 0.05 m. Only the final position counts.</td>
                   </tr>
                   <tr>
                     <td><b>ATE</b> (Absolute Trajectory Error)</td>
                     <td>lower is better</td>
-                    <td>RMSE of the absolute translation error between the predicted and the ground-truth trajectory (no alignment), in metres.</td>
+                    <td>RMSE of the per-step translation error between the predicted and the ground-truth positions, over all scored steps of the split, in metres, with no alignment (no SE(3)/Sim(3) alignment, no scale correction). Every submission starts from the reference initial pose, which contributes no error and is not counted as a step.</td>
                   </tr>
                   <tr>
                     <td><b>RPE</b> (Relative Pose Error)</td>
                     <td>lower is better</td>
-                    <td>RMSE of the per-step relative translation error over consecutive steps (delta of one step, first step included), expressed in the ground-truth heading frame of the step, in metres.</td>
+                    <td>RMSE of the per-step relative translation error over consecutive steps (delta of one step, the step from the initial pose to the first predicted position included), expressed in the ground-truth heading frame of the step that starts the pair, in metres. That frame rotation is orthonormal, so it does not change the reported value; no alignment is applied.</td>
                   </tr>
                 </tbody>
               </table>
@@ -296,7 +310,7 @@
 Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
             </pre>
             <p>
-              Scores are computed from full-precision aggregate metrics, without rounding intermediate values, and are displayed with six decimal places. Ties are broken by higher SR, then lower ATE, then lower RPE, then earlier submission time.
+              Score lies in [0, 100] and is computed from full-precision split metrics, without rounding intermediate values; the same weights apply in both phases. Scores are displayed with six decimal places. Ties are broken by higher SR, then lower ATE, then lower RPE, then earlier submission time, and for Phase 1 all tie-breaking metrics are read from <code>val_unseen</code>.
             </p>
           </div>
 
@@ -315,7 +329,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               <img src="https://raw.githubusercontent.com/F1y1113/LCVN/main/assets/lcvn-wm-ac.jpg" alt="LCVN-WM and LCVN-AC" style="max-width: 100%; height: auto;">
             </p>
             <p>
-              Data preparation, training and evaluation commands for both families are documented in the LCVN repository. Organizer baseline results for the official metrics will be published with the Phase 1 starting kit.
+              Data preparation, training and evaluation commands for both families are documented in the LCVN repository. Reference points for the official Score are given below and in the Phase 1 starting kit.
             </p>
           </div>
 
@@ -348,7 +362,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               </table>
             </div>
             <p>
-              Expressed with the challenge Score on val_unseen, the two LCVN baselines above correspond to about 27.7 (LCVN-WM + LCVN-AC, context 4) and 34.8 (LCVN-Uni, context 2) points. For further reference, the LCVN paper also evaluates three world-model baselines paired with LCVN-AC: Diamond (val_unseen ATE 2.84 / RPE 0.95 / SR 0.09, about 16.6 points), NWM (2.17 / 0.73 / 0.12, about 20.5 points) and language-conditioned NWM (2.21 / 0.70 / 0.13, about 21.2 points). A submission that never moves scores about 9.6 points. These values are computed with the challenge formula from the published metrics of the paper and are reference points only.
+              Expressed with the challenge Score on val_unseen, the two LCVN baselines above correspond to about 27.7 (LCVN-WM + LCVN-AC, context 4) and 34.8 (LCVN-Uni, context 2) points. For further reference, the LCVN paper also evaluates three world-model baselines paired with LCVN-AC: Diamond (val_unseen ATE 2.84 / RPE 0.95 / SR 0.09, about 16.6 points), NWM (2.17 / 0.73 / 0.12, about 20.5 points) and language-conditioned NWM (2.21 / 0.70 / 0.13, about 21.2 points). The point values of the baselines are <i>derived</i> with the challenge formula from the metrics published in the paper, while a submission that never moves <i>measures</i> about 9.6 points and a submission that replays the released validation ground truth measures about 100 points with the official scoring program. All of these are reference points, not leaderboard results.
             </p>
           </div>
 
@@ -375,9 +389,14 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
                     <td>RoboWorld Challenge 2026 main page</td>
                   </tr>
                   <tr>
+                    <td><strong>Phase 1 Starting Kit</strong></td>
+                    <td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench Phase 1 task</a></td>
+                    <td>Expected-episode manifests, example submission, packaging instructions, reference scores</td>
+                  </tr>
+                  <tr>
                     <td><strong>Track Repository</strong></td>
                     <td><a href="https://github.com/aautomataa/track5" target="_blank">github.com/aautomataa/track5</a></td>
-                    <td>Track documentation, submission format and FAQ</td>
+                    <td>Track documentation, submission format and FAQ (public with the challenge launch)</td>
                   </tr>
                   <tr>
                     <td><strong>LCVN Repository</strong></td>
@@ -402,6 +421,9 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
                 </tbody>
               </table>
             </div>
+            <p style="margin-top: 1em;">
+              The track repository and the CodaBench evaluation server open to participants together with Phase 1 on September 30, 2026 (16:00 UTC).
+            </p>
           </div>
 
           <hr>
@@ -430,7 +452,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               Do I have to run a simulator?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              No. The organizers replay the submitted action sequences against the held-out ground-truth trajectories in an offline harness — nothing of yours is executed during scoring.
+              No. The official harness replays the submitted action sequences against the ground-truth trajectories of the evaluated split — public for the validation splits, withheld for the test split — and nothing of yours is executed during scoring.
             </p>
           </div>
 
@@ -448,7 +470,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               Which split decides the Phase 1 ranking?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              The <code>val_unseen</code> Score. <code>val_seen</code> metrics remain visible on the leaderboard for diagnosis. Phase 2 is ranked by the withheld test Score, which determines the awards.
+              The <code>val_unseen</code> Score; the leaderboard carries <code>val_unseen</code> columns only, and the <code>val_seen</code> metrics of your submission are reported in its scoring log. Because the validation ground truth is public, the Phase 1 board is a development and validation signal (a replay of the released trajectories reaches about 100 points) and is not used for shortlisting decisions; the awards are decided by the withheld test Score in Phase 2.
             </p>
           </div>
 
@@ -457,7 +479,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               Where do I download the data?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              From the Hugging Face release at <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">fly1113/LCVN</a>, or with <code>bash download_data.sh</code> from the LCVN repository, which fetches and extracts the released splits.
+              From the Hugging Face release at <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">fly1113/LCVN</a>, or with <code>bash download_data.sh</code> from the LCVN repository, which fetches and extracts the released splits. A Phase 1 setup only needs <code>val_seen.tar</code> (7.4 GB) and <code>val_unseen.tar</code> (20.3 GB).
             </p>
           </div>
 
@@ -466,7 +488,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               Is the test ground truth public?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              No. Phase 2 releases only the test inference inputs (initial frame, instruction and number of steps); the test ground truth is used exclusively for the official evaluation.
+              No. Phase 2 releases only the test inference inputs (initial frame, instruction, initial pose and number of steps); the test ground truth is used exclusively for the official evaluation.
             </p>
           </div>
 
@@ -493,7 +515,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               How should I package the archive?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              Put the JSON files at the root of the ZIP, for example: <code>cd &lt;folder with the JSON files&gt; &amp;&amp; zip -j submission.zip val_seen.json val_unseen.json</code>. Nested folders and macOS <code>__MACOSX</code> entries are rejected with an explicit error message.
+              Put the JSON files at the root of the ZIP, for example: <code>cd &lt;folder with the JSON files&gt; &amp;&amp; zip -j submission.zip val_seen.json val_unseen.json</code>. Nested folders and extra files are rejected with a message that names the offending entry and repeats the packaging command; hidden entries such as <code>.DS_Store</code> and the macOS metadata directory <code>__MACOSX/</code> are ignored.
             </p>
           </div>
 
@@ -503,6 +525,24 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
               Scoring is fully offline and fast: a complete Phase 1 archive is scored in well under a minute once the submission has been processed by CodaBench.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              Which episodes must my archive cover, and how many steps each?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              Every episode of the starting-kit manifest for that split, exactly once, with exactly the <code>num_steps</code> actions listed there. The <code>episode_id</code> is the trajectory folder name inside the extracted split (for example <code>val_unseen/20210826_40_0001_02_0/</code>); the instruction and the poses of that episode are in the same folder's <code>traj_data.pkl</code>, and <code>num_steps</code> equals <code>len(traj_data.pkl["position"]) - 1</code> (7 to 34 in the validation splits). Each trajectory is released as three episodes, one per instruction style, with identifiers ending in <code>_0</code>, <code>_1</code> or <code>_2</code>, so <code>val_seen</code> expects 10,806 episodes and <code>val_unseen</code> 4,500.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              What does a rejection message mean?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              The scoring log reports the first failed check as <code>SUBMISSION REJECTED:</code> together with the file, episode or step involved, for example <code>unexpected entries in the submission archive: README.txt (accepted files: ...)</code>, <code>val_unseen.json episode 20210826_40_0001_02_0: expected 16 action(s) (num_steps = 16), found 3</code> or <code>val_unseen.json: 12 of 4500 expected episodes are missing (for example: ...)</code>. Layout errors repeat the packaging command as a <code>hint:</code>. Fix the archive and submit again; nothing is scored until every check passes. A message starting with <code>SCORING DATA ERROR (organizer):</code> describes a problem on the organizers' side — report it to <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a> rather than rebuilding your archive.
             </p>
           </div>
 
