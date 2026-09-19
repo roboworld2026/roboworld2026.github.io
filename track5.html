@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="keywords" content="3D Scene Understanding, 3D Visual Grounding">
+  <meta name="description" content="RoboWorld Challenge 2026 Track 5: WorldNav - language-conditioned open-loop visual navigation and trajectory prediction on the LCVN benchmark.">
+  <meta name="keywords" content="World Model Navigation, Vision-and-Language Navigation, Open-Loop Trajectory Prediction, LCVN Benchmark, RoboWorld 2026">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RoboWorld: Track 5 - WorldNav</title>
 
@@ -167,7 +167,7 @@
               Kindly refer to the <a href="https://github.com/F1y1113/LCVN" target="_blank" style="color: #76b900;">LCVN repository</a> for more technical details on this track.
             </p>
             <p>
-              🏆 <b>Prize Pool:</b> <a style="color: #76b900;"><b>$1,500</b></a> for the 1st place, <b>$800</b> for the 2nd place and <b>$500</b> for the 3rd place (per track).
+              🏆 <b>Prize Pool:</b> <a style="color: #76b900;"><b>$2,800 per track</b></a> (1st: <b>$1,500</b> · 2nd: <b>$800</b> · 3rd: <b>$500</b>), plus the Rising Star Award announced by the challenge.
             </p>
           </div>
 
@@ -212,11 +212,11 @@
             </div>
             <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Phase #1: Validation</h4>
             <p>
-              Participants receive the released validation inputs (initial observation, instruction and number of steps per episode) for the <code>val_seen</code> and <code>val_unseen</code> splits, and submit one ZIP archive containing <code>val_seen.json</code> and <code>val_unseen.json</code>. The <b>val_unseen Score</b> determines the Phase 1 ranking; <code>val_seen</code> metrics stay visible on the leaderboard for diagnosis.
+              Participants receive the released validation inputs (initial observation, instruction, initial pose and number of steps per episode) for the <code>val_seen</code> and <code>val_unseen</code> splits, and submit one ZIP archive containing <code>val_seen.json</code> and <code>val_unseen.json</code>. The <b>val_unseen Score</b> determines the Phase 1 ranking; <code>val_seen</code> metrics are reported in the scoring log of each submission. Because Phase 1 is scored on the publicly released validation splits, the Phase 1 leaderboard is a development and validation signal: the final ranking and the awards are decided by the Phase 2 (test) Score.
             </p>
             <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Phase #2: Final Evaluation</h4>
             <p>
-              The withheld test inference inputs are released at the start of Phase 2. Participants submit one ZIP archive containing <code>test.json</code>; the test ground truth is never released and is used exclusively for the official evaluation. The <b>test Score</b> determines the final ranking and the awards.
+              The withheld test inference inputs are released at the start of Phase 2 (initial observation, instruction, initial pose and number of steps per episode). Participants submit one ZIP archive containing <code>test.json</code>; the test ground truth is never released and is used exclusively for the official evaluation. The <b>test Score</b> determines the final ranking and the awards.
             </p>
             <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Requirements</h4>
             <ul>
@@ -237,14 +237,14 @@
             <p>
               The <code>train</code>, <code>val_seen</code> and <code>val_unseen</code> splits are public; the official test split is withheld. Phase 1 submissions follow the same schema as Phase 2, so participants can validate their complete pipeline before the final evaluation.
             </p>
-            <p>Each split file is a JSON object with this structure:</p>
+            <p>Each split file is a JSON object with this structure (the identifier below is a real val_unseen episode with 16 steps; the action list is abbreviated - a real entry must contain exactly num_steps actions):</p>
             <pre style="background-color: #f9f9f9; padding: 1em; border-radius: 5px; overflow-x: auto;">
 {
   "format_version": 1,
   "split": "val_unseen",
   "episodes": [
     {
-      "episode_id": "tartan_drive_0001",
+      "episode_id": "20210826_40_0001_02_0",
       "actions": [[0.25, 0.0, 0.0], [0.0, 0.0, 0.15], [0.12, -0.05, 0.0]]
     }
   ]
@@ -252,6 +252,8 @@
             </pre>
             <ul>
               <li><code>actions</code> is the ordered list of relative motion commands <code>[dx, dy, dyaw]</code> (metres, metres, radians), one command per environment step.</li>
+              <li><code>dx</code> and <code>dy</code> are displacements in the dataset (global) axes: they are added directly to the previous position and are <b>not</b> rotated by the current heading of the agent. In the released data the first command of a trajectory is aligned with the initial heading of the episode.</li>
+              <li>The heading component <code>dyaw</code> is part of the action representation, but the official metrics are position-based: SR, ATE and RPE do not use the predicted heading.</li>
               <li>Episode identifiers must be unique and must cover every expected episode exactly once; the number of actions must equal the <code>num_steps</code> of that episode.</li>
               <li>Accepted per-step bounds: <code>|dx|, |dy| &lt;= 2.46 m</code> and <code>|dyaw| &lt;= 6.29 rad</code>.</li>
             </ul>
@@ -274,7 +276,7 @@
                   <tr>
                     <td><b>SR</b> (Success Rate)</td>
                     <td>higher is better</td>
-                    <td>Fraction of episodes whose final predicted position lies within the average ground-truth step length of the goal position.</td>
+                    <td>Fraction of episodes whose final predicted position lies within the success threshold of the goal position (the average ground-truth step length of that episode, with a lower bound of 0.05 m).</td>
                   </tr>
                   <tr>
                     <td><b>ATE</b> (Absolute Trajectory Error)</td>
@@ -284,12 +286,12 @@
                   <tr>
                     <td><b>RPE</b> (Relative Pose Error)</td>
                     <td>lower is better</td>
-                    <td>RMSE of the relative translation error over consecutive steps (delta of one step), in metres.</td>
+                    <td>RMSE of the per-step relative translation error over consecutive steps (delta of one step, first step included), expressed in the ground-truth heading frame of the step, in metres.</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p>The composite Score is identical for Track 2 and Track 5 of RoboWorld 2026:</p>
+            <p>The composite Score of Track 5 is computed as:</p>
             <pre style="background-color: #f9f9f9; padding: 1em; border-radius: 5px; overflow-x: auto;">
 Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
             </pre>
@@ -346,7 +348,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
               </table>
             </div>
             <p>
-              For reference, the LCVN paper also evaluates three world-model baselines paired with LCVN-AC: Diamond (val_unseen ATE 2.84 / RPE 0.95 / SR 0.09), NWM (2.17 / 0.73 / 0.12) and language-conditioned NWM (2.21 / 0.70 / 0.13).
+              Expressed with the challenge Score on val_unseen, the two LCVN baselines above correspond to about 27.7 (LCVN-WM + LCVN-AC, context 4) and 34.8 (LCVN-Uni, context 2) points. For further reference, the LCVN paper also evaluates three world-model baselines paired with LCVN-AC: Diamond (val_unseen ATE 2.84 / RPE 0.95 / SR 0.09, about 16.6 points), NWM (2.17 / 0.73 / 0.12, about 20.5 points) and language-conditioned NWM (2.21 / 0.70 / 0.13, about 21.2 points). A submission that never moves scores about 9.6 points. These values are computed with the challenge formula from the published metrics of the paper and are reference points only.
             </p>
           </div>
 
@@ -409,7 +411,7 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
 
           <p>
             Here, we provide a list of Frequently Asked Questions (FAQs) below for better clarity. 
-            If you have additional questions on the details about this competition, please reach out at <a>roboworld2026@outlook.com</a>.
+            If you have additional questions on the details about this competition, please reach out at <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a> or open an issue in the track repository.
           </p>
 
           <hr>
@@ -474,6 +476,24 @@ Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
               Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE)), computed from full-precision metrics and displayed with six decimal places.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              Is the heading (dyaw) scored?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              No. SR, ATE and RPE are computed from the predicted positions, so the heading component does not change your score. Submit the heading your model predicts; it is part of the action representation and may be used in future editions.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              How should I package the archive?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              Put the JSON files at the root of the ZIP, for example: <code>cd &lt;folder with the JSON files&gt; &amp;&amp; zip -j submission.zip val_seen.json val_unseen.json</code>. Nested folders and macOS <code>__MACOSX</code> entries are rejected with an explicit error message.
             </p>
           </div>
 
