@@ -5,7 +5,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="3D Scene Understanding, 3D Visual Grounding">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RoboSense: Track 5</title>
+  <title>RoboWorld: Track 5 - WorldNav</title>
 
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
@@ -63,10 +63,6 @@
     </style>
 
 </head>
-
-
-
-
 <body>
 
 
@@ -87,7 +83,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
-  
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -103,15 +98,15 @@
           <span class="icon"><i class="fas fa-home"></i></span>
         </a>
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">RoboSense 2025</a>
+          <a class="navbar-link">RoboWorld 2026</a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://robosense2025.github.io/" target="_blank">RoboSense 2025 Main Page</a>
-            <a class="navbar-item" href="https://robosense2025.github.io/track1" target="_blank">- Track #1: Driving with Language</a>
-            <a class="navbar-item" href="https://robosense2025.github.io/track2" target="_blank">- Track #2: Social Navigation</a>
-            <a class="navbar-item" href="https://robosense2025.github.io/track3" target="_blank">- Track #3: Sensor Placement</a>
-            <a class="navbar-item" href="https://robosense2025.github.io/track4" target="_blank">- Track #4: Cross-Modal Drone Navigation</a>
-            <a class="navbar-item" href="https://robosense2025.github.io/track5" target="_blank">- Track #5: WorldNav — World Model Navigation</a>
-            <a class="navbar-item" href="https://www.iros25.org/" target="_blank">IROS 2025 Main Page</a>
+            <a class="navbar-item" href="https://roboworld2026.github.io/" target="_blank">RoboWorld 2026 Main Page</a>
+            <a class="navbar-item" href="https://roboworld2026.github.io/track1" target="_blank">- Track #1: Driving with Language</a>
+            <a class="navbar-item" href="https://roboworld2026.github.io/track2" target="_blank">- Track #2: X-Embodied Foundation</a>
+            <a class="navbar-item" href="https://roboworld2026.github.io/track3" target="_blank">- Track #3: Social Navigation</a>
+            <a class="navbar-item" href="https://roboworld2026.github.io/track4" target="_blank">- Track #4: WorldLens Driving World Model Evaluation</a>
+            <a class="navbar-item" href="https://roboworld2026.github.io/track5" target="_blank">- Track #5: WorldNav — World Model Navigation</a>
+            <a class="navbar-item" href="https://neurips.cc/" target="_blank">NeurIPS 2026 Main Page</a>
           </div>
         </div>
       </div>
@@ -124,20 +119,20 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">
-              <i class="fas fa fa-eye fa-2x" style="color: #76b900; margin-bottom: 12px;"></i>
+              <i class="fas fa fa-globe fa-2x" style="color: #76b900; margin-bottom: 12px;"></i>
               <br>
-              The <a style="color: #ffc000;">Robo</a><a style="color: #76b900;">Sense</a> Challenge 2025
+              The <a style="color: #ffc000;">Robo</a><a style="color: #76b900;">World</a> Challenge 2026
             </h1>
             <h2 class="title is-2 publication-title">
               Track <a style="color: #76b900;">#5</a>: WorldNav — World Model Navigation
             </h2>
             <h3 class="title is-4 publication-title" style="color: #666;">
-              World Model Navigation in Dynamic Human Environments
+              Language-Conditioned Open-Loop Navigation in Continuous 3D Environments
             </h3>
             <p style="margin-top: 16px;">
               <a class="button is-medium" 
               style="background-color: #76b900; color: white; border: none;" 
-              href="https://www.codabench.org/competitions/9179/" 
+              href="https://www.codabench.org/competitions/18185/" 
               target="_blank">
                 🚀 Submit on CodaBench
               </a>
@@ -157,22 +152,22 @@
         <div class="column is-full-width left">
           <div class="content has-text-justified" style="padding-top: 0px">
             <p>
-              <img src="./images/track5/teaser.png" alt="Track 5 Image" style="max-width: 100%; height: auto;">
+              <img src="https://raw.githubusercontent.com/F1y1113/LCVN/main/assets/lcvn.jpg" alt="Track 5 Teaser" style="max-width: 100%; height: auto;">
             </p>
             <p>
-              👋 Welcome to <strong>Track <a style="color: #76b900;">#5</a>: WorldNav — World Model Navigation</strong> of the <a href="https://robosense2025.github.io/" target="_blank"><strong>2025 RoboSense Challenge</strong></a>!
+              👋 Welcome to <strong>Track <a style="color: #76b900;">#5</a>: WorldNav — World Model Navigation</strong> of the <a href="https://roboworld2026.github.io/" target="_blank"><strong>RoboWorld Challenge 2026</strong></a>!
             </p>
             <p>
-              This track focuses on modeling the navigation world in dynamic human environments, where agents must follow natural language instructions in continuous 3D scenes populated with moving humans performing diverse everyday activities.
+              This track studies <strong>language-conditioned open-loop visual navigation</strong>. An agent receives a single initial egocentric observation together with a natural-language instruction, and must predict the complete trajectory that reaches the described destination. There are no goal images, no maps, and no intermediate environmental feedback: the whole action sequence has to be committed in advance.
             </p>
             <p>
-              Participants are expected to develop agents that jointly ground socially rich language instructions, perceive dynamic human behaviors, and plan collision-free, socially compliant paths. We particularly encourage world-model-based approaches that anticipate future environment states and human motion dynamics to enable proactive navigation, though all methods are welcome.
+              The track is built on the <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank" style="color: #76b900;">LCVN benchmark</a> and scores the <em>planning</em> output only. World-model-based agents, vision-language models (VLMs), vision-language-action (VLA) models and policy-only planners are all welcome — imagination quality is not part of the official ranking, so every method competes on the same footing.
             </p>
             <p>
-              Kindly refer to <a href="https://github.com/F1y1113/HA-VLN" target="_blank" style="color: #76b900;">this page</a> for more technical details on this track.
+              Kindly refer to the <a href="https://github.com/F1y1113/LCVN" target="_blank" style="color: #76b900;">LCVN repository</a> for more technical details on this track.
             </p>
             <p>
-              🏆 <b>Prize Pool:</b> <a style="color: #76b900;"><b>$2,000 USD</b></a> (1st: $1,000, 2nd: $600, 3rd: $400) + Innovation Awards
+              🏆 <b>Prize Pool:</b> <a style="color: #76b900;"><b>$1,500</b></a> for the 1st place, <b>$800</b> for the 2nd place and <b>$500</b> for the 3rd place (per track).
             </p>
           </div>
 
@@ -181,215 +176,178 @@
           <h2 class="title is-3" style="margin-top: 50px;">🎯 Objective</h2>
           <div class="content has-text-justified" style="padding-top: 0px">
             <p>
-              As robotics continues to advance, LiDAR-based 3D object detection has become a focal point in both academia and industry. However, most existing datasets and methods target vehicle platforms, overlooking quadrupeds and drones.  
-              This challenge, built on our benchmark, aims to:
+              Open-loop navigation removes the comfort of re-planning: the agent sees one frame, reads one instruction, and then has to say where it will go. This stresses exactly what world models are for — anticipating how a scene unfolds from language and a single glimpse of it.
             </p>
-            <ol>
-              <li style="margin-bottom: 0.75rem;">
-                Build on three robot platforms - <a style="color: #76b900;"><strong>vehicles</strong><a style="color: #76b900;"></a>, <a style="color: #76b900;"><strong>drones</strong></a>, and <a style="color: #76b900;"><strong>quadruped robots</strong></a> - to foster innovations in a unified LiDAR-based 3D object detection framework;
-              </li></a>
-              <li style="margin-bottom: 0.75rem;">
-                Bridge geometric and data distribution disparities to achieve rapid knowledge transfer and model adaptation across different robot platforms;
-              </li>
-              <li>
-                Lower annotation and deployment overhead, supporting collaborative sensing for heterogeneous robot teams in urban, disaster, and indoor scenarios.
-              </li>
-            </ol>
-
             <p>
-              <img src="./images/track5/distributions.png" alt="Track 5 Image" style="max-width: 100%; height: auto;">
+              Participants are expected to:
+            </p>
+            <ul>
+              <li><b>Ground language from a single frame</b>: infer the intended destination from instructions that may be concise, intricate (objects, people, scene layout) or landmark-grounded.</li>
+              <li><b>Predict a full action sequence</b>: output the ordered relative motion commands [dx, dy, dyaw] that carry the agent from the initial pose to the goal, one command per environment step.</li>
+              <li><b>Model the world if it helps</b>: anticipate future states and dynamics, then plan with that anticipation. World-model agents are explicitly encouraged, but the official evaluation only looks at the predicted trajectory.</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">🗂️ Phases &amp; Requirements</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Competition server online</td><td>September 2026</td></tr>
+                  <tr><td>Phase 1 (Validation) opens</td><td>September 30, 2026</td></tr>
+                  <tr><td><b>Phase 1 deadline</b></td><td><b>October 31, 2026</b></td></tr>
+                  <tr><td>Phase 2 (Final Evaluation) opens</td><td>November 2026</td></tr>
+                  <tr><td><b>Phase 2 deadline</b></td><td><b>November 20, 2026</b></td></tr>
+                  <tr><td>Award decision announcement</td><td>December 2026 (NeurIPS 2026 Competition Track)</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Phase #1: Validation</h4>
+            <p>
+              Participants receive the released validation inputs (initial observation, instruction and number of steps per episode) for the <code>val_seen</code> and <code>val_unseen</code> splits, and submit one ZIP archive containing <code>val_seen.json</code> and <code>val_unseen.json</code>. The <b>val_unseen Score</b> determines the Phase 1 ranking; <code>val_seen</code> metrics stay visible on the leaderboard for diagnosis.
+            </p>
+            <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Phase #2: Final Evaluation</h4>
+            <p>
+              The withheld test inference inputs are released at the start of Phase 2. Participants submit one ZIP archive containing <code>test.json</code>; the test ground truth is never released and is used exclusively for the official evaluation. The <b>test Score</b> determines the final ranking and the awards.
+            </p>
+            <h4 class="title is-5" style="color: #76b900; margin-top: 25px;">Requirements</h4>
+            <ul>
+              <li>One ZIP archive per phase, with the JSON files at the archive root (no nested folders, no extra files).</li>
+              <li>Every expected episode covered exactly once, with exactly the number of steps given in the inference bundle.</li>
+              <li>Actions expressed in the LCVN action representation: relative motion commands [dx, dy, dyaw] in metres and radians.</li>
+              <li>No participant code is executed during scoring; submissions are replayed offline by the official evaluation harness.</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">📦 Dataset &amp; Submission Format</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <p>
+              Track 5 uses the <b>LCVN dataset</b>, released on Hugging Face at <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">fly1113/LCVN</a>: 39,016 trajectories and 117,048 human-verified instructions, with three instruction styles (Concise, Intricate, Landmark-grounded). Training and in-domain evaluation use Go Stanford, ReCon, SCAND and HuRoN; TartanDrive is reserved for unseen-environment evaluation. Each trajectory provides egocentric RGB frames plus <code>traj_data.pkl</code> with <code>position</code>, <code>yaw</code>, <code>delta</code> and <code>instruction</code>.
+            </p>
+            <p>
+              The <code>train</code>, <code>val_seen</code> and <code>val_unseen</code> splits are public; the official test split is withheld. Phase 1 submissions follow the same schema as Phase 2, so participants can validate their complete pipeline before the final evaluation.
+            </p>
+            <p>Each split file is a JSON object with this structure:</p>
+            <pre style="background-color: #f9f9f9; padding: 1em; border-radius: 5px; overflow-x: auto;">
+{
+  "format_version": 1,
+  "split": "val_unseen",
+  "episodes": [
+    {
+      "episode_id": "tartan_drive_0001",
+      "actions": [[0.25, 0.0, 0.0], [0.0, 0.0, 0.15], [0.12, -0.05, 0.0]]
+    }
+  ]
+}
+            </pre>
+            <ul>
+              <li><code>actions</code> is the ordered list of relative motion commands <code>[dx, dy, dyaw]</code> (metres, metres, radians), one command per environment step.</li>
+              <li>Episode identifiers must be unique and must cover every expected episode exactly once; the number of actions must equal the <code>num_steps</code> of that episode.</li>
+              <li>Accepted per-step bounds: <code>|dx|, |dy| &lt;= 2.46 m</code> and <code>|dyaw| &lt;= 6.29 rad</code>.</li>
+            </ul>
+          </div>
+
+          <hr>
+
+          <h2 class="title is-3" style="margin-top: 50px;">📏 Evaluation Metrics &amp; Score</h2>
+          <div class="content has-text-justified" style="padding-top: 0px">
+            <div class="table-container">
+              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Direction</th>
+                    <th>Definition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><b>SR</b> (Success Rate)</td>
+                    <td>higher is better</td>
+                    <td>Fraction of episodes whose final predicted position lies within the average ground-truth step length of the goal position.</td>
+                  </tr>
+                  <tr>
+                    <td><b>ATE</b> (Absolute Trajectory Error)</td>
+                    <td>lower is better</td>
+                    <td>RMSE of the absolute translation error between the predicted and the ground-truth trajectory (no alignment), in metres.</td>
+                  </tr>
+                  <tr>
+                    <td><b>RPE</b> (Relative Pose Error)</td>
+                    <td>lower is better</td>
+                    <td>RMSE of the relative translation error over consecutive steps (delta of one step), in metres.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p>The composite Score is identical for Track 2 and Track 5 of RoboWorld 2026:</p>
+            <pre style="background-color: #f9f9f9; padding: 1em; border-radius: 5px; overflow-x: auto;">
+Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE))
+            </pre>
+            <p>
+              Scores are computed from full-precision aggregate metrics, without rounding intermediate values, and are displayed with six decimal places. Ties are broken by higher SR, then lower ATE, then lower RPE, then earlier submission time.
             </p>
           </div>
 
           <hr>
 
-          <h2 class="title is-3" style="margin-top: 50px;">
-            🗂️ Phases & Requirements
-          </h2>
-          <div class="content has-text-justified" style="padding-top: 0px">
-          
-            <h4 class="title is-4">Phase <a style="color: #76b900;">#1</a>: Adaptation from Vehicle → Drone</h4>
-            <p>
-              <strong>Duration:</strong> June <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth) - August <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth)
-            </p>
-            <p>
-              <strong>Settings:</strong>
-            </p>
-            <ul>
-              <li><strong>Source platform:</strong> LiDAR scans with 3D bounding-box annotations from the <a style="color: #76b900;"><b>Vehicle</b></a> platform</li>
-              <li><strong>Target platform:</strong> Unlabeled LiDAR scans from the <a style="color: #76b900;"><b>Drone</b></a> platform</li>
-            </ul>
-            <p>
-              <strong>Ranking Metric:</strong> AP@0.50 (R40) for the <strong>Car</strong> class evaluated on Drone data.
-            </p>
-          
-            <hr>
-          
-            <h4 class="title is-4" style="margin-top: 40px;">
-              Phase <a style="color: #76b900;">#2</a>: Adaptation from Vehicle → Quadruped
-            </h4>
-            <p>
-              <strong>Duration:</strong> August <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth) - September <a style="color: #76b900;"><b>15th</b></a>, 2025 (anytime on earth)
-            </p>
-            <p>
-              <strong>Settings:</strong>
-            </p>
-            <ul>
-              <li><strong>Source platform:</strong> LiDAR scans with 3D bounding-box annotations from the <a style="color: #76b900;"><b>Vehicle</b></a> platform</li>
-              <li><strong>Target platforms:</strong> Unlabeled LiDAR scans from the <a style="color: #76b900;"><b>Quadruped</b></a> platform</li>
-            </ul>
-            <p>
-              <strong>Ranking Metric:</strong> A weighted score combining:
-            </p>
-            <ul>
-              <li>AP@0.50 (R40) for the <strong>Car</strong> class</li>
-              <li>AP@0.50 (R40) for the <strong>Pedestrian</strong> class</li>
-            </ul>
-            <p>
-              Note: Scores computed on Quadruped platforms.
-            </p>
-          
-          </div>
-          
-
-          <hr>
-
-          <h2 class="title is-3" style="margin-top: 50px;">🚗 Dataset Examples</h2>
+          <h2 class="title is-3" style="margin-top: 50px;">🛠️ Baseline Models</h2>
           <div class="content has-text-justified" style="padding-top: 0px">
             <p>
-              <img src="./images/track5/data_example1.png" alt="Track 5 Image" style="max-width: 100%; height: auto;">
-            </p>
-            <!-- <p>
-              <img src="./images/track5/data_example2.png" alt="Track 5 Image" style="max-width: 100%; height: auto;">
-            </p> -->
-          </div>
-
-          <hr>
-
-          <h2 class="title is-3" style="margin-top: 50px;">🛠️ Baseline Model</h2>
-          <div class="content has-text-justified" style="padding-top: 0px">
-            <p>
-              In this track, we adopt 
-              <a href="https://arxiv.org/abs/1912.13192" target="_blank" rel="noopener noreferrer">
-                <strong>PV-RCNN</strong>
-              </a> 
-              as the base 3D object detector, and leverage 
-              <a href="https://github.com/CVMI-Lab/ST3D" target="_blank" rel="noopener noreferrer">
-                <strong>ST3D/++</strong>
-              </a> 
-              as our baseline adaptation framework. Detailed environment setup and experimental protocols can be found in the 
-              <a href="https://github.com/robosense2025/track5" target="_blank" rel="noopener noreferrer">
-                <strong>Track5 GitHub repository</strong>
-              </a>.
-            </p>
-            <p>
-              Beyond the provided baseline, participants are encouraged to explore alternative strategies to further boost cross-platform performance:
+              Two model families from the <a href="https://github.com/F1y1113/LCVN" target="_blank">LCVN project</a> serve as reference baselines for this track:
             </p>
             <ul>
-              <li>Treat the cross-platform challenge as a domain adaptation problem by improving pseudo-label quality and fine-tuning on target-platform data.</li>
-              <li>Design novel data augmentation techniques to bridge geometric and feature discrepancies across platforms.</li>
-              <li>Adopt geometry-agnostic 3D detectors, such as point-based architectures, that are less sensitive to platform-specific point-cloud characteristics.</li>
+              <li><b>LCVN-WM + LCVN-AC</b>: a diffusion-based world model built on a language-conditioned diffusion transformer backbone that imagines future visual states, combined with a latent-space actor-critic agent trained with intrinsic rollout rewards.</li>
+              <li><b>LCVN-Uni</b>: an autoregressive multimodal agent that predicts actions and future observations in a single forward pass.</li>
             </ul>
+            <p>
+              <img src="https://raw.githubusercontent.com/F1y1113/LCVN/main/assets/lcvn-wm-ac.jpg" alt="LCVN-WM and LCVN-AC" style="max-width: 100%; height: auto;">
+            </p>
+            <p>
+              Data preparation, training and evaluation commands for both families are documented in the LCVN repository. Organizer baseline results for the official metrics will be published with the Phase 1 starting kit.
+            </p>
           </div>
-          
 
           <hr>
 
           <h2 class="title is-3" style="margin-top: 50px;">📊 Baseline Results</h2>
           <div class="content has-text-justified" style="padding-top: 0px">
-            <h4 class="title is-4">Phase 1 Results</h4>
+            <p>
+              Reference numbers reported in the LCVN paper (<a href="https://arxiv.org/abs/2603.26741" target="_blank">arXiv:2603.26741</a>), Table 1. The challenge evaluates submitted action sequences with the official replay protocol, so challenge scores may differ slightly from these reference values.
+            </p>
             <div class="table-container">
               <table class="table is-bordered is-striped is-hoverable is-fullwidth">
                 <thead>
                   <tr>
-                    <th>Metric</th>
-                    <th>Car BEV AP0.7@40</th>
-                    <th>Car 3D AP0.7@40</th>
-                    <th>Car BEV AP0.5@40</th>
-                    <th>Car 3D AP0.5@40</th>
+                    <th>Method</th>
+                    <th>Context</th>
+                    <th>Val Seen (ATE / RPE / SR)</th>
+                    <th>Val Unseen (ATE / RPE / SR)</th>
+                    <th>Test (ATE / RPE / SR)</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>PVRCNN-Source</td>
-                    <td>34.60</td>
-                    <td>16.31</td>
-                    <td>40.67</td>
-                    <td style="background-color: yellow; font-weight: bold;">
-                      33.70
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>PVRCNN-ST3D</td>
-                    <td>47.81</td>
-                    <td>26.03</td>
-                    <td>53.40</td>
-                    <td style="background-color: yellow; font-weight: bold;">
-                      46.64
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>PVRCNN-ST3D++</td>
-                    <td>45.96</td>
-                    <td>25.37</td>
-                    <td>52.65</td>
-                    <td style="background-color: yellow; font-weight: bold;">
-                      45.07
-                    </td>
-                  </tr>
+                  <tr><td>LCVN-WM + LCVN-AC</td><td>1</td><td>0.39 / 0.15 / 0.39</td><td>1.62 / 0.61 / 0.18</td><td>0.81 / 0.29 / 0.31</td></tr>
+                  <tr><td>LCVN-WM + LCVN-AC</td><td>2</td><td>0.36 / 0.13 / 0.42</td><td>1.55 / 0.59 / 0.19</td><td>0.78 / 0.27 / 0.33</td></tr>
+                  <tr><td>LCVN-WM + LCVN-AC</td><td>4</td><td>0.34 / 0.12 / 0.43</td><td>1.51 / 0.56 / 0.19</td><td>0.76 / 0.26 / 0.34</td></tr>
+                  <tr><td>LCVN-Uni</td><td>1</td><td>0.43 / 0.13 / 0.37</td><td>1.36 / 0.52 / 0.21</td><td>0.74 / 0.25 / 0.32</td></tr>
+                  <tr><td>LCVN-Uni</td><td>2</td><td>0.36 / 0.11 / 0.42</td><td>1.21 / 0.47 / 0.27</td><td>0.65 / 0.22 / 0.36</td></tr>
+                  <tr><td>LCVN-Uni</td><td>4</td><td>0.37 / 0.12 / 0.41</td><td>1.24 / 0.43 / 0.25</td><td>0.65 / 0.21 / 0.35</td></tr>
                 </tbody>
               </table>
             </div>
-
-            <hr>
-
-            <h4 class="title is-4">Phase 2 Results</h4>
-            <div class="table-container">
-              <table class="table is-bordered is-striped is-hoverable is-fullwidth">
-                <thead>
-                  <tr>
-                    <th>Metric</th>
-                    <th>Car BEV AP0.5@40</th>
-                    <th>Car 3D AP0.5@40</th>
-                    <th>Ped. BEV AP0.5@40</th>
-                    <th>Ped. 3D AP0.5@40</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>PVRCNN-Source</td>
-                    <td>26.86</td>
-                    <td style="background-color: yellow; font-weight: bold;"></tdstyle>
-                      22.24</td>
-                    <td>42.29</td>
-                    <td style="background-color: yellow; font-weight: bold;">
-                      37.54
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>PVRCNN-ST3D</td>
-                    <td>34.60</td>
-                    <td style="background-color: yellow; font-weight: bold;"></tdstyle>
-                      28.97</td>
-                    <td>48.68</td>
-                    <td style="background-color: yellow; font-weight: bold;">
-                      43.51
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>PVRCNN-ST3D++</td>
-                    <td>32.76</td>
-                    <td style="background-color: yellow; font-weight: bold;"></tdstyle>
-                      28.53</td>
-                    <td>46.99</td>
-                    <td style="background-color: yellow; font-weight: bold;">
-                      41.49
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
+            <p>
+              For reference, the LCVN paper also evaluates three world-model baselines paired with LCVN-AC: Diamond (val_unseen ATE 2.84 / RPE 0.95 / SR 0.09), NWM (2.17 / 0.73 / 0.12) and language-conditioned NWM (2.21 / 0.70 / 0.13).
+            </p>
           </div>
 
           <hr>
@@ -410,38 +368,39 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>GitHub Repository</strong></td>
-                    <td><a href="https://github.com/robosense2025/track5" target="_blank">github.com/robosense2025/track5</a></td>
-                    <td>Baseline code and setup instructions</td>
+                    <td><strong>Challenge Website</strong></td>
+                    <td><a href="https://roboworld2026.github.io/" target="_blank">roboworld2026.github.io</a></td>
+                    <td>RoboWorld Challenge 2026 main page</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Track Repository</strong></td>
+                    <td><a href="https://github.com/aautomataa/track5" target="_blank">github.com/aautomataa/track5</a></td>
+                    <td>Track documentation, submission format and FAQ</td>
+                  </tr>
+                  <tr>
+                    <td><strong>LCVN Repository</strong></td>
+                    <td><a href="https://github.com/F1y1113/LCVN" target="_blank">github.com/F1y1113/LCVN</a></td>
+                    <td>Benchmark code, baselines, training and evaluation commands</td>
                   </tr>
                   <tr>
                     <td><strong>HuggingFace Dataset</strong></td>
-                    <td><a href="https://huggingface.co/datasets/robosense/datasets/tree/main/track5-cross-platform-3d-object-detection" target="_blank">Huggingface Dataset</a></td>
-                    <td>Dataset with training and test splits</td>
+                    <td><a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">fly1113/LCVN</a></td>
+                    <td>Released train, val_seen and val_unseen splits</td>
                   </tr>
                   <tr>
-                    <td><strong>Baseline Model</strong></td>
-                    <td><a href="https://huggingface.co/datasets/robosense/datasets/tree/main/track5-cross-platform-3d-object-detection/pretrained" target="_blank">Pre-Trained Checkpoint</a></td>
-                    <td>Weights of the baseline model</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Registration Form</strong></td>
-                    <td><a href="https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform?usp=sharing&ouid=111184461807593368933" target="_blank">Google Form</a>&nbsp;(Closed on August 15th)</td>
-                    <td>Team registration for the challenge</td>
+                    <td><strong>LCVN Paper</strong></td>
+                    <td><a href="https://arxiv.org/abs/2603.26741" target="_blank">arXiv:2603.26741</a></td>
+                    <td>Benchmark definition and reference baselines</td>
                   </tr>
                   <tr>
                     <td><strong>Evaluation Server</strong></td>
-                    <td><a href="https://www.codabench.org/competitions/9179/" target="_blank">CodaBench Platform</a></td>
-                    <td>Online evaluation platform</td>
+                    <td><a href="https://www.codabench.org/competitions/18185/" target="_blank">CodaBench Platform</a></td>
+                    <td>Online submission, validation and leaderboard</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
-
-
-
-
 
           <hr>
 
@@ -450,45 +409,86 @@
 
           <p>
             Here, we provide a list of Frequently Asked Questions (FAQs) below for better clarity. 
-            If you have additional questions on the details about this competition, please reach out at <a>robosense2025@gmail.com</a>.
+            If you have additional questions on the details about this competition, please reach out at <a>roboworld2026@outlook.com</a>.
           </p>
 
           <hr>
-            
+
           <div style="margin-bottom: 25px;">
             <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
-              Question 1
+              What exactly do I need to submit?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              Answer 1
+              One ZIP archive per phase containing the predicted action sequences: <code>val_seen.json</code> and <code>val_unseen.json</code> in Phase 1, <code>test.json</code> in Phase 2. No agent code, simulator or environment is required.
             </p>
           </div>
 
           <div style="margin-bottom: 25px;">
             <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
-              Question 2
+              Do I have to run a simulator?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              Answer 2
+              No. The organizers replay the submitted action sequences against the held-out ground-truth trajectories in an offline harness — nothing of yours is executed during scoring.
             </p>
           </div>
 
           <div style="margin-bottom: 25px;">
             <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
-              Question 3
+              Do I need to be a world-model method?
             </h4>
             <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
-              Answer 3
+              No. World-model agents, VLMs, VLA models and policy-only planners are all welcome. Only the predicted trajectory is scored, so imagination quality neither helps nor hurts your ranking.
             </p>
           </div>
 
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              Which split decides the Phase 1 ranking?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              The <code>val_unseen</code> Score. <code>val_seen</code> metrics remain visible on the leaderboard for diagnosis. Phase 2 is ranked by the withheld test Score, which determines the awards.
+            </p>
+          </div>
 
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              Where do I download the data?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              From the Hugging Face release at <a href="https://huggingface.co/datasets/fly1113/LCVN" target="_blank">fly1113/LCVN</a>, or with <code>bash download_data.sh</code> from the LCVN repository, which fetches and extracts the released splits.
+            </p>
+          </div>
 
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              Is the test ground truth public?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              No. Phase 2 releases only the test inference inputs (initial frame, instruction and number of steps); the test ground truth is used exclusively for the official evaluation.
+            </p>
+          </div>
 
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              How is the final score computed?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              Score = 100 * (0.70 * SR + 0.20 / (1 + ATE) + 0.10 / (1 + RPE)), computed from full-precision metrics and displayed with six decimal places.
+            </p>
+          </div>
+
+          <div style="margin-bottom: 25px;">
+            <h4 class="title is-5" style="color: #76b900; margin-bottom: 10px;">
+              How long does evaluation take?
+            </h4>
+            <p style="background-color: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #76b900;">
+              Scoring is fully offline and fast: a complete Phase 1 archive is scored in well under a minute once the submission has been processed by CodaBench.
+            </p>
+          </div>
 
           <hr>
 
-          <h2 class="title is-3" style="margin-top: 50px;">📖 References</h2>
+          <h2 class="title is-3" style="margin-top: 50px;">📖 Citation</h2>
           <div class="content has-text-justified" style="padding-top: 0px;">
             <div style="
               max-width: 100%;
@@ -505,65 +505,32 @@
                 white-space: pre;
                 overflow-x: auto;
               ">
-@misc{robosense2025track5,
-  title        = {RoboSense Challenge 2025: Track 5 - WorldNav — World Model Navigation},
-  author       = {RoboSense Challenge 2025 Organizers},
-  year         = {2025},
-  howpublished = {https://robosense2025.github.io/track5}
+@misc{roboworld2026track5,
+  title        = {RoboWorld Challenge 2026: Track 5 - WorldNav -- World Model Navigation},
+  author       = {RoboWorld Challenge 2026 Organizers},
+  year         = {2026},
+  howpublished = {https://roboworld2026.github.io/track5}
+}
+
+@misc{dong2026languageconditionedworldmodelingvisual,
+  title         = {Language-Conditioned World Modeling for Visual Navigation},
+  author        = {Yifei Dong and Fengyi Wu and Yilong Dai and Lingdong Kong and Guangyu Chen and Xu Zhu and Qiyu Hu and Tianyu Wang and Johnalbert Garnica and Feng Liu and Siyu Huang and Qi Dai and Zhi-Qi Cheng},
+  year          = {2026},
+  eprint        = {2603.26741},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2603.26741}
 }
               </pre>
             </div>
           </div>
-
-
-
-
-
-          <hr>
-
-
-
-
-
-<!-- <h2 class="title is-3">📖 References</h2>
-<div class="content has-text-justified" style="padding-top: 0px;">
-  <div style="
-    max-width: 100%;
-    overflow-x: auto;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 1em;
-    font-size: 0.9em;
-    box-sizing: border-box;
-  ">
-    <pre style="
-      margin: 0;
-      font-family: monospace;
-      white-space: pre;
-      overflow-x: auto;
-    ">
-@article{xie2025drivebench,
-  title     = {},
-  author    = {},
-  booktitle = {},
-  year      = {2025},
-  url       = {https://robosense2025.github.io}
-}
-    </pre>
-  </div>
-</div> -->
-
-
-
 
         </div>
       </div>
     </div><br>
   </section>
 
-
-
-  <footer class="footer">
+<footer class="footer">
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-8">
@@ -574,7 +541,7 @@
                 Commons Attribution-ShareAlike 4.0 International</a> license.
             </p>
             <p>
-              Copyright © <a style="color: #ffc000;">Robo</a><a style="color: #76b900;">Sense</a> 2025 All Rights Reserved.
+              Copyright © <a style="color: #ffc000;">Robo</a><a style="color: #76b900;">World</a> 2026 All Rights Reserved.
             </p>
           </div>
         </div>
