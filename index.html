@@ -17,6 +17,7 @@
     <link href="jiaun.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet/less" type="text/css" href="styles.less">
     <link href="carousel.css" rel="stylesheet">
+    <link href="track-mark.css?v=20261006-track-update-3" rel="stylesheet">
     <link href="pricing.css" rel="stylesheet">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
@@ -64,6 +65,57 @@
             --card-glow: rgba(255, 192, 0, 0.1);
         }
 
+        .challenge-card {
+            --card-border: #2a3c3c;
+            --card-surface: linear-gradient(120deg, #131b1b, #0a0c0c);
+            border: 1px solid var(--card-border);
+            border-top: 3px solid var(--card-accent);
+            border-radius: 12px;
+            background: var(--card-surface);
+            overflow: hidden;
+        }
+
+        .challenge-card.card--yellow {
+            --card-border: #4b4020;
+            --card-surface: linear-gradient(120deg, #1c190f, #0d0c08);
+        }
+
+        .challenge-card .card-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--card-border);
+            background: transparent;
+        }
+
+        .challenge-card .card-body {
+            padding: 1.5rem;
+            background: transparent;
+        }
+
+        .challenge-card .card-body p,
+        .challenge-card .card-body li {
+            color: #bfcaca;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .challenge-card-kicker {
+            display: block;
+            color: var(--card-accent);
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1.5;
+            letter-spacing: 0.06em;
+        }
+
+        .challenge-card-title {
+            display: block;
+            margin-top: 0.375rem;
+            color: #fff;
+            font-size: 1.75rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
         .intro-track-card .card-header {
             display: flex;
             align-items: center;
@@ -84,6 +136,16 @@
             height: auto;
             aspect-ratio: 1;
             object-fit: contain;
+        }
+
+        .evaluation-track-logo {
+            display: block;
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: contain;
+            margin: 0 auto 1rem;
         }
 
         main .card:focus-within {
@@ -227,6 +289,14 @@
         .registration-form-placeholder {
             color: #ffc000;
             text-decoration: underline;
+        }
+
+        .timeline-award-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            object-fit: contain;
+            vertical-align: middle;
+            margin-left: 0.625rem;
         }
 
         .track-panel-eyebrow {
@@ -643,37 +713,37 @@
 
                 <div class="row row-cols-1 row-cols-lg-3 g-4">
                 <div class="col">
-                    <div class="card intro-track-card h-100 bg-black text-white border-secondary">
-                        <div class="card-header py-3 bg-openmmlab"><h3 class="h4 text-black mb-0">Track 1: WorldNav</h3></div>
+                    <div class="card challenge-card intro-track-card h-100 text-white">
+                        <div class="card-header"><h3 class="h4 mb-0"><span class="challenge-card-kicker">Track #1</span><span class="challenge-card-title">WorldNav</span></h3></div>
                         <div class="intro-track-art">
                             <img src="static/logo-image/track-worldnav-mascot-transparent.png" class="intro-track-logo" width="1024" height="1024" loading="lazy" decoding="async" alt="WorldNav mascot with a navigation map and language bubble">
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <p class="text-white-50">Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</p>
+                            <p>Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</p>
                             <a href="./track1.html" class="btn btn-outline-warning mt-auto align-self-start" target="_blank" rel="noopener noreferrer">Track Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card intro-track-card card--yellow h-100 bg-black text-white border-secondary">
-                        <div class="card-header py-3 bg-roboworld-yellow"><h3 class="h4 text-black mb-0">Track 2: HA-VLN 2.0</h3></div>
+                    <div class="card challenge-card intro-track-card card--yellow h-100 text-white">
+                        <div class="card-header"><h3 class="h4 mb-0"><span class="challenge-card-kicker">Track #2</span><span class="challenge-card-title">HA-VLN 2.0</span></h3></div>
                         <div class="intro-track-art">
                             <img src="static/logo-image/track-havln-mascot-transparent.png" class="intro-track-logo" width="1024" height="1024" loading="lazy" decoding="async" alt="HA-VLN 2.0 mascot with pedestrians and a socially aware navigation route">
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <p class="text-white-50">Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
+                            <p>Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
                             <a href="./track2.html" class="btn btn-outline-warning mt-auto align-self-start" target="_blank" rel="noopener noreferrer">Track Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card intro-track-card h-100 bg-black text-white border-secondary">
-                        <div class="card-header py-3 bg-openmmlab"><h3 class="h4 text-black mb-0">Track 3: SafeDrive-VLA</h3></div>
+                    <div class="card challenge-card intro-track-card h-100 text-white">
+                        <div class="card-header"><h3 class="h4 mb-0"><span class="challenge-card-kicker">Track #3</span><span class="challenge-card-title">SafeDrive-VLA</span></h3></div>
                         <div class="intro-track-art">
                             <img src="static/logo-image/track-safedrive-mascot-transparent.png" class="intro-track-logo" width="1024" height="1024" loading="lazy" decoding="async" alt="SafeDrive-VLA mascot holding a steering wheel beside a safety shield">
                         </div>
                         <div class="card-body d-flex flex-column">
-                            <p class="text-white-50">Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</p>
+                            <p>Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</p>
                             <a href="./track3.html" class="btn btn-outline-warning mt-auto align-self-start" target="_blank" rel="noopener noreferrer">Track Details</a>
                         </div>
                     </div>
@@ -699,13 +769,16 @@
                         <header class="track-panel-header">
                             <span class="track-panel-number" aria-hidden="true">01</span>
                             <div class="track-panel-heading">
-                                <p class="track-panel-eyebrow">Track 1 &middot; Open-loop navigation</p>
+                                <p class="track-panel-eyebrow">Track #1 &middot; Open-loop navigation</p>
                                 <h2 id="track-1" class="track-panel-title">
                                     WorldNav
                                     <span class="track-panel-subtitle">Language-Conditioned World Navigation</span>
                                 </h2>
                             </div>
-                            <img class="track-panel-logo" src="logo_track1.png" alt="Track 1 logo">
+                            <div class="track-panel-logo track-mark" role="img" aria-label="Track #1 logo">
+                                <span class="track-mark-symbol"><img src="logo_track1.png" width="2342" height="2163" alt="" aria-hidden="true"></span>
+                                <span class="track-mark-label">Track <span>#1</span></span>
+                            </div>
                         </header>
                         <div class="track-panel-copy">
                             <p>Participants develop world-model-based or vision-language-action (VLA) agents for language-conditioned visual navigation. Given one initial egocentric RGB observation and an instruction, agents generate a full trajectory of continuous planar displacement and yaw actions, ending with Stop or a null action.</p>
@@ -773,13 +846,16 @@
                         <header class="track-panel-header">
                             <span class="track-panel-number" aria-hidden="true">02</span>
                             <div class="track-panel-heading">
-                                <p class="track-panel-eyebrow">Track 2 &middot; Closed-loop social navigation</p>
+                                <p class="track-panel-eyebrow">Track #2 &middot; Closed-loop social navigation</p>
                                 <h2 id="track-2" class="track-panel-title">
                                     HA-VLN 2.0
                                     <span class="track-panel-subtitle">Human-Aware Social Navigation</span>
                                 </h2>
                             </div>
-                            <img class="track-panel-logo" src="logo_track2.png" alt="Track 2 logo">
+                            <div class="track-panel-logo track-mark" role="img" aria-label="Track #2 logo">
+                                <span class="track-mark-symbol"><img src="logo_track2.png" width="2342" height="2163" alt="" aria-hidden="true"></span>
+                                <span class="track-mark-label">Track <span>#2</span></span>
+                            </div>
                         </header>
                         <div class="track-panel-copy">
                             <p>Participants develop agents that follow language instructions referencing human activities in continuous 3D environments. Using egocentric RGB-D observations, agents must reach the goal while maintaining socially compliant distances and avoiding collisions with moving people.</p>
@@ -847,13 +923,16 @@
                         <header class="track-panel-header">
                             <span class="track-panel-number" aria-hidden="true">03</span>
                             <div class="track-panel-heading">
-                                <p class="track-panel-eyebrow">Track 3 &middot; Safety-aware driving</p>
+                                <p class="track-panel-eyebrow">Track #3 &middot; Safety-aware driving</p>
                                 <h2 id="track-3" class="track-panel-title">
                                     SafeDrive-VLA
                                     <span class="track-panel-subtitle">Towards Safety in Autonomous Driving</span>
                                 </h2>
                             </div>
-                            <img class="track-panel-logo" src="logo_track3.png" alt="Track 3 logo">
+                            <div class="track-panel-logo track-mark" role="img" aria-label="Track #3 logo">
+                                <span class="track-mark-symbol"><img src="logo_track3.png" width="2342" height="2163" alt="" aria-hidden="true"></span>
+                                <span class="track-mark-label">Track <span>#3</span></span>
+                            </div>
                         </header>
                         <div class="track-panel-copy">
                             <p>Participants develop vision-language-action models (VLAs) for safe navigation guided by natural-language instructions. Given onboard visual observations and an instruction, models generate driving trajectories or control actions that account for surrounding traffic conditions.</p>
@@ -936,7 +1015,7 @@
                             <p>Submit your final entries for official evaluation before the competition closes.</p>
                         </li>
                         <li class="event" data-date="Dec 12, 2026">
-                            <h3>Award Decision Announcement</h3>
+                            <h3>Award Decision Announcement<img src="static/logo-image/icon-award-trophy-v1.png" class="timeline-award-icon" width="1254" height="1254" loading="lazy" decoding="async" alt="" aria-hidden="true"></h3>
                             <p>Final results and award-winning teams will be announced for each track.</p>
                         </li>
                     </ul>
@@ -950,11 +1029,9 @@
                 <hr>
                 <div class="row row-cols-1 row-cols-lg-3 g-4 mb-3 text-center text-white">
                     <div class="col">
-                        <div class="card h-100 rounded-3 shadow-sm">
-                            <div class="card-header py-3 bg-openmmlab">
-                                <h4 class="my-0 fw-normal text-black">Track #1</h4>
-                            </div>
-                            <div class="card-body bg-black d-flex flex-column">
+                        <div class="card challenge-card evaluation-track-card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <img src="static/logo-image/evaluation-worldnav-invite-v1.png" class="evaluation-track-logo" width="1254" height="1254" loading="lazy" decoding="async" alt="WorldNav mascot waving an invitation to participate while holding a route map">
                                 <h3>WorldNav</h3>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</li>
@@ -964,11 +1041,9 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card card--yellow h-100 rounded-3 shadow-sm">
-                            <div class="card-header py-3 bg-roboworld-yellow">
-                                <h4 class="my-0 fw-normal text-black">Track #2</h4>
-                            </div>
-                            <div class="card-body bg-black d-flex flex-column">
+                        <div class="card challenge-card evaluation-track-card card--yellow h-100">
+                            <div class="card-body d-flex flex-column">
+                                <img src="static/logo-image/evaluation-havln-invite-v1.png" class="evaluation-track-logo" width="1254" height="1254" loading="lazy" decoding="async" alt="HA-VLN 2.0 mascot welcoming participants with open hands beside pedestrian and navigation symbols">
                                 <h3>HA-VLN 2.0</h3>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</li>
@@ -978,11 +1053,9 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 rounded-3 shadow-sm">
-                            <div class="card-header py-3 bg-openmmlab">
-                                <h4 class="my-0 fw-normal text-black">Track #3</h4>
-                            </div>
-                            <div class="card-body bg-black d-flex flex-column">
+                        <div class="card challenge-card evaluation-track-card h-100">
+                            <div class="card-body d-flex flex-column">
+                                <img src="static/logo-image/evaluation-safedrive-invite-v1.png" class="evaluation-track-logo" width="1254" height="1254" loading="lazy" decoding="async" alt="SafeDrive-VLA mascot waving an invitation to participate with a steering wheel and safety shield">
                                 <h3>SafeDrive-VLA</h3>
                                 <ul class="list-unstyled mt-3 mb-4">
                                     <li>Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</li>

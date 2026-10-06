@@ -7,26 +7,29 @@
   <title>SafeDrive-VLA: Towards Safety in Autonomous Driving | RoboWorld Challenge 2026</title>
   <link rel="icon" href="./logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css?family=Chivo:300,400,600,700|Saira:400,500,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="./challenge.css">
+  <link rel="stylesheet" href="./challenge.css?v=20261006-track-update-6">
+  <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
 </head>
 <body class="track-page">
 <nav class="challenge-nav" aria-label="Main navigation">
   <a class="challenge-brand" href="./index.html"><img src="./brand.png" alt="" width="32" height="32">RoboWorld 2026</a>
-  <a href="./track1.html">Track 1: WorldNav</a>
-  <a href="./track2.html">Track 2: HA-VLN</a>
-  <a href="./track3.html" aria-current="page">Track 3: SafeDrive-VLA</a>
+  <a href="./track1.html">Track #1: WorldNav</a>
+  <a href="./track2.html">Track #2: HA-VLN</a>
+  <a href="./track3.html" aria-current="page">Track #3: SafeDrive-VLA</a>
   <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop</a>
 </nav>
 <main class="challenge-page">
-  <header class="challenge-header" data-track="Track 3">
+  <header class="challenge-header" data-track="Track #3">
     <div class="challenge-header-copy">
-      <p class="challenge-kicker">RoboWorld Challenge 2026 &middot; Track 3</p>
+      <p class="challenge-kicker">RoboWorld Challenge 2026 &middot; Track #3</p>
       <h1 class="title">SafeDrive-VLA</h1>
       <p class="subtitle">Towards Safety in Autonomous Driving</p>
       <p class="challenge-summary">Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</p>
-      <p class="challenge-association">Associated with the <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop at NeurIPS 2026</a>. Challenge participation is separate from workshop paper submission.</p>
     </div>
-    <img src="./logo_track3.png" class="challenge-track-logo" width="180" alt="Track 3 logo">
+    <div class="challenge-track-logo track-mark" role="img" aria-label="Track #3 logo">
+        <span class="track-mark-symbol"><img src="./logo_track3.png" width="2342" height="2163" alt="" aria-hidden="true"></span>
+        <span class="track-mark-label">Track <span>#3</span></span>
+    </div>
     <dl class="track-overview" aria-label="SafeDrive-VLA at a glance">
       <div><dt>Benchmark</dt><dd>CARLA-F / B2D-C</dd></div>
       <div><dt>Setting</dt><dd>Closed-loop safety-aware driving</dd></div>
@@ -34,12 +37,26 @@
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
-    <a href="#introduction">Introduction</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#submission">Submission</a><a href="#resources">Resources</a><a href="#contact">Contact</a>
+    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#submission">Submission</a><a href="#contact">Contact</a>
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
     <p>Participants develop vision-language-action models (VLAs) for safe navigation guided by natural-language instructions. Given onboard visual observations and an instruction, models generate driving trajectories or control actions that account for surrounding traffic conditions.</p>
     <p>Models should follow safe instructions, including turns, lane changes, and target-speed requests. When an instruction conflicts with the traffic scene, models must respond appropriately by slowing down, waiting, or selecting a safe alternative.</p>
+    <div class="track-reference" role="region" aria-labelledby="reference">
+      <h3 id="reference">Reference</h3>
+      <div class="detail-paper" role="group" aria-labelledby="paper-title">
+        <div class="detail-paper-heading">
+          <h4 id="paper-title">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</h4>
+          <p class="detail-paper-venue">CoRL 2026</p>
+        </div>
+        <p class="detail-paper-authors">S. Xie, Z. Zhang, J. Wang, J. Qu, X. Liang, L. Kong, J. Lu, H. I. Christensen, Q. A. Chen</p>
+        <div class="track-resource-links" role="group" aria-label="SafeDrive-VLA paper resources">
+          <button type="button" disabled title="arXiv link coming soon"><img src="./static/logo-image/arxiv.png" alt="" width="28" height="28">arXiv</button>
+          <button type="button" disabled title="GitHub link coming soon"><img src="./static/logo-image/github.png" alt="" width="28" height="28">GitHub</button>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
@@ -64,7 +81,7 @@
 </table></div>
   </section>
   <section class="content challenge-section" aria-labelledby="baselines">
-    <h2 id="baselines">Reference Baselines</h2>
+    <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
     <p>SimLingo and SafeDriveVLA both generate driving actions from visual observations and language instructions. SafeDriveVLA additionally uses explicit driving-mode selection and world-model predictions to handle conflicts between instructions and the traffic scene.</p>
     <p>Reference benchmark results are shown below; these are baseline results, not competition submissions.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Reference baseline results"><table class="table is-fullwidth is-striped">
@@ -78,26 +95,15 @@
     <h2 id="submission">Submission &amp; Timeline</h2>
     <p>Models are evaluated on closed-loop driving routes. Agent packaging, simulation versions, runtime requirements, and the submission endpoint will be announced.</p>
     <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
-    <div class="challenge-notice"><strong>Submission portal: Coming soon.</strong> Official access links will be published here when confirmed.</div>
-  </section>
-  <section class="content challenge-section" aria-labelledby="resources">
-    <h2 id="resources">Resources</h2>
-    <p>Reference paper and code links are listed below where available. Competition-specific dataset access, model checkpoints, and evaluation scripts will be announced.</p>
-    <div class="detail-paper" role="group" aria-labelledby="paper-title">
-      <div class="detail-paper-heading">
-        <h3 id="paper-title">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</h3>
-        <p class="detail-paper-venue">CoRL 2026</p>
-      </div>
-      <p class="detail-paper-authors">S. Xie, Z. Zhang, J. Wang, J. Qu, X. Liang, L. Kong, J. Lu, H. I. Christensen, Q. A. Chen</p>
-      <div class="track-resource-links" role="group" aria-label="SafeDrive-VLA paper resources">
-        <button type="button" disabled title="arXiv link coming soon"><img src="./static/logo-image/arxiv.png" alt="" width="28" height="28">arXiv</button>
-        <button type="button" disabled title="GitHub link coming soon"><img src="./static/logo-image/github.png" alt="" width="28" height="28">GitHub</button>
-      </div>
-    </div>
+    <button type="button" class="submission-portal" disabled aria-label="SafeDrive-VLA submission portal (link not configured)" title="Submission link not configured">
+      <span class="submission-portal-label">Submission portal</span>
+      <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
+      <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
+    </button>
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
-    <h2 id="contact">Contact &amp; Organizers</h2>
-    <p>View the <a href="./index.html#track-3">track organizers on the challenge homepage</a>. For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+    <h2 id="contact">Contact</h2>
+    <p>For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
   </section>
 </main>
 <footer class="challenge-footer">

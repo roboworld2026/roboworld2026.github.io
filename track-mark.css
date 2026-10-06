@@ -1,0 +1,33 @@
+.track-mark {
+  display: block;
+  text-align: center;
+}
+
+.track-mark-symbol {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2342 / 1200;
+  overflow: hidden;
+}
+
+.track-mark-symbol img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  height: auto;
+}
+
+.track-mark-label {
+  display: block;
+  margin-top: 0.125rem;
+  color: #34cccc;
+  font-family: 'Saira', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.track-mark-label span {
+  color: #ffc000;
+}
