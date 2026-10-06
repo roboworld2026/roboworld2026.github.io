@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="RoboWorld Challenge 2026: WorldNav, HA-VLN, and SafeDrive-VLA. An independently organized challenge associated with the RoboPAD Workshop at NeurIPS 2026.">
     <title>RoboWorld Challenge 2026</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -18,51 +21,375 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-      <script type="text/javascript">
-        // alert(window.location.href);
-    var index = "http://seasondepth-challenge.org/index/";
-    var index_ = "http://seasondepth-challenge.org/index";
-    if ((index == window.location.href) || (index_ == window.location.href))
-        window.location.href = "http://seasondepth-challenge.org/";
-</script>
+
 
 
     <style>
+        body { padding-top: 0; }
+        main [id] { scroll-margin-top: 10rem; }
+        main > section + section { margin-top: 4rem; }
+        .organizer-group { margin-top: 3rem; }
+        .organizer-group h2 { margin-bottom: 2rem; }
+        .organizer-portrait { object-fit: cover; }
+        .organizer-card h4 { margin-top: 1rem; }
+
+        .workshop-description {
+            display: flow-root;
+        }
+
+        .workshop-logo {
+            float: right;
+            width: 260px;
+            max-width: 33%;
+            height: auto;
+            margin: 0 0 1rem 2rem;
+        }
+
+        main .btn {
+            font-size: 1.375rem;
+            line-height: 1.4;
+            padding: 0.65rem 1.1rem;
+            max-width: 100%;
+            white-space: normal;
+        }
+
+        @media (max-width: 767px) {
+            main > section + section { margin-top: 2.5rem; }
+        }
+        @media (max-width: 767px) {
+            main [id] { scroll-margin-top: 14rem; }
+        }
+
+
+        .track-panels {
+            --track-accent: #34cccc;
+            --track-border: #2a3c3c;
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .track-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 17rem;
+            gap: 1.25rem 2rem;
+            padding: 2rem;
+            border: 1px solid var(--track-border);
+            border-top: 3px solid var(--track-accent);
+            border-radius: 12px;
+            background: linear-gradient(120deg, #131b1b, #0a0c0c);
+        }
+
+        .track-panel--yellow {
+            --track-accent: #ffc000;
+            --track-border: #4b4020;
+            background: linear-gradient(120deg, #1c190f, #0d0c08);
+        }
+
+        .bg-roboworld-yellow {
+            background-color: #ffc000;
+        }
+
+        .track-panel-header {
+            grid-column: 1 / -1;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding-right: 200px;
+        }
+
+        .track-panel-number {
+            flex: 0 0 64px;
+            display: grid;
+            place-items: center;
+            height: 64px;
+            border: 1px solid #326060;
+            border-radius: 8px;
+            color: var(--track-accent);
+            background: #102727;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .track-panel--yellow .track-panel-number {
+            border-color: #766120;
+            background: #30260d;
+        }
+
+        .track-panel-heading {
+            min-width: 0;
+        }
+
+        .track-panel-logo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            flex: 0 0 auto;
+            width: 180px;
+            height: auto;
+            margin-left: auto;
+        }
+
+        #timeline-content .timeline {
+            max-width: none;
+            margin: 3rem 0 0 12rem;
+        }
+
+        #timeline-content .event::before {
+            left: -13.5rem;
+            width: 9rem;
+            min-width: 0;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .registration-form-placeholder {
+            color: #ffc000;
+            text-decoration: underline;
+        }
+
+        .track-panel-eyebrow {
+            margin-bottom: 0.5rem;
+            color: var(--track-accent);
+            font-size: 0.875rem;
+            letter-spacing: 0.06em;
+        }
+
+        .track-panel-title {
+            margin-bottom: 0;
+            font-size: 2rem;
+            line-height: 1.25;
+            overflow-wrap: anywhere;
+        }
+
+        .track-panel-subtitle {
+            display: block;
+            margin-top: 0.5rem;
+            color: #d3dddd;
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .track-panel-copy {
+            min-width: 0;
+            color: #bfcaca;
+        }
+
+        .track-panel-copy p {
+            font-size: 1.125rem;
+            line-height: 1.65;
+        }
+
+        .track-panel-copy p:last-child {
+            margin-bottom: 0;
+        }
+
+        section[aria-labelledby="evaluation"] .card-body h3 {
+            font-size: 2rem;
+            line-height: 1.25;
+            overflow-wrap: anywhere;
+        }
+
+        section[aria-labelledby="evaluation"] .card-body li {
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .track-panel-facts {
+            align-self: start;
+            margin-top: 3.5rem;
+            padding: 1.25rem;
+            border: 1px solid var(--track-border);
+            border-radius: 8px;
+            background: #080e0e;
+        }
+
+        .track-panel--yellow .track-panel-facts {
+            background: #100e08;
+        }
+
+        .track-panel-facts dl {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .track-panel-facts dt {
+            margin-bottom: 0.5rem;
+            color: var(--track-accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .track-panel-facts dd {
+            margin-bottom: 0;
+            color: #e0e8e8;
+            font-size: 1rem;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .track-panel-footer {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--track-border);
+        }
+
+
+        .track-organizers-label {
+            margin-bottom: 0.75rem;
+            color: var(--track-accent);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .track-organizer-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .track-organizer-avatar {
+            display: block;
+            width: 72px;
+            height: 72px;
+            border: 1px solid var(--track-border);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .track-organizer-avatar img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .track-organizer-avatar:focus-visible {
+            outline: 2px solid #ffc000;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 991px) {
+            .track-panel {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .track-panel-facts dl {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .track-panel-facts {
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .workshop-logo {
+                width: 120px;
+                max-width: 35%;
+                margin-left: 1rem;
+            }
+
+            .track-panel {
+                gap: 1.25rem;
+                padding: 1.25rem;
+            }
+
+            .track-panel-header {
+                gap: 1rem;
+                flex-wrap: wrap;
+                padding-right: 0;
+            }
+
+            .track-panel-heading {
+                order: 1;
+                flex-basis: 100%;
+            }
+
+            .track-panel-logo {
+                position: static;
+                width: 80px;
+            }
+
+            #timeline-content .timeline {
+                margin: 2rem 0 0;
+                padding: 1.5rem;
+            }
+
+            #timeline-content .event::before {
+                position: static;
+                width: 100%;
+                min-width: 0;
+                margin-bottom: 0.75rem;
+                text-align: right;
+            }
+
+            #timeline-content .event::after {
+                left: -31.85px;
+            }
+
+            .track-panel-number {
+                flex-basis: 48px;
+                height: 48px;
+                font-size: 1.5rem;
+            }
+
+            .track-panel-title {
+                font-size: 1.65rem;
+            }
+
+            .track-panel-facts dl {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .track-panel-footer .btn {
+                width: 100%;
+            }
+        }
+
         .container1 {
             position: relative;
             width: 100%;
             max-width: 5000px;
         }
-        
+
         .modal-content {
             border: 2px solid rgb(0, 128, 204);
             background-color: rgb(0, 0, 0);
             border-radius: 15px;
         }
-        
+
         .modal-header {
             background-color: rgb(0, 128, 204);
             border: 2px solid rgb(0, 128, 204);
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
         }
-        
+
         .modal-footer {
             border-top: 0 none;
         }
-        
+
         .container1 img {
             width: 100%;
             height: auto;
         }
-        
-         :target:before {
-            content: "";
-            display: block;
-            height: 100px;
-            margin: -90px 0 0;
-        }
-        
+
+
+
         .container1 .btn {
             position: absolute;
             top: 75%;
@@ -78,15 +405,15 @@
             border-radius: 6px;
             text-align: center;
         }
-        
+
         .container1 .btn:hover {
             background-color: black;
         }
-        
+
         .mx-a {}
-        
+
         .text-cen {}
-        
+
         .mb-6 {}
     </style>
 
@@ -94,1375 +421,459 @@
 
 
 </head>
-
 <body>
-    <div class="modal" id="signup" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="text-black modal-title">Welcome to sign up!</h4>
-                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-                    <!-- <h4 id="myModalLabel" class="text-black modal-title">Sign Up</h4>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button> -->
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col control-label">User Name</label>
-                            <div class="col">
-                                <input type="text" name="userName" class="form-control" id="userName_add_input" placeholder="e.g. Alice">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col control-label">Email</label>
-                            <div class="col">
-                                <input type="text" name="eMail" class="form-control" id="eMail_add_input" placeholder="e.g. alice@example.com">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col control-label">Password</label>
-                            <div class="col">
-                                <input type="password" name="passWord" class="form-control" id="passWord_add_input" placeholder="e.g. 123456">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col control-label">Confirm Password</label>
-                            <div class="col">
-                                <input type="password" name="confirmPassword" class="form-control" id="confirmPassword_add_input" placeholder="e.g. 123456">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col control-label">Verification Code</label>
-                            <div class="col">
-                                <input type="text" name="verifyCode" class="form-control" id="verify_code_input" placeholder="4-digit code sent to your email address">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" id="send_code_btn">SendCode</button>
-                    <button type="button" class="btn btn-warning" id="user_save_btn">Sign up now</button>
-                </div> -->
-
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="login" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="text-black modal-title">Welcome back!</h4>
-                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
-                    <!-- <h4 id="myModalLabel" class="text-black modal-title">Sign Up</h4>
-                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button> -->
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col control-label">User Name</label>
-                            <div class="col">
-                                <input type="text" name="userName" class="form-control" id="userName_add_input" placeholder="e.g. Alice">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col control-label">Password</label>
-                            <div class="col">
-                                <input type="password" name="passWord" class="form-control" id="passWord_add_input" placeholder="e.g. 123456">
-                                <span class="help-block"></span>
-                            </div>
-                        </div>
-
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                    <button type="button" class="btn btn-warning" id="user_save_btn">Login</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
     <div class="bg-black">
-        <header class="p-3 text-white fixed-top" style="background-color:#252727;">
+        <header class="p-3 text-white sticky-top" style="background-color:#252727;">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center">
-
-                    <a href="./index.html"><img src="brand.png" class="navbar-brand" width="50"></a>
+                    <a href="./index.html"><img src="brand.png" class="navbar-brand" width="50" alt="RoboWorld"></a>
                     <ul class="nav col-lg-auto me-lg-auto mb-md-0">
-                        <li class="align-content-center nav-item">
-                            <a href="#introduction" class="nav-link text-white">
-                                <a1>Intro</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#venue" class="nav-link text-white">
-                                <a1>Venue</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#contact" class="nav-link text-white">
-                                <a1>Contact</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#timeline" class="nav-link text-white">
-                                <a1>Timeline</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#awards" class="nav-link text-white">
-                                <a1>Awards</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#toolkit" class="nav-link text-white">
-                                <a1>Toolkit</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#tracks" class="nav-link text-white">
-                                <a1>Tracks</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#evaluation" class="nav-link text-white">
-                                <a1>Evaluation</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#faq" class="nav-link text-white">
-                                <a1>FAQ</a1>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#organizers" class="nav-link text-white">
-                                <a1>Organizer</a1>
-                            </a>
-                        </li>
+                        <li class="nav-item"><a href="#introduction" class="nav-link text-white">Intro</a></li>
+                        <li class="nav-item"><a href="#workshop" class="nav-link text-white">RoboPAD</a></li>
+                        <li class="nav-item"><a href="#tracks" class="nav-link text-white">Tracks</a></li>
+                        <li class="nav-item"><a href="#timeline" class="nav-link text-white">Timeline</a></li>
+                        <li class="nav-item"><a href="#evaluation" class="nav-link text-white">Evaluation</a></li>
+                        <li class="nav-item"><a href="#organizers" class="nav-link text-white">Organizers</a></li>
                     </ul>
-                    <!-- <div class="text-end">
-                        <button type="button" class="btn btn-outline-light me-2" id="login_btn" data-bs-toggle="modal" data-bs-target="#login">Login</button>
-                        <button type="button" class="btn btn-warning" id="signup_btn" data-bs-toggle="modal" data-bs-target="#signup">Login</button>
-                    </div> -->
                 </div>
             </div>
         </header>
-
-
-
         <div class="container1">
-            <img1><img src="cover.png" class="img-fluid" alt="img-responsive"></img1>
+            <img src="cover.png" class="img-fluid" alt="RoboWorld Challenge 2026">
         </div>
-        <div class="container p-4 anchor">
-            <h1 class="text-white" id="introduction">Introduction</h1>
-            <hr>
-            <p class="text-white-50">
-                The <strong>RoboWorld Challenge</strong> aims to advance <strong>embodied world modeling for robotics and autonomous driving</strong>, enabling intelligent agents to understand dynamic environments, anticipate future changes, and make safe, effective decisions in complex real-world settings.
-            </p>
+        <main class="container p-4 anchor text-white">
+            <section class="py-4" aria-labelledby="introduction">
+                <h1 id="introduction">Introduction</h1><hr>
+                <p class="text-white-50">The <strong>RoboWorld Challenge 2026</strong> advances <strong>embodied world modeling for robotics and autonomous driving</strong>. It brings together world models, vision-language-action (VLA) models, and embodied policies to study how agents ground language in visual observations, anticipate future states, and act safely.</p>
+                <p class="text-white-50">Three tracks cover complementary settings: <strong>WorldNav</strong> for language-conditioned navigation without intermediate feedback, <strong>HA-VLN</strong> for human-aware social navigation with continuous observations, and <strong>SafeDrive-VLA</strong> for language-guided driving under instruction-scene conflicts.</p>
+                <p class="text-white-50">The competition combines offline trajectory evaluation and closed-loop simulation, with track-specific datasets, metrics, and reference baselines. World-model and VLA approaches are encouraged, alongside policy-based methods where permitted by each track.</p>
 
-            <p class="text-white-50">
-                Five distinct tracks are designed to push the boundaries of predictive and actionable world modeling.
-                Each track challenges participants to address real-world embodied intelligence demands including instruction following, social compliance, physical plausibility, behavioral validity, and generalization across diverse tasks, environments, and agent embodiments.
-            </p>
+                <br>
 
-            <p class="text-white-50">
-                The competition provides participants with benchmark resources, datasets, simulators, baselines, and evaluation protocols, supporting the development of novel methods for perception, reasoning, planning, and control.
-                By emphasizing transparency, comparability, and real-world relevance, we seek to foster embodied systems that can model, evaluate, and safely interact with open, dynamic, and human-centered environments.
-            </p>
-
-
-            <img1><img src="teaser.png" class="img-fluid" alt="img-responsive"></img1>
-
-
-            
-            <p class="text-white"><strong>Challenge Tracks</strong></p>
-
-            <p class="text-white-50">
-                There are <strong>five</strong> tracks in the <strong>RoboWorld Challenge</strong>, with emphasis on the following topics:
-            </p>
-
-            <p class="text-white-50">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                - Track <a style="color: #34CCCC;">#1</a>: Driving with Language.
-                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
-                - Track <a style="color: #34CCCC;">#2</a>: X-Embodied Foundation.
-                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
-                - Track <a style="color: #34CCCC;">#3</a>: Social Navigation.
-                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
-                - Track <a style="color: #34CCCC;">#4</a>: WorldLens Driving World Model Evaluation.
-                <br/>&nbsp;&nbsp;&nbsp;&nbsp;
-                - Track <a style="color: #34CCCC;">#5</a>: WorldNav — World Model Navigation.
-            </p>
-
-            <p class="text-white-50">
-                For additional implementation details, kindly refer to our 
-                <a href="https://drive-bench.github.io/" target="_blank" style="color: #ffc000;">DriveBench</a>,
-                <a href="https://arxiv.org/abs/2511.16518" target="_blank" style="color: #ffc000;">MiMo-Embodied</a>,
-                <a href="https://github.com/Zeying-Gong/Falcon" target="_blank" style="color: #ffc000;">Falcon</a>,
-                <a href="https://worldbench.github.io/worldlens" target="_blank" style="color: #ffc000;">WorldLens</a>, and
-                <a href="https://ha-vln-project.vercel.app/" target="_blank" style="color: #ffc000;">HA-VLN 2.0</a> projects.
-            </p>
-
-
-            <p class="text-white-50">
-                <strong>E-mail:</strong> <a href="mailto:roboworld2026@outlook.com" target="_blank" style="color: #ffc000;">roboworld2026@outlook.com</a>.
-            </p>
-
-
-
-            <br/><br/>
-
-            <h1 class="text-white" id="venue">Venue</h1>
-            <hr/>
-
-            <p class="text-white-50">
-                The RoboWorld Challenge is affiliated with the <strong>Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</strong>.
-            </p>
-
-            <p class="text-white-50">
-                NeurIPS is one of the premier conferences in machine learning and artificial intelligence. NeurIPS 2026 will be held in December 2026.
-            </p>
-
-            <p class="text-white-50">
-                The NeurIPS Competition Track provides a unique venue for benchmark-driven research challenges that advance the state of the art in machine learning, bringing together participants from academia and industry worldwide.
-                For additional details, kindly refer to the NeurIPS 2026 <a href="https://neurips.cc/" target="_blank" style="color: #ffc000;">website</a>.
-            </p>
-
-
-
-            <!-- <br/><br/>
-
-            <h1 class="text-white" id="venue">RoboSense Workshop</h1>
-            <hr/>
-
-            <p>
-                <img src="workshop.png" align="right" width="50%" hspace="15" vspace="15">
-            </p>
-
-
-            <p class="text-white-50">
-                Our workshop is scheduled to be held on Wednesday, May 15th, 2024, from 1:00 P.M. to 5:00 P.M. JST (UTC+9).
-            </p>
-
-            <p class="text-white-50">
-                For <strong>on-site</strong> attendance:
-                Visit us at the Competition Hall, Pacific Convention Plaza Yokohama (PACIFICO Yokohama) 1-1-1, Minato Mirai, Nishi-ku, Yokohama 220-0012, Japan.
-            </p>
-
-            <p class="text-white-50">
-                For <strong>online</strong> attendance:
-                Join us using <a href="https://cmu.zoom.us/j/96870741709?pwd=UjI1bUhtU1k2MCt5c2Z5VFlaNnc4QT09" target="_blank">this</a> ZOOM link.
-            </p>
-
-            <p class="text-white-50">
-                The workshop slides can be found from <a href="https://robodrive-24.github.io/workshop.pdf" target="_blank">here</a>.
-            </p> -->
-
-
-
-            <br/><br/>
-
-            
-            <h1 class="text-white" id="contact">Contact</h1>
-            <hr>
-            
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col"> <img src="static/logo-image/email.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="mailto:roboworld2026@outlook.com" target="_blank" style="color: #ffc000;">E-mail</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/twitter.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://x.com/RoboSense2025" target="_blank" style="color: #ffc000;">Twitter</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/wechat.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="wechat_qr.JPG" target="_blank" style="color: #ffc000;">WeChat</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/slack.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://join.slack.com/t/robosense2025/shared_invite/zt-372hfvfep-Vpk6wLBAxC9Mg4lUpNvpGQ" target="_blank" style="color: #ffc000;">Slack</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/zhihu.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://zhuanlan.zhihu.com/p/1920462802293887673" target="_blank" style="color: #ffc000;">Zhihu</a></h4>
-                    </div>
-
-                </div>
-            </div>
-
-
-
-
-
-            <br/><br/>
-
-
-            <h1 class="text-white" id="timeline">Timeline</h1>
-            <hr>
-
-            <div id="timeline-content">
-                <ul class="timeline">
-                    <li class="event" data-date="&nbsp;&nbsp;&nbsp;Jul 2026">
-                        <h3>Registration Opens</h3>
-                        <p>Register for your team by filling in <a href="https://docs.google.com/forms/d/e/1FAIpQLSdwfvk-NHdQh9-REiBLCjHMcyLT-sPCOCzJU-ux5jbcZLTkBg/viewform?usp=sharing&ouid=111184461807593368933" target="_blank" style="color: #ffc000;">this</a> Google Form.&nbsp;</p>
-                    </li>
-                    <li class="event" data-date="Aug 2026">
-                        <h3>Release of Training Data and Baselines</h3>
-                        <p>Download the data from the competition toolkit. Baseline code and weights released on GitHub.&nbsp;</p>
-                    </li>
-                    <li class="event" data-date="Sep 2026">
-                        <h3>Competition Servers Online @ CodaBench</h3>
-                        <p>Public leaderboards live for all five tracks.&nbsp;</p>
-                    </li>
-                    <li class="event" id="date" data-date="Oct 31, 2026">
-                        <h3>Phase One Deadline</h3>
-                        <p></p>
-                        <p>Shortlisted teams are invited to participate in the next phase.&nbsp;</p>
-                    </li>
-                    <li class="event" id="date" data-date="Nov 20, 2026">
-                        <h3>Phase Two Deadline</h3>
-                        <p></p>
-                        <p>Don't forget to include the code link in your submissions.&nbsp;</p>
-                    </li>
-                    <li class="event" data-date="Dec 2026">
-
-                        <h3>Award Decision Announcement</h3>
-                        <p></p>
-                        <p>Associated with the NeurIPS 2026 Competition Track Workshop.&nbsp;</p>
-                    </li>
-                </ul>
-            </div>
-
-
-
-
-
-            <h1 class="text-white" id="awards">Awards</h1>
-            <hr />
-            <div class="row row-cols-1 row-cols-md-2 mb-3 text-center align-content-center text-white">
+                <div class="row row-cols-1 row-cols-lg-3 g-4">
                 <div class="col">
-                    <div class="card rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">1st Place</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>Cash $ 7,500 + Certificate</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>This award will be given to five awardees; an amount of $ 1,500 will be given to each track.</li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">2nd Place</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>Cash $ 4,000 + Certificate</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>This award will be given to five awardees; an amount of $ 800 will be given to each track.</li>
-                            </ul>
+                    <div class="card h-100 bg-black text-white border-secondary">
+                        <div class="card-header py-3 bg-openmmlab"><h3 class="h4 text-black mb-0">Track 1: WorldNav</h3></div>
+                        <div class="card-body">
+                            <p class="text-white-50">Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</p>
+                            <a href="./track1.html" class="btn btn-outline-warning">Track Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">3rd Place</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>Cash $ 2,500 + Certificate</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>This award will be given to five awardees; an amount of $ 500 will be given to each track.</li>
-                            </ul>
+                    <div class="card h-100 bg-black text-white border-secondary">
+                        <div class="card-header py-3 bg-roboworld-yellow"><h3 class="h4 text-black mb-0">Track 2: HA-VLN</h3></div>
+                        <div class="card-body">
+                            <p class="text-white-50">Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
+                            <a href="./track2.html" class="btn btn-outline-warning">Track Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-warning">
-                            <h4 class="my-0 fw-normal text-black">Rising Star Award</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>Certificate</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>This award will be given to top first-time competition participants to encourage new community members.</li>
-                            </ul>
+                    <div class="card h-100 bg-black text-white border-secondary">
+                        <div class="card-header py-3 bg-openmmlab"><h3 class="h4 text-black mb-0">Track 3: SafeDrive-VLA</h3></div>
+                        <div class="card-body">
+                            <p class="text-white-50">Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</p>
+                            <a href="./track3.html" class="btn btn-outline-warning">Track Details</a>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-
-
-            <br/><br/>
-
-            <h1 class="text-white" id="toolkit">Toolkit</h1>
-            <hr/>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col"> <img src="static/logo-image/github.png" class="rounded-circle" width="136">
-                        <p></p>
-                <h4><a href="https://github.com/worldbench" target="_blank" style="color: #ffc000;">GitHub</a></h4>
-                        <p></p>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/arxiv.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://arxiv.org/abs/2601.05014" target="_blank" style="color: #ffc000;">Tech Report</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/robobev.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/Daniel-xsy/RoboBEV" target="_blank" style="color: #ffc000;">RoboBEV</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/place3d.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/ywyeli/Place3D" target="_blank" style="color: #ffc000;">Place3D</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/openmmlab.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/open-mmlab/mmdetection3d" target="_blank" style="color: #ffc000;">MMDetection3D</a></h4>
-                    </div>
                 </div>
+            </section>
 
-                </br>
-
-                <div class="row">
-
-                    <div class="col"> <img src="static/logo-image/drivebench.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/drive-bench/toolkit" target="_blank" style="color: #ffc000;">DriveBench</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/falcon.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/Zeying-Gong/Falcon" target="_blank" style="color: #ffc000;">Falcon</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/geotext-1652.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/MultimodalGeo/GeoText-1652" target="_blank" style="color: #ffc000;">GeoText-1652</a></h4>
-                    </div>
-
-                    <div class="col"> <img src="static/logo-image/logo_pi3det.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://pi3det.github.io/" target="_blank" style="color: #ffc000;">Pi3DET</a></h4>
-                    </div>
-
-                    <!-- <div class="col"> <img src="static/logo-image/geotext-1652.png" class="rounded-circle" width="136">
-                        <p></p>
-                        <h4><a href="https://github.com/MultimodalGeo/GeoText-1652" target="_blank" style="color: #ffc000;">Pi3DET</a></h4>
-                    </div> -->
-
-                    <div class="col"></div>
-
+            <section class="py-4" aria-labelledby="workshop">
+                <h1 id="workshop">RoboPAD Workshop</h1><hr>
+                <div class="workshop-description">
+                    <img src="static/logo-image/neurips2026.webp" class="workshop-logo" width="622" height="622" alt="NeurIPS logo">
+                    <p class="text-white-50">RoboWorld Challenge 2026 is an independently organized challenge associated with <strong>RoboPAD: Post-Training Adaptation of Robot Foundation Models</strong>, a workshop at <strong>NeurIPS 2026</strong>.</p>
+                    <p class="text-white-50">RoboPAD focuses on adaptation, reasoning, evaluation, and safety for robot foundation models after pretraining. The challenge complements these themes through language-conditioned navigation, social interaction, and safe autonomous driving.</p>
+                    <p class="text-white-50">Challenge logistics, registration, and evaluation are managed by the RoboWorld organizing team. Challenge participation is separate from RoboPAD paper submission. Workshop program and attendance details are available on the workshop website.</p>
                 </div>
-            </div>
-
-            
-            
-            
-            <br/><br/><br/>
-
-            <h1 class="text-white" id="tracks">Competition Tracks</h1>
-            <hr/>
-
-            
-
-            <h2 class="text-white" id="tracks">Track <a style="color: #34CCCC">#1</a>: Driving with Language</h2>
-
-            <p><img src="logo_track1.png" align="right" width="28%" hspace="0" vspace="0"></p>
-
-            <p class="text-white-50">
-                This track challenges participants to develop vision-language models that enhance the robustness of autonomous driving systems under real-world conditions, including sensor corruptions and environmental noises.
-            </p>
-
-            <p class="text-white-50">
-                Participants are expected to design multimodal language models that fuse driving perception, prediction, and planning with natural language understanding, enabling the vehicle to make accurate, human-like decisions under all kinds of real-world sensing conditions.
-            </p>
-
-            <p class="text-white-50">
-                Kindly refer to <a href="https://roboworld2026.github.io/track1" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
-            </p>
-
-            <p class="text-white"><strong>Track Organizers</strong></p>
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://daniel-xsy.github.io/" target="_blank">
-                            <img src="static/people-image/shaoyuan.jpeg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://ldkong.com/" target="_blank">
-                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>
-
-
-
-
-
-            <br/><hr/><br/>
-
-            <h2 class="text-white" id="tracks">Track <a style="color: #34CCCC">#2</a>: X-Embodied Foundation</h2>
-
-            <p><img src="logo_track2.png" align="right" width="28%" hspace="0" vspace="0"></p>
-
-            <p class="text-white-50">
-                This track challenges participants to develop RGBD-based perception and navigation systems that enable autonomous agents to interact safely, efficiently, and socially in dynamic human environments.
-            </p>
-
-            <p class="text-white-50">
-                Participants will design algorithms that interpret human behaviors and contextual cues. Submissions should generate navigation strategies balancing efficiency and social compliance, while addressing challenges like real-time adaptability, occlusion handling, and ethical decision-making.
-            </p>
-
-            <p class="text-white-50">
-                Kindly refer to <a href="https://roboworld2026.github.io/track2" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
-            </p>
-
-            <p class="text-white"><strong>Track Organizers</strong></p>
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://haoxiaoshuai.github.io/homepage/" target="_blank">
-                            <img src="static/people-image/xiaoshuai_hao.jpg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a>
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://long.ooo/" target="_blank">
-                            <img src="static/people-image/long.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>
-
-
-
-
-
-            <br/><hr/><br/>
-
-            <h2 class="text-white" id="tracks">Track <a style="color: #34CCCC">#3</a>: Social Navigation</h2>
-
-            <p><img src="logo_track3.png" align="right" width="28%" hspace="0" vspace="0"></p>
-
-            <p class="text-white-50">
-                This track challenges participants to develop RGBD-based perception and navigation systems that enable autonomous agents to interact safely, efficiently, and socially in dynamic human environments.
-            </p>
-
-            <p class="text-white-50">
-                Participants will design algorithms that interpret human behaviors and contextual cues. Submissions should generate navigation strategies balancing efficiency and social compliance, while addressing challenges like real-time adaptability, occlusion handling, and ethical decision-making.
-            </p>
-
-            <p class="text-white-50">
-                Kindly refer to <a href="https://roboworld2026.github.io/track2" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
-            </p>
-
-            <p class="text-white"><strong>Track Organizers</strong></p>
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://zeying-gong.github.io/" target="_blank">
-                            <img src="static/people-image/zeying.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a  >
-                            <img src="static/people-image/yangyi.jpg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://hutslib.github.io/" target="_blank">
-                            <img src="static/people-image/tianshuai.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://rongli.tech/" target="_blank">
-                            <img src="static/people-image/rong.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://junweiliang.me/" target="_blank">
-                            <img src="static/people-image/junwei.jpeg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>
-
-
-
-
-
-            <br/><hr/><br/>
-
-            <h2 class="text-white" id="tracks">Track <a style="color: #34CCCC">#4</a>: WorldLens Driving World Model Evaluation</h2>
-
-            <p><img src="logo_track4.png" align="right" width="28%" hspace="0" vspace="0"></p>
-
-            <p class="text-white-50">
-                This track aims at the development of models for natural language-guided cross-view image retrieval, specifically for scenarios where input data is captured from drastically different viewpoints, such as aerial (drone or satellite) and ground-level images.
-            </p>
-
-            <p class="text-white-50">
-                Participants are tasked with designing models that can effectively retrieve corresponding images from large-scale cross-view image databases based on natural language text descriptions, even under the presence of common corruptions such as blurriness, occlusions, or sensory noises.
-            </p>
-
-            <p class="text-white-50">
-                Kindly refer to <a href="https://roboworld2026.github.io/track4" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
-            </p>
-
-            <p class="text-white"><strong>Track Organizers</strong></p>
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://alanliang.vercel.app/" target="_blank">
-                            <img src="static/people-image/ao.jpg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://ldkong.com/" target="_blank">
-                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://ipal.cnrs.fr/lai-xing-ng/" target="_blank">
-                            <img src="static/people-image/lai_xing.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://ipal.cnrs.fr/benoit-cottereau-personal-page/" target="_blank">
-                            <img src="static/people-image/benoit.jpg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://www.comp.nus.edu.sg/cs/people/ooiwt/" target="_blank">
-                            <img src="static/people-image/weitsang.jpeg" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="https://liuziwei7.github.io/" target="_blank">
-                            <img src="static/people-image/ziwei.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>
-
-
-
-
-            <br/><hr/><br/>
-
-            <h2 class="text-white" id="tracks">Track <a style="color: #34CCCC">#5</a>: WorldNav — World Model Navigation</h2>
-
-            <p><img src="logo_track5.png" align="right" width="28%" hspace="0" vspace="0"></p>
-
-            <p class="text-white-50">
-                This track focuses on modeling the navigation world in dynamic human environments, where agents must follow natural language instructions in continuous 3D scenes populated with moving humans performing diverse everyday activities.
-            </p>
-
-            <p class="text-white-50">
-                Participants are expected to develop agents that jointly ground socially rich language instructions, perceive dynamic human behaviors, and plan collision-free, socially compliant paths. We particularly encourage world-model-based approaches that anticipate future environment states and human motion dynamics to enable proactive navigation, though all methods are welcome.
-            </p>
-
-            <p class="text-white-50">
-                Kindly refer to <a href="https://github.com/F1y1113/HA-VLN" target="_blank" style="color: #ffc000;">this</a> page for more technical details on this track.
-            </p>
-
-            <p class="text-white"><strong>Track Organizers</strong></p>
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="/" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="89">
-                        </a>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-            </div>
-            <br/><br/>
-
-
-
-
-
-
-
-
-
-            <br/><br/>
-
-            <h1 class="text-white" id="evaluation">Evaluation Servers</h1>
-            <hr/>
-
-            <div class="row row-cols-1 row-cols-md-2 mb-3 text-center align-content-center text-white">
-
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">Track #1</h4>
+                <a href="https://robotpad2026.github.io/" class="btn btn-outline-warning" target="_blank" rel="noopener noreferrer">Visit RoboPAD Workshop</a>
+            </section>
+
+            <section class="py-4" aria-labelledby="tracks">
+                <h1 id="tracks">Competition Tracks</h1><hr>
+                <div class="track-panels">
+                    <article class="track-panel" aria-labelledby="track-1">
+                        <header class="track-panel-header">
+                            <span class="track-panel-number" aria-hidden="true">01</span>
+                            <div class="track-panel-heading">
+                                <p class="track-panel-eyebrow">Track 1 &middot; Open-loop navigation</p>
+                                <h2 id="track-1" class="track-panel-title">
+                                    WorldNav
+                                    <span class="track-panel-subtitle">Language-Conditioned World Navigation</span>
+                                </h2>
+                            </div>
+                            <img class="track-panel-logo" src="logo_track1.png" alt="Track 1 logo">
+                        </header>
+                        <div class="track-panel-copy">
+                            <p>Participants develop world-model-based or vision-language-action (VLA) agents for language-conditioned visual navigation. Given one initial egocentric RGB observation and an instruction, agents generate a full trajectory of continuous planar displacement and yaw actions, ending with Stop or a null action.</p>
+                            <p>No goal image or intermediate feedback is provided. The track encourages planning grounded in predicted future observations, alongside VLA and policy-only approaches that map vision and language to actions.</p>
                         </div>
-                        <div class="card-body bg-black">
-                            <h3>Driving with Language</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Facilitating driving perception, prediction, and planning robustness with rich language understanding</li>
-                            </ul>
+                        <aside class="track-panel-facts" aria-label="WorldNav benchmark and evaluation">
+                            <dl>
+                                <div>
+                                    <dt>Benchmark</dt>
+                                    <dd>LCVN</dd>
+                                </div>
+                                <div>
+                                    <dt>Evaluation</dt>
+                                    <dd>SR, ATE, RPE</dd>
+                                </div>
+                            </dl>
+                        </aside>
+                        <footer class="track-panel-footer">
+                            <div class="track-organizers">
+                                <p class="track-organizers-label">Track Organizer</p>
+                                <ul class="track-organizer-list" aria-label="WorldNav organizers">
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Yifei Dong" aria-label="Yifei Dong - Organizing Team">
+                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Yifei Dong">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
+                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Fengyi Wu">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Lingdong Kong" aria-label="Lingdong Kong - Organizing Team">
+                                            <img src="static/people-image/lingdong.jpg" width="72" height="72" alt="Lingdong Kong">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="./track1.html" class="btn btn-outline-warning" aria-label="WorldNav: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                        </footer>
+                    </article>
+                    <article class="track-panel track-panel--yellow" aria-labelledby="track-2">
+                        <header class="track-panel-header">
+                            <span class="track-panel-number" aria-hidden="true">02</span>
+                            <div class="track-panel-heading">
+                                <p class="track-panel-eyebrow">Track 2 &middot; Closed-loop social navigation</p>
+                                <h2 id="track-2" class="track-panel-title">
+                                    HA-VLN
+                                    <span class="track-panel-subtitle">Human-Aware Social Navigation</span>
+                                </h2>
+                            </div>
+                            <img class="track-panel-logo" src="logo_track2.png" alt="Track 2 logo">
+                        </header>
+                        <div class="track-panel-copy">
+                            <p>Participants develop agents that follow language instructions referencing human activities in continuous 3D environments. Using egocentric RGB-D observations, agents must reach the goal while maintaining socially compliant distances and avoiding collisions with moving people.</p>
+                            <p>HA-VLN 2.0 uses 0.25 m forward steps and 15-degree turns. The track welcomes policy-based, VLA, and world-model approaches that handle partial observability, anticipate human motion, and re-plan as people block corridors or doorways.</p>
+                        </div>
+                        <aside class="track-panel-facts" aria-label="HA-VLN benchmark and evaluation">
+                            <dl>
+                                <div>
+                                    <dt>Benchmark</dt>
+                                    <dd>HA-R2R / HA-VLN 2.0</dd>
+                                </div>
+                                <div>
+                                    <dt>Evaluation</dt>
+                                    <dd>NE, SR, TCR, CR</dd>
+                                </div>
+                            </dl>
+                        </aside>
+                        <footer class="track-panel-footer">
+                            <div class="track-organizers">
+                                <p class="track-organizers-label">Track Organizer</p>
+                                <ul class="track-organizer-list" aria-label="HA-VLN organizers">
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Yifei Dong" aria-label="Yifei Dong - Organizing Team">
+                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Yifei Dong">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
+                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Fengyi Wu">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Lingdong Kong" aria-label="Lingdong Kong - Organizing Team">
+                                            <img src="static/people-image/lingdong.jpg" width="72" height="72" alt="Lingdong Kong">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="./track2.html" class="btn btn-outline-warning" aria-label="HA-VLN: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                        </footer>
+                    </article>
+                    <article class="track-panel" aria-labelledby="track-3">
+                        <header class="track-panel-header">
+                            <span class="track-panel-number" aria-hidden="true">03</span>
+                            <div class="track-panel-heading">
+                                <p class="track-panel-eyebrow">Track 3 &middot; Safety-aware driving</p>
+                                <h2 id="track-3" class="track-panel-title">
+                                    SafeDrive-VLA
+                                    <span class="track-panel-subtitle">Towards Safety in Autonomous Driving</span>
+                                </h2>
+                            </div>
+                            <img class="track-panel-logo" src="logo_track3.png" alt="Track 3 logo">
+                        </header>
+                        <div class="track-panel-copy">
+                            <p>Participants develop vision-language-action models (VLAs) for safe navigation guided by natural-language instructions. Given onboard visual observations and an instruction, models generate driving trajectories or control actions that account for surrounding traffic conditions.</p>
+                            <p>Models should follow safe instructions, including turns, lane changes, and target-speed requests. When an instruction conflicts with the traffic scene, models must respond appropriately by slowing down, waiting, or selecting a safe alternative.</p>
+                        </div>
+                        <aside class="track-panel-facts" aria-label="SafeDrive-VLA benchmark and evaluation">
+                            <dl>
+                                <div>
+                                    <dt>Benchmark</dt>
+                                    <dd>CARLA-F / B2D-C</dd>
+                                </div>
+                                <div>
+                                    <dt>Evaluation</dt>
+                                    <dd>Instruction pass rates, NCR, speed error; DS, SR, infractions</dd>
+                                </div>
+                            </dl>
+                        </aside>
+                        <footer class="track-panel-footer">
+                            <div class="track-organizers">
+                                <p class="track-organizers-label">Track Organizer</p>
+                                <ul class="track-organizer-list" aria-label="SafeDrive-VLA organizers">
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Shaoyuan Xie" aria-label="Shaoyuan Xie - Organizing Team">
+                                            <img src="static/people-image/shaoyuan.jpeg" width="72" height="72" alt="Shaoyuan Xie">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Lingdong Kong" aria-label="Lingdong Kong - Organizing Team">
+                                            <img src="static/people-image/lingdong.jpg" width="72" height="72" alt="Lingdong Kong">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="./track3.html" class="btn btn-outline-warning" aria-label="SafeDrive-VLA: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                        </footer>
+                    </article>
+                </div>
+            </section>
 
-                            <a  ><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 1</button></a>
+            <section class="py-4" aria-labelledby="timeline">
+                <h1 id="timeline">Timeline</h1><hr>
+                <div id="timeline-content">
+                    <ul class="timeline">
+                        <li class="event" data-date="Oct 08, 2026">
+                            <h3>Registration Opens</h3>
+                            <p>Register for your team by filling in <span class="registration-form-placeholder">this</span> Google Form.</p>
+                        </li>
+                        <li class="event" data-date="Oct 15, 2026">
+                            <h3>Release of Training Data and Baselines</h3>
+                            <p>Training data and reference baselines will be released to help teams get started across all three tracks.</p>
+                        </li>
+                        <li class="event" data-date="Oct 15, 2026">
+                            <h3>Competition Servers Online @ CodaBench</h3>
+                            <p>Evaluation servers and public leaderboards will open on CodaBench for all three tracks.</p>
+                        </li>
+                        <li class="event" data-date="Nov 30, 2026">
+                            <h3>Competition Deadline</h3>
+                            <p>Submit your final entries for official evaluation before the competition closes.</p>
+                        </li>
+                        <li class="event" data-date="Dec 12, 2026">
+                            <h3>Award Decision Announcement</h3>
+                            <p>Final results and award-winning teams will be announced for each track.</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section class="py-4" aria-labelledby="evaluation">
+                <h1 id="evaluation">Evaluation &amp; Submission</h1>
+                <hr>
+                <div class="row row-cols-1 row-cols-lg-3 g-4 mb-3 text-center text-white">
+                    <div class="col">
+                        <div class="card h-100 rounded-3 shadow-sm">
+                            <div class="card-header py-3 bg-openmmlab">
+                                <h4 class="my-0 fw-normal text-black">Track #1</h4>
+                            </div>
+                            <div class="card-body bg-black d-flex flex-column">
+                                <h3>WorldNav</h3>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-outline-warning mt-auto" aria-label="Evaluation Server 1 (link coming soon)">Evaluation Server 1</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 rounded-3 shadow-sm">
+                            <div class="card-header py-3 bg-roboworld-yellow">
+                                <h4 class="my-0 fw-normal text-black">Track #2</h4>
+                            </div>
+                            <div class="card-body bg-black d-flex flex-column">
+                                <h3>HA-VLN</h3>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-outline-warning mt-auto" aria-label="Evaluation Server 2 (link coming soon)">Evaluation Server 2</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 rounded-3 shadow-sm">
+                            <div class="card-header py-3 bg-openmmlab">
+                                <h4 class="my-0 fw-normal text-black">Track #3</h4>
+                            </div>
+                            <div class="card-body bg-black d-flex flex-column">
+                                <h3>SafeDrive-VLA</h3>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-outline-warning mt-auto" aria-label="Evaluation Server 3 (link coming soon)">Evaluation Server 3</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">Track #2</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>X-Embodied Foundation</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Testing the accuracy and resilience of navigation algorithms in dynamic and unpredictable real-world environments</li>
-                            </ul>
+            </section>
 
-                            <a  ><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 2</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">Track #3</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>Social Navigation</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Testing the accuracy and resilience of navigation algorithms in dynamic and unpredictable real-world environments</li>
-                            </ul>
-                            <a  ><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 3</button></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">Track #4</h4>
-                        </div>
-                        <div class="card-body bg-black">
-                            <h3>WorldLens Driving World Evaluation</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Assessing the cross-modal image retrieval ability from multiple perspectives for comprehensive scene perception</li>
-                            </ul>
 
-                            <!-- <a href="https://www.codabench.org/competitions/9219/" target="_blank"><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 4</button></a> -->
-                            <a  ><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 4</button></a>
+            <section class="py-4" aria-labelledby="organizers">
+                <h1 id="organizers">Organizing Team</h1>
+                <hr>
+                <div class="organizer-group" aria-labelledby="challenge-organizers">
+                    <h2 id="challenge-organizers">Challenge Organizers</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4 text-center">
+                        <div class="col organizer-card">
+                            <a href="https://ldkong.com/" target="_blank">
+                                <img src="static/people-image/lingdong.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Lingdong Kong">
+                            </a>
+                            <h4>Lingdong Kong</h4>
+                            <p>
+                                <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                                NUS Computing
+                            </p>
                         </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-4 rounded-3 shadow-sm">
-                        <div class="card-header py-3 bg-openmmlab">
-                            <h4 class="my-0 fw-normal text-black">Track #5</h4>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/placeholder.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Yifei Dong">
+                            <h4>Yifei Dong</h4>
+                            <p>
+                                <img src="static/logo-image/logo_uw.png" alt="University of Washington Logo" height="28" style="padding-bottom: 5px;">
+                                U. of Washington
+                            </p>
                         </div>
-                        <div class="card-body bg-black">
-                            <h3>WorldNav — World Model Navigation</h3>
-                            <ul class="list-unstyled mt-3 mb-4">
-                                <li>Modeling the navigation world in dynamic human environments with socially compliant path planning</li>
-                            </ul>
-
-                            <a  ><button type="button" class="w-100 btn btn-lg btn-outline-warning">Evaluation Server 5</button></a>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/placeholder.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Fengyi Wu">
+                            <h4>Fengyi Wu</h4>
+                            <p>
+                                <img src="static/logo-image/logo_uw.png" alt="University of Washington Logo" height="28" style="padding-bottom: 5px;">
+                                U. of Washington
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://daniel-xsy.github.io/" target="_blank">
+                                <img src="static/people-image/shaoyuan.jpeg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Shaoyuan Xie">
+                            </a>
+                            <h4>Shaoyuan Xie</h4>
+                            <p>
+                                <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
+                                UC, Irvine
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://scholar.google.com/citations?user=br7-IGkAAAAJ&hl=en" target="_blank">
+                                <img src="static/people-image/wei_chow.jpeg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Wei Chow">
+                            </a>
+                            <h4>Wei Chow</h4>
+                            <p>
+                                <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                                NUS Computing
+                            </p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-
-
-
-            <br/><br/>
-
-            <h1 class="text-white" id="faq">FAQs</h1>
-            <hr>
-
-            <p class="text-white-50">
-                Please refer to <a href="https://github.com/worldbench/toolkit?tab=readme-ov-file#frequently-asked-questions-faqs" target="_blank" style="color: #ffc000;">Frequently Asked Questions</a> for more detailed rules and conditions of this competition.
-            </p>
-            <br/>
-
-
-
-
-            <!-- <br/><br/>
-
-
-            <h1 class="text-white" id="evaluation">Submission & Evaluation</h1>
-            <hr>
-
-            <p class="text-white-50">
-                In this competition, all participants are expected to adopt the official <a href="https://www.nuscenes.org/nuscenes" target="_blank">nuScenes</a> dataset for model training and our robustness probing sets for model evaluation.
-                Additional data sources are <strong>NOT</strong> allowed in this competition.
-            </p>
-
-            <p class="text-white-50">
-                Kindly refer to <a href="https://github.com/robodrive-24/toolkit/blob/main/docs/DATA_PREPARE.md" target="_blank">DATA_PREPARE.md</a> for the details to prepare the training and evaluation data.
-            </p>
-
-            <p class="text-white-50">
-                For all five tracks in this RoboDrive competition, the participants are expected to submit their predictions to the <strong>EvalAI</strong> servers for model evaluation. 
-            </p>
-
-            <p class="text-white-50">
-                To facilitate the training and evaluation, we have provided detailed instructions and a baseline model for each track. Kindly refer to <a href="https://github.com/robodrive-24/toolkit/blob/main/docs/GET_STARTED.md" target="_blank">GET_STARTED.md</a> for additional details.
-            </p> -->
-
-
-
-
-
-            
-            <br/><br/>
-
-
-
-
-            <h1 class="text-white" id="organizers">Organizing Team</h1>
-            <hr>
-
-            <h2 class="text-white" id="tracks">Challenge Organizers</h2><br/>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://ldkong.com/" target="_blank">
-                            <img src="static/people-image/lingdong.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Lingdong Kong</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
-                            NUS Computing
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://daniel-xsy.github.io/" target="_blank">
-                            <img src="static/people-image/shaoyuan.jpeg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Shaoyuan Xie</h4>
-                        <p>
-                            <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
-                            UC, Irvine
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://haoxiaoshuai.github.io/homepage/" target="_blank">
-                            <img src="static/people-image/xiaoshuai_hao.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Xiaoshuai Hao</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_xiaomi.png" alt="Logo" height="26" style="padding-bottom: 5px;">
-                            Xiaomi EV
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://zeying-gong.github.io/" target="_blank">
-                            <img src="static/people-image/zeying.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Zeying Gong</h4>
-                        <p>
-                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
-                            HKUST(GZ)
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a  >
-                            <img src="static/people-image/yangyi.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Yangyi Zhong</h4>
-                        <p>
-                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
-                            HKUST(GZ)
-                        </p>
+                <div class="organizer-group" aria-labelledby="program-committee">
+                    <h2 id="program-committee">Program Committee</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4 text-center">
+                        <div class="col organizer-card">
+                            <a href="https://sj-li.com/" target="_blank">
+                                <img src="static/people-image/shijie_li.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Shijie Li">
+                            </a>
+                            <h4>Shijie Li</h4>
+                            <p>
+                                <img src="static/logo-image/logo_astar.png" alt="A*STAR Logo" height="28" style="padding-bottom: 5px;">
+                                A*STAR, I2R
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://ipal.cnrs.fr/lai-xing-ng/" target="_blank">
+                                <img src="static/people-image/lai_xing.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Lai Xing Ng">
+                            </a>
+                            <h4>Lai Xing Ng</h4>
+                            <p>
+                                <img src="static/logo-image/logo_astar.png" alt="A*STAR Logo" height="28" style="padding-bottom: 5px;">
+                                A*STAR, I2R
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://faculty.washington.edu/zhiqics/" target="_blank">
+                                <img src="static/people-image/zhi_qi_cheng.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Zhi-Qi Cheng">
+                            </a>
+                            <h4>Zhi-Qi Cheng</h4>
+                            <p>
+                                <img src="static/logo-image/logo_uw.png" alt="University of Washington Logo" height="28" style="padding-bottom: 5px;">
+                                U. of Washington
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/placeholder.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Alfred Chen">
+                            <h4>Alfred Chen</h4>
+                            <p>
+                                <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
+                                UC, Irvine
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://www.comp.nus.edu.sg/cs/people/ooiwt/" target="_blank">
+                                <img src="static/people-image/weitsang.jpeg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Wei Tsang Ooi">
+                            </a>
+                            <h4>Wei Tsang Ooi</h4>
+                            <p>
+                                <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
+                                NUS Computing
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://ipal.cnrs.fr/benoit-cottereau-personal-page/" target="_blank">
+                                <img src="static/people-image/benoit.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Benoit R. Cottereau">
+                            </a>
+                            <h4>Benoit R. Cottereau</h4>
+                            <p>
+                                <img src="static/logo-image/logo_cnrs.png" alt="CNRS Logo" height="29" style="padding-bottom: 5px;">
+                                CNRS & IPAL
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://liuziwei7.github.io/" target="_blank">
+                                <img src="static/people-image/ziwei.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Ziwei Liu">
+                            </a>
+                            <h4>Ziwei Liu</h4>
+                            <p>
+                                <img src="static/logo-image/logo_ntu.png" alt="NTU Logo" height="27" style="padding-bottom: 5px;">
+                                NTU, S-Lab
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://alanliang.vercel.app/" target="_blank">
-                            <img src="static/people-image/ao.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Ao Liang</a></h4>
-                        <p>
-                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
-                            NUS Computing
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Yifei Dong</h4>
-                        <p>
-                            <img src="static/logo-image/logo_uw.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
-                            U. of Washington
-                        </p>
-                    </div>
-
-                    <!-- <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Fengyi Wu</h4>
-                        <p>
-                            <img src="static/logo-image/logo_uw.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
-                            U. of Washington
-                        </p>
-                    </div> -->
-
-                    <div class="col">
-                        <a href="/" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Linfeng Zhang</h4>
-                        <p>
-                            <img src="static/logo-image/logo_xiaomi.png" alt="UMich Logo" height="21" style="padding-bottom: 3px;">
-                            Xiaomi EV
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Yingbo Tang</h4>
-                        <p>
-                            <img src="static/logo-image/logo_xiaomi.png" alt="UMich Logo" height="21" style="padding-bottom: 3px;">
-                            Xiaomi EV
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a>
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Lei Zhou</h4>
-                        <p>
-                            <img src="static/logo-image/logo_xiaomi.png" alt="UMich Logo" height="21" style="padding-bottom: 3px;">
-                            Xiaomi EV
-                        </p>
+                <div class="organizer-group" aria-labelledby="industry-mentors">
+                    <h2 id="industry-mentors">Industry Mentors</h2>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 text-center">
+                        <div class="col organizer-card">
+                            <a href="https://wenhao.pub/" target="_blank">
+                                <img src="static/people-image/wenhao_ding.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Wenhao Ding">
+                            </a>
+                            <h4>Wenhao Ding</h4>
+                            <p>
+                                <img src="static/logo-image/logo_nvidia.png" alt="Logo" height="25" style="padding-bottom: 5px;">
+                                NVIDIA
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://rongli.tech/" target="_blank">
-                            <img src="static/people-image/rong.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Rong Li</h4>
-                        <p>
-                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
-                            HKUST(GZ)
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a>
-                            <img src="static/people-image/tianshuai.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Tianshuai Hu</h4>
-                        <p>
-                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
-                            HKUST
-                        </p>
-                    </div>
-
-                    <div class="col"></div>
-
-                    <div class="col"></div>
-
-                    <div class="col"></div>
-                </div>
-            </div>
-            
-
-            <hr/>
-
-
-            <h2 class="text-white" id="tracks">Program Committee</h2><br/>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://www.comp.nus.edu.sg/cs/people/ooiwt/" target="_blank">
-                            <img src="static/people-image/weitsang.jpeg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Wei Tsang Ooi</h4>
-                        <p>
-                            <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
-                            NUS Computing
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://ipal.cnrs.fr/benoit-cottereau-personal-page/" target="_blank">
-                            <img src="static/people-image/benoit.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Benoit R. Cottereau</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_cnrs.png" alt="CNRS Logo" height="29" style="padding-bottom: 5px;">
-                            CNRS & IPAL
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://ipal.cnrs.fr/lai-xing-ng/" target="_blank">
-                            <img src="static/people-image/lai_xing.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Lai Xing Ng</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_astar.png" alt="A*STAR Logo" height="28" style="padding-bottom: 5px;">
-                            A*STAR, I2R
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://long.ooo/" target="_blank">
-                            <img src="static/people-image/long.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Long Chen</h4>
-                        <p>
-                            <img src="static/logo-image/logo_xiaomi.png" alt="UMich Logo" height="21" style="padding-bottom: 3px;">
-                            Xiaomi EV
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <br/>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://yuexinma.me/aboutme.html" target="_blank">
-                            <img src="static/people-image/yuexin_ma.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Yuexin Ma</h4>
-                        <p>
-                            <img src="static/logo-image/logo_shanghaitech.png" alt="ShanghaiTech Logo" height="28" style="padding-bottom: 5px;">
-                            ShanghaiTech
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://junweiliang.me/" target="_blank">
-                            <img src="static/people-image/junwei.jpeg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Junwei Liang</a></h4>
-                        <p>
-                            <img src="static/logo-image/logo_hkust.svg" alt="HKUST Logo" height="24" style="padding-bottom: 3px;">
-                            HKUST(GZ)
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://faculty.washington.edu/zhiqics/" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Zhi-Qi Cheng</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_uw.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
-                            U. of Washington
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="" target="_blank">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Hangjun Ye</h4>
-                        <p>
-                            <img src="static/logo-image/logo_xiaomi.png" alt="UMich Logo" height="21" style="padding-bottom: 3px;">
-                            Xiaomi EV
-                        </p>
-                    </div>
-                </div>
-
-            <br/>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://liuziwei7.github.io/" target="_blank">
-                            <img src="static/people-image/ziwei.png" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Ziwei Liu</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_ntu.png" alt="NTU Logo" height="27" style="padding-bottom: 5px;">
-                            NTU, S-Lab
-                        </p>
-                    </div>
-
-                    <div class="col"></div>
-
-                    <div class="col"></div>
-
-                    <div class="col"></div>
-                </div>
-            </div></div>
-
-
-            <hr/>
-            
-            
-            <h2 class="text-white" id="tracks">Industry Mentors</h2><br/>
-
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-
-                    <div class="col">
-                        <a href="https://scholar.google.com/citations?user=ZIf_rtcAAAAJ&hl=en" target="_blank">
-                            <img src="static/people-image/wei_yin.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Wei Yin</h4> 
-                        <p>
-                            <img src="static/logo-image/logo_horizon_robotics.png" alt="Logo" height="28" style="padding-bottom: 5px;">
-                            Horizon Robotics
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <a href="https://wenhao.pub/" target="_blank">
-                            <img src="static/people-image/wenhao_ding.jpg" class="rounded-circle" width="145">
-                        </a>
-                        <h4>Wenhao Ding</h4>
-                        <p>
-                            <img src="static/logo-image/logo_nvidia.png" alt="Logo" height="25" style="padding-bottom: 5px;">
-                            NVIDIA
-                        </p>
-                    </div>
-
-                    <div class="col"></div>
-
-                    <div class="col"></div>
-                </div>
-            </div>
-
-
-
-
-            <!-- <br/><br/>
-
-            <h1 class="text-white" id="organizers">Sponsors</h1>
-            <hr>
-
-            <p class="text-white-50">
-                This competition is generously supported by <a href="https://www.noahlab.com.hk/#/home" target="_blank">HUAWEI Noah's Ark Lab</a>.
-            </p>
-            
-            <img1><img src="logo_sponsor.png" class="img-fluid" alt="img-responsive"></img1>
- -->
-
-
-
-
-
-            <!-- <br/><br/>
-
-
-            <h1 class="text-white" id="organizers">Program Committee</h1>
-            <hr>
-            <div class="container text-center p-1 text-white">
-                <div class="row">
-                    <div class="col">
-                        <a href="https://www.linkedin.com/in/wei-zhang-428b4298/?originalSubdomain=uk" target="_blank">
-                            <img src="static/people-image/wei_zhang.jpg" class="rounded-circle" width="139">
-                        </a>
-                        <h4>Wei Zhang</h4> <p><small>HUAWEI Noah's Ark Lab</small></p>
-                    </div>
-                    <div class="col">
-                        <a href="https://scholar.google.com.hk/citations?user=9_AUwFUAAAAJ" target="_blank">
-                            <img src="static/people-image/weichao.jpeg" class="rounded-circle" width="139">
-                        </a>
-                        <h4>Weichao Qiu</a></h4> <p><small>HUAWEI Noah's Ark Lab</small></p>
-                    </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                    </div>
-                </div>
-            </div> -->
-            
-
-            
-
-            <!-- <br/><br/>
-
-            <h1 class="text-white" id="organizers">References</h1>
-            <hr>
-
-            <p class="text-white-50">
-                [1] S. Xie, L. Kong, W. Zhang, J. Ren, L. Pan, K. Chen, and Z. Liu. "<strong>Benchmarking and Analyzing Bird's Eye View Perception Robustness to Corruptions</strong>," Preprint, 2023.
-                <a href="https://daniel-xsy.github.io/robobev/static/pdf/RoboBEV.pdf" target="_blank">[Link]</a> <a href="https://github.com/Daniel-xsy/RoboBEV" target="_blank">[Code]</a>
-            </p>
-
-            <p class="text-white-50">
-                [2] L. Kong, S. Xie, H. Hu, L. X. Ng, B. R. Cottereau, and W. T. Ooi. "<strong>RoboDepth: Robust Out-of-Distribution Depth Estimation under Corruptions</strong>," NeurIPS, 2023.
-                <a href="https://arxiv.org/abs/2310.15171" target="_blank">[Link]</a> <a href="https://github.com/ldkong1205/RoboDepth" target="_blank">[Code]</a>
-            </p>
-            
-            <p class="text-white-50">
-                [3] L. Kong, Y. Liu, X. Li, R. Chen, W. Zhang, J. Ren, L. Pan, K. Chen, and Z. Liu. "<strong>Robo3D: Towards Robust and Reliable 3D Perception against Corruptions</strong>," ICCV, 2023.
-                <a href="https://arxiv.org/abs/2303.17597" target="_blank">[Link]</a> <a href="https://github.com/ldkong1205/Robo3D" target="_blank">[Code]</a>
-            </p> -->
-
-
-
-
-
-            
-            <!-- <br/><br/>
-
-            <h1 class="text-white" id="organizers">Affiliations</h1>
-            <hr>
-            
-            
-            <p class="text-white-50">
-                This competition is hosted by <a href="https://shlab.org.cn/" target="_blank">Shanghai AI Laboratory</a>.
-            </p>
-            
-            <img1><img src="logos.png" class="img-fluid" alt="img-responsive"></img1> -->
-
-
-
-
-            <!-- <br/><br/>
-
-
-            <h1 class="text-white" id="organizers">Acknowledgements</h1>
-            <hr>
-
-            <p class="text-white-50">
-                This competition is developed based on the <a href="https://github.com/Daniel-xsy/RoboBEV" target="_blank">RoboBEV</a>, <a href="https://github.com/ldkong1205/RoboDepth" target="_blank">RoboDepth</a>, and <a href="https://github.com/ldkong1205/Robo3D" target="_blank">Robo3D</a> projects.
-            </p>
-
-            <p class="text-white-50">
-                The evaluation sets of this competition are constructed based on the <a href="https://www.nuscenes.org/nuscenes" target="_blank">nuScenes</a> dataset from <a href="https://motional.com/" target="_blank">Motional AD LLC</a>.
-            </p>
-
-            <p class="text-white-50">
-                Part of the content of this website is adopted from <a href="https://robodepth.github.io/" target="_blank">The RoboDepth Challenge @ ICRA 2023</a>.
-                We would like to thank Jiarun Wei and Shuai Wang for building up the template from the <a href="http://seasondepth-challenge.org/" target="_blank">SeasonDepth</a> website.
-            </p> -->
-
-
-
-
-
-
-
-            <br/><br/><br/>
-
-
-            <h1 class="text-white" id="organizers">Associated Project</h1>
+            <section class="py-4" aria-labelledby="associated-project">
+            <h1 class="text-white" id="associated-project">Associated Project</h1>
             <hr>
 
             <p class="text-white-50">
@@ -1470,58 +881,13 @@
             </p>
 
             <img1><img src="logo_descartes.png" class="img-fluid" alt="img-responsive"></img1>
+            </section>
 
-
-
-
-
-
-
-
-
-
-            <br/><br/><br/>
-
-            <h1 class="text-white" id="organizers">Terms & Conditions</h1>
-            <hr>
-
-            <p class="text-white-50">
-            This competition is made freely available to academic and non-academic entities for non-commercial purposes such as academic research, teaching, scientific publications, or personal experimentation.
-            Permission is granted to use the data given that you agree:
-            </p>
-            <p class="text-white-50">
-            1. That the data in this competition comes “AS IS”, without express or implied warranty. Although every effort has been made to ensure accuracy, we do not accept any responsibility for errors or omissions.<br/>
-            2. That you may not use the data in this competition or any derivative work for commercial purposes as, for example, licensing or selling the data, or using the data with a purpose to procure a commercial gain.<br/>
-            3. That you include a reference to RoboWorld Challenge 2026 (including the benchmark data and the specially generated data for academic challenges) in any work that makes use of the benchmark. For research papers, please cite our preferred publications as listed on our webpage.
-            </p>
-
-            <p class="text-white-50">
-            To ensure a fair comparison among all participants, we require:
-            </p>
-
-            <p class="text-white-50">
-            1. All participants must follow the exact same data configuration when training and evaluating their algorithms. Please do not use any public or private datasets other than those specified for model training.<br/>
-            2. The theme of this competition is to probe the out-of-distribution robustness of autonomous driving perception models. Theorefore, any use of the corruption and sensor failure types designed in this benchmark is strictly prohibited, including any atomic operation that is comprising any one of the mentioned corruptions.<br/>
-            3. To ensure the above two rules are followed, each participant is requested to submit the code with reproducible results before the final result is announced; the code is for examination purposes only and we will manually verify the training and evaluation of each participant's model.
-            </p>
-            
-
-
-            <footer class="container p-5">
-                <p class="float-lg-end"><a href="#" style="color: #ffc000;">Back to Top</a></p>
-                <p class="text-white">&copy; The RoboWorld 2026 Organizing Team. All Rights Reserved.</p>
+            <footer class="container py-5">
+                <p class="float-lg-end"><a href="#" style="color:#ffc000;">Back to Top</a></p>
+                <p>&copy; The RoboWorld 2026 Organizing Team. All Rights Reserved.</p>
             </footer>
-        </div>
+        </main>
     </div>
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>
