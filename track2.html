@@ -6,25 +6,32 @@
   <meta name="description" content="Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.">
   <title>HA-VLN: Human-Aware Social Navigation | RoboWorld Challenge 2026</title>
   <link rel="icon" href="./logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800" rel="stylesheet">
-  <link rel="stylesheet" href="./static2/css/bulma.min.css">
-  <link rel="stylesheet" href="./static2/css/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Chivo:300,400,600,700|Saira:400,500,600,700" rel="stylesheet">
   <link rel="stylesheet" href="./challenge.css">
 </head>
-<body>
+<body class="track-page track-page--yellow">
 <nav class="challenge-nav" aria-label="Main navigation">
-  <a href="./index.html">RoboWorld 2026</a>
+  <a class="challenge-brand" href="./index.html"><img src="./brand.png" alt="" width="32" height="32">RoboWorld 2026</a>
   <a href="./track1.html">Track 1: WorldNav</a>
   <a href="./track2.html" aria-current="page">Track 2: HA-VLN</a>
   <a href="./track3.html">Track 3: SafeDrive-VLA</a>
   <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop</a>
 </nav>
 <main class="challenge-page">
-  <header class="challenge-header">
-    <p class="challenge-kicker">RoboWorld Challenge 2026 &middot; Track 2</p>
-    <h1 class="title is-2">HA-VLN: Human-Aware Social Navigation</h1>
-    <p class="subtitle is-5">Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
-    <p>Associated with the <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop at NeurIPS 2026</a>. Challenge participation is separate from workshop paper submission.</p>
+  <header class="challenge-header" data-track="Track 2">
+    <div class="challenge-header-copy">
+      <p class="challenge-kicker">RoboWorld Challenge 2026 &middot; Track 2</p>
+      <h1 class="title">HA-VLN</h1>
+      <p class="subtitle">Human-Aware Social Navigation</p>
+      <p class="challenge-summary">Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
+      <p class="challenge-association">Associated with the <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop at NeurIPS 2026</a>. Challenge participation is separate from workshop paper submission.</p>
+    </div>
+    <img src="./logo_track2.png" class="challenge-track-logo" width="180" alt="Track 2 logo">
+    <dl class="track-overview" aria-label="HA-VLN at a glance">
+      <div><dt>Benchmark</dt><dd>HA-R2R / HA-VLN 2.0</dd></div>
+      <div><dt>Setting</dt><dd>Closed-loop social navigation</dd></div>
+      <div><dt>Metrics</dt><dd>NE, SR, TCR, CR</dd></div>
+    </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
     <a href="#introduction">Introduction</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#submission">Submission</a><a href="#resources">Resources</a><a href="#contact">Contact</a>
@@ -38,7 +45,7 @@
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
     <p>HA-R2R contains 16,844 socially grounded instructions across 90 building scans with 910 annotated human models drawn from HAPS 2.0. Instructions average 112 words, with 20-60% human-related content.</p>
-    <div class="table-container"><table class="table is-fullwidth is-striped">
+    <div class="table-container" tabindex="0" role="region" aria-label="Dataset and evaluation splits"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Split / Test Set</th><th scope="col">Size</th><th scope="col">Details</th></tr></thead>
   <tbody><tr><th scope="row">Training</th><td>10,819 instructions</td><td>Training split</td></tr>
 <tr><th scope="row">Validation: seen</th><td>778 instructions</td><td>Seen validation environments</td></tr>
@@ -50,7 +57,7 @@
     <h2 id="evaluation">Evaluation</h2>
     <p>All submissions are scored server-side on the withheld test split. Test-split ground truth is not released.</p>
     <p>Navigation accuracy and social compliance are reported separately. Success requires stopping within 3 m of the goal and completing the episode without collisions. The final ranking rule across the navigation and social metrics will be announced.</p>
-    <div class="table-container"><table class="table is-fullwidth is-striped">
+    <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Navigation Error (NE)</th><td>Lower</td><td>Final navigation error relative to the goal.</td></tr>
 <tr><th scope="row">Success Rate (SR)</th><td>Higher</td><td>Episodes that stop within 3 m of the goal and finish without collisions.</td></tr>
@@ -68,16 +75,27 @@
   <section class="content challenge-section" aria-labelledby="submission">
     <h2 id="submission">Submission &amp; Timeline</h2>
     <p>Agents are evaluated through closed-loop interaction with the HA-VLN 2.0 simulator. Packaging requirements, runtime limits, and the submission endpoint will be announced.</p>
-    <p>Registration, competition dates, training-data and pretrained-model policies, and final reproducibility requirements will be announced.</p>
+    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
     <div class="challenge-notice"><strong>Submission portal: Coming soon.</strong> Official access links will be published here when confirmed.</div>
   </section>
   <section class="content challenge-section" aria-labelledby="resources">
     <h2 id="resources">Resources</h2>
-    <p>Official links to the dataset, baseline code, model checkpoints, and evaluation scripts will be announced. The confirmed task and baseline descriptions are provided above.</p>
+    <p>Reference paper and code links are listed below where available. Competition-specific dataset access, model checkpoints, and evaluation scripts will be announced.</p>
+    <div class="detail-paper" role="group" aria-labelledby="paper-title">
+      <div class="detail-paper-heading">
+        <h3 id="paper-title"><a href="https://arxiv.org/abs/2503.14229" target="_blank" rel="noopener noreferrer">HA-VLN 2.0: An Open Benchmark and Leaderboard for Human-Aware Navigation in Discrete and Continuous Environments with Dynamic Multi-Human Interactions</a></h3>
+        <p class="detail-paper-venue">IROS 2026</p>
+      </div>
+      <p class="detail-paper-authors">Y. Dong, F. Wu, Q. He, L. Kong, H. Li, M. Li, Z. Cheng, Y. Zhou, J. Sun, Q. Dai, A. G. Hauptmann, Z.-Q. Cheng</p>
+      <div class="track-resource-links" role="group" aria-label="HA-VLN paper resources">
+        <a href="https://arxiv.org/abs/2503.14229" target="_blank" rel="noopener noreferrer"><img src="./static/logo-image/arxiv.png" alt="" width="28" height="28">arXiv</a>
+        <a href="https://github.com/F1y1113/HA-VLN" target="_blank" rel="noopener noreferrer"><img src="./static/logo-image/github.png" alt="" width="28" height="28">GitHub</a>
+      </div>
+    </div>
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
     <h2 id="contact">Contact &amp; Organizers</h2>
-    <p>Track organizers and dedicated contacts will be announced. For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+    <p>View the <a href="./index.html#track-2">track organizers on the challenge homepage</a>. For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
   </section>
 </main>
 <footer class="challenge-footer">

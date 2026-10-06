@@ -53,6 +53,59 @@
             white-space: normal;
         }
 
+        main .card {
+            --card-accent: #34cccc;
+            --card-glow: rgba(52, 204, 204, 0.1);
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+
+        main .card--yellow {
+            --card-accent: #ffc000;
+            --card-glow: rgba(255, 192, 0, 0.1);
+        }
+
+        main .card:focus-within {
+            border-color: var(--card-accent) !important;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 18px var(--card-glow) !important;
+        }
+
+        .track-panel:focus-within {
+            border-color: var(--track-accent);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 20px var(--card-glow);
+        }
+
+        .organizer-portrait,
+        .track-organizer-avatar {
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .organizer-card:focus-within .organizer-portrait {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            main .card:hover {
+                transform: translateY(-3px);
+                border-color: var(--card-accent) !important;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 18px var(--card-glow) !important;
+            }
+
+            .track-panel:hover {
+                transform: translateY(-2px);
+                border-color: var(--track-accent);
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), 0 0 20px var(--card-glow);
+            }
+
+            .organizer-card:hover .organizer-portrait {
+                transform: scale(1.025);
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+            }
+
+            .track-organizer-avatar:hover {
+                transform: translateY(-2px);
+            }
+        }
+
         @media (max-width: 767px) {
             main > section + section { margin-top: 2.5rem; }
         }
@@ -70,6 +123,7 @@
         }
 
         .track-panel {
+            --card-glow: rgba(52, 204, 204, 0.08);
             display: grid;
             grid-template-columns: minmax(0, 1fr) 17rem;
             gap: 1.25rem 2rem;
@@ -78,9 +132,11 @@
             border-top: 3px solid var(--track-accent);
             border-radius: 12px;
             background: linear-gradient(120deg, #131b1b, #0a0c0c);
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
         }
 
         .track-panel--yellow {
+            --card-glow: rgba(255, 192, 0, 0.08);
             --track-accent: #ffc000;
             --track-border: #4b4020;
             background: linear-gradient(120deg, #1c190f, #0d0c08);
@@ -133,6 +189,7 @@
 
         #timeline-content .timeline {
             max-width: none;
+            width: calc((100% - 12rem) * 0.75);
             margin: 3rem 0 0 12rem;
         }
 
@@ -140,6 +197,7 @@
             left: -13.5rem;
             width: 9rem;
             min-width: 0;
+            padding-right: 0.75rem;
             text-align: right;
             white-space: nowrap;
         }
@@ -378,6 +436,10 @@
         }
 
         @media (max-width: 991px) {
+            #timeline-content .timeline {
+                width: calc(100% - 12rem);
+            }
+
             .track-panel {
                 grid-template-columns: minmax(0, 1fr);
             }
@@ -420,6 +482,7 @@
             }
 
             #timeline-content .timeline {
+                width: 100%;
                 margin: 2rem 0 0;
                 padding: 1.5rem;
             }
@@ -428,6 +491,7 @@
                 position: static;
                 width: 100%;
                 min-width: 0;
+                padding-right: 0;
                 margin-bottom: 0.75rem;
                 text-align: right;
             }
@@ -452,6 +516,16 @@
 
             .track-panel-footer .btn {
                 width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            main .card,
+            .track-panel,
+            .organizer-portrait,
+            .track-organizer-avatar {
+                transition: none;
+                transform: none !important;
             }
         }
 
@@ -556,7 +630,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 bg-black text-white border-secondary">
+                    <div class="card card--yellow h-100 bg-black text-white border-secondary">
                         <div class="card-header py-3 bg-roboworld-yellow"><h3 class="h4 text-black mb-0">Track 2: HA-VLN</h3></div>
                         <div class="card-body">
                             <p class="text-white-50">Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
@@ -580,7 +654,7 @@
                 <h1 id="workshop">RoboPAD Workshop</h1><hr>
                 <div class="workshop-description">
                     <img src="static/logo-image/neurips2026.webp" class="workshop-logo" width="622" height="622" alt="NeurIPS logo">
-                    <p class="text-white-50">RoboWorld Challenge 2026 is an independently organized challenge associated with <strong>RoboPAD: Post-Training Adaptation of Robot Foundation Models</strong>, a workshop at <strong>NeurIPS 2026</strong>.</p>
+                    <p class="text-white-50">RoboWorld Challenge 2026 is an independently organized challenge associated with <a href="https://robotpad2026.github.io/" target="_blank" style="color:#ffc000;"><strong>RoboPAD: Post-Training Adaptation of Robot Foundation Models</strong></a>, a workshop at <strong>NeurIPS 2026</strong>.</p>
                     <p class="text-white-50">RoboPAD focuses on adaptation, reasoning, evaluation, and safety for robot foundation models after pretraining. The challenge complements these themes through language-conditioned navigation, social interaction, and safe autonomous driving.</p>
                     <p class="text-white-50">Challenge logistics, registration, and evaluation are managed by the RoboWorld organizing team. Challenge participation is separate from RoboPAD paper submission. Workshop program and attendance details are available on the workshop website.</p>
                 </div>
@@ -859,7 +933,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="card h-100 rounded-3 shadow-sm">
+                        <div class="card card--yellow h-100 rounded-3 shadow-sm">
                             <div class="card-header py-3 bg-roboworld-yellow">
                                 <h4 class="my-0 fw-normal text-black">Track #2</h4>
                             </div>

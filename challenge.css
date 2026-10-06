@@ -118,3 +118,473 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* Track detail pages share the homepage palette without changing the leaderboard. */
+.track-page {
+  --challenge-accent: #34cccc;
+  --challenge-line: #2a3c3c;
+  --challenge-muted: #bfcaca;
+  --challenge-surface: linear-gradient(120deg, #131b1b, #0a0c0c);
+  margin: 0;
+  color: #e0e8e8;
+  background: #000;
+  font-family: 'Chivo', sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.track-page--yellow {
+  --challenge-accent: #ffc000;
+  --challenge-line: #4b4020;
+  --challenge-surface: linear-gradient(120deg, #1c190f, #0d0c08);
+}
+
+.track-page,
+.track-page *,
+.track-page *::before,
+.track-page *::after {
+  box-sizing: border-box;
+}
+
+.track-page .challenge-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.6rem 1.25rem;
+  padding: 1rem max(1.5rem, calc((100vw - 1100px) / 2 + 1.5rem));
+  border-bottom: 1px solid #383e3e;
+  background: #252727;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.track-page .challenge-nav a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.track-page .challenge-nav a[aria-current="page"] {
+  color: var(--challenge-accent);
+}
+
+.track-page .challenge-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-right: auto;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.track-page .challenge-brand img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.track-page .challenge-page {
+  max-width: 1100px;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.track-page .challenge-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  align-items: start;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--challenge-line);
+  border-top: 3px solid var(--challenge-accent);
+  border-radius: 12px;
+  background: var(--challenge-surface);
+}
+
+.track-page .challenge-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--challenge-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.track-page h1,
+.track-page h2,
+.track-page h3 {
+  color: #fff;
+  font-family: 'Saira', sans-serif;
+  font-weight: 500;
+}
+
+.track-page .challenge-header .title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+.track-page .challenge-header .subtitle {
+  margin: 0.75rem 0 0;
+  color: #d3dddd;
+  font-size: 1.375rem;
+  line-height: 1.5;
+}
+
+.track-page .challenge-summary {
+  margin: 1.25rem 0 0;
+  color: var(--challenge-muted);
+}
+
+.track-page .challenge-association {
+  margin: 1rem 0 0;
+  color: #98a8a8;
+  font-size: 0.9375rem;
+}
+
+.track-page .challenge-track-logo {
+  display: block;
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+}
+
+.track-page .track-overview {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--challenge-line);
+}
+
+.track-page .track-overview dt {
+  margin-bottom: 0.5rem;
+  color: var(--challenge-accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.track-page .track-overview dd {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.track-page .section-links {
+  gap: 0.6rem;
+  padding: 1.75rem 0;
+}
+
+.track-page .section-links a {
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--challenge-line);
+  border-radius: 999px;
+  color: #d3dddd;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+.track-page .challenge-section {
+  margin: 0 0 2rem;
+  padding: 2rem;
+  border: 1px solid var(--challenge-line);
+  border-radius: 12px;
+  background: var(--challenge-surface);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.track-page .challenge-section h2 {
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid var(--challenge-line);
+  font-size: 1.875rem;
+  line-height: 1.3;
+  scroll-margin-top: 11rem;
+}
+
+.track-page .challenge-section p {
+  margin: 0 0 1rem;
+  color: var(--challenge-muted);
+}
+
+.track-page .challenge-section p:last-child {
+  margin-bottom: 0;
+}
+
+.track-page strong {
+  color: #e0e8e8;
+  font-weight: 600;
+}
+
+.track-page .challenge-page a,
+.track-page .challenge-footer a {
+  color: var(--challenge-accent);
+}
+
+.track-page a:hover,
+.track-page .challenge-page a:hover,
+.track-page .challenge-footer a:hover {
+  color: #ffc000;
+}
+
+.track-page a:focus-visible,
+.track-page button:focus-visible,
+.track-page .table-container:focus-visible {
+  outline: 2px solid #ffc000;
+  outline-offset: 4px;
+}
+
+.track-page .section-links a:hover,
+.track-page .section-links a:focus-visible {
+  border-color: var(--challenge-accent);
+}
+
+.track-page .table-container {
+  max-width: 100%;
+  margin: 1.5rem 0 0;
+  border: 1px solid var(--challenge-line);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.track-page .table {
+  width: 100%;
+  min-width: 580px;
+  margin: 0;
+  border-collapse: collapse;
+  color: var(--challenge-muted);
+  background: #080e0e;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.track-page--yellow .table {
+  background: #100e08;
+}
+
+.track-page .table th,
+.track-page .table td {
+  min-width: 120px;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--challenge-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.track-page .table thead th {
+  color: var(--challenge-accent);
+  background: rgba(255, 255, 255, 0.035);
+  font-weight: 600;
+}
+
+.track-page .table tbody th {
+  color: #e0e8e8;
+  font-weight: 500;
+}
+
+.track-page .table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.track-page .table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.track-page .table-container + p {
+  margin-top: 1.25rem;
+}
+
+.track-page .challenge-notice {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--challenge-line);
+  border-left: 3px solid var(--challenge-accent);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--challenge-muted);
+  font-size: 1rem;
+}
+
+.track-page .detail-paper {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--challenge-line);
+}
+
+.track-page .detail-paper-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.track-page .detail-paper-heading h3 {
+  flex: 1 1 28rem;
+  min-width: 0;
+  margin: 0;
+  color: #e0e8e8;
+  font-family: 'Chivo', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.track-page .detail-paper-heading h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.track-page .detail-paper-heading h3 a:hover {
+  color: #ffc000;
+}
+
+.track-page .detail-paper-heading .detail-paper-venue {
+  margin: 0;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  color: #080e0e;
+  background: #ffc000;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.track-page .detail-paper-authors {
+  margin-top: 0.875rem;
+  font-size: 1rem;
+}
+
+.track-page .track-resource-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.track-page .track-resource-links a,
+.track-page .track-resource-links button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  padding: 0.65rem 1.1rem;
+  border: 1px solid #ffc000;
+  border-radius: 6px;
+  color: #ffc000;
+  background: transparent;
+  font: inherit;
+  font-size: 1.375rem;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.track-page .track-resource-links img {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+}
+
+.track-page .track-resource-links button:disabled {
+  border-color: var(--challenge-line);
+  color: #98a8a8;
+  cursor: default;
+}
+
+.track-page .challenge-footer {
+  padding: 2rem 1.5rem;
+  border-top: 1px solid #252f2f;
+  color: #98a8a8;
+  background: #080b0b;
+  font-size: 1rem;
+}
+
+.track-page .challenge-footer p {
+  margin: 0 0 0.75rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .track-page .challenge-section:hover,
+  .track-page .challenge-section:focus-within {
+    border-color: var(--challenge-accent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .track-page .track-resource-links a:hover {
+    color: #080e0e;
+    background: #ffc000;
+  }
+}
+
+@media (max-width: 767px) {
+  .track-page .challenge-nav {
+    gap: 0.5rem 1rem;
+    padding: 0.875rem 1.5rem;
+  }
+
+  .track-page .challenge-brand {
+    flex-basis: 100%;
+  }
+
+  .track-page .challenge-page {
+    padding: 1.5rem 1rem 2.5rem;
+  }
+
+  .track-page .challenge-header {
+    grid-template-columns: minmax(0, 1fr) 96px;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .track-page .challenge-header-copy {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .track-page .challenge-track-logo {
+    grid-column: 2;
+    grid-row: 1;
+    width: 96px;
+  }
+
+  .track-page .challenge-header::before {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    content: attr(data-track);
+    color: var(--challenge-accent);
+    font-family: 'Saira', sans-serif;
+    font-size: 1.25rem;
+  }
+
+  .track-page .track-overview {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .track-page .challenge-section {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .track-page .challenge-section h2 {
+    font-size: 1.65rem;
+    scroll-margin-top: 13rem;
+  }
+
+  .track-page .challenge-header .subtitle {
+    font-size: 1.125rem;
+  }
+
+  .track-page .track-resource-links a,
+  .track-page .track-resource-links button {
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track-page .challenge-section {
+    transition: none;
+  }
+}

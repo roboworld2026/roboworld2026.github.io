@@ -6,25 +6,32 @@
   <meta name="description" content="Open-loop visual navigation from one initial RGB observation and a natural-language instruction.">
   <title>WorldNav: Language-Conditioned World Navigation | RoboWorld Challenge 2026</title>
   <link rel="icon" href="./logo.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800" rel="stylesheet">
-  <link rel="stylesheet" href="./static2/css/bulma.min.css">
-  <link rel="stylesheet" href="./static2/css/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Chivo:300,400,600,700|Saira:400,500,600,700" rel="stylesheet">
   <link rel="stylesheet" href="./challenge.css">
 </head>
-<body>
+<body class="track-page">
 <nav class="challenge-nav" aria-label="Main navigation">
-  <a href="./index.html">RoboWorld 2026</a>
+  <a class="challenge-brand" href="./index.html"><img src="./brand.png" alt="" width="32" height="32">RoboWorld 2026</a>
   <a href="./track1.html" aria-current="page">Track 1: WorldNav</a>
   <a href="./track2.html">Track 2: HA-VLN</a>
   <a href="./track3.html">Track 3: SafeDrive-VLA</a>
   <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop</a>
 </nav>
 <main class="challenge-page">
-  <header class="challenge-header">
-    <p class="challenge-kicker">RoboWorld Challenge 2026 &middot; Track 1</p>
-    <h1 class="title is-2">WorldNav: Language-Conditioned World Navigation</h1>
-    <p class="subtitle is-5">Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</p>
-    <p>Associated with the <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop at NeurIPS 2026</a>. Challenge participation is separate from workshop paper submission.</p>
+  <header class="challenge-header" data-track="Track 1">
+    <div class="challenge-header-copy">
+      <p class="challenge-kicker">RoboWorld Challenge 2026 &middot; Track 1</p>
+      <h1 class="title">WorldNav</h1>
+      <p class="subtitle">Language-Conditioned World Navigation</p>
+      <p class="challenge-summary">Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</p>
+      <p class="challenge-association">Associated with the <a href="https://robotpad2026.github.io/" target="_blank" rel="noopener noreferrer">RoboPAD Workshop at NeurIPS 2026</a>. Challenge participation is separate from workshop paper submission.</p>
+    </div>
+    <img src="./logo_track1.png" class="challenge-track-logo" width="180" alt="Track 1 logo">
+    <dl class="track-overview" aria-label="WorldNav at a glance">
+      <div><dt>Benchmark</dt><dd>LCVN</dd></div>
+      <div><dt>Setting</dt><dd>Open-loop navigation</dd></div>
+      <div><dt>Metrics</dt><dd>SR, ATE, RPE</dd></div>
+    </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
     <a href="#introduction">Introduction</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#submission">Submission</a><a href="#resources">Resources</a><a href="#contact">Contact</a>
@@ -38,7 +45,7 @@
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
     <p>LCVN contains 39,016 trajectories and 117,048 human-verified instructions sourced from Go Stanford, ReCon, SCAND, HuRoN, and TartanDrive. Each trajectory has three instruction styles: concise, intricate, and landmark-grounded.</p>
-    <div class="table-container"><table class="table is-fullwidth is-striped">
+    <div class="table-container" tabindex="0" role="region" aria-label="Dataset and evaluation splits"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Split / Test Set</th><th scope="col">Size</th><th scope="col">Details</th></tr></thead>
   <tbody><tr><th scope="row">Training</th><td>28,813 trajectories</td><td>86,439 instructions</td></tr>
 <tr><th scope="row">Validation: seen</th><td>3,602 trajectories</td><td>Seen validation environments</td></tr>
@@ -50,7 +57,7 @@
     <h2 id="evaluation">Evaluation</h2>
     <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), and Relative Pose Error (RPE).</p>
     <p>A trajectory is successful when its final distance to the goal is below the agent's average step size. The final ranking rule across the three metrics will be announced.</p>
-    <div class="table-container"><table class="table is-fullwidth is-striped">
+    <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Success Rate (SR)</th><td>Higher</td><td>Fraction of trajectories satisfying the goal-distance success criterion.</td></tr>
 <tr><th scope="row">Absolute Trajectory Error (ATE)</th><td>Lower</td><td>Absolute trajectory error against the reference trajectory.</td></tr>
@@ -62,7 +69,7 @@
     <p>LCVN-Uni is a unified autoregressive multimodal model fine-tuned from Anole-7B. It jointly predicts the next action and next observation in a single forward pass.</p>
     <p>LCVN-WM + LCVN-AC pairs a language-conditioned diffusion world model with an actor-critic agent trained entirely in the world model's latent space.</p>
     <p>Reference benchmark results are shown below; these are baseline results, not competition submissions.</p>
-    <div class="table-container"><table class="table is-fullwidth is-striped">
+    <div class="table-container" tabindex="0" role="region" aria-label="Reference baseline results"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Baseline</th><th scope="col">SR</th><th scope="col">ATE</th><th scope="col">RPE</th></tr></thead>
   <tbody><tr><th scope="row">LCVN-Uni</th><td>0.36</td><td>0.65</td><td>0.22</td></tr>
 <tr><th scope="row">LCVN-WM + LCVN-AC</th><td>0.34</td><td>0.76</td><td>0.26</td></tr></tbody>
@@ -72,16 +79,27 @@
   <section class="content challenge-section" aria-labelledby="submission">
     <h2 id="submission">Submission &amp; Timeline</h2>
     <p>Submissions provide full predicted continuous-action trajectories from the initial observation and instruction, without intermediate environmental feedback. The official file format, scoring implementation, and submission endpoint will be announced.</p>
-    <p>Registration, competition dates, training-data and pretrained-model policies, and final reproducibility requirements will be announced.</p>
+    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
     <div class="challenge-notice"><strong>Submission portal: Coming soon.</strong> Official access links will be published here when confirmed.</div>
   </section>
   <section class="content challenge-section" aria-labelledby="resources">
     <h2 id="resources">Resources</h2>
-    <p>Official links to the dataset, baseline code, model checkpoints, and evaluation scripts will be announced. The confirmed task and baseline descriptions are provided above.</p>
+    <p>Reference paper and code links are listed below where available. Competition-specific dataset access, model checkpoints, and evaluation scripts will be announced.</p>
+    <div class="detail-paper" role="group" aria-labelledby="paper-title">
+      <div class="detail-paper-heading">
+        <h3 id="paper-title"><a href="https://arxiv.org/abs/2603.26741" target="_blank" rel="noopener noreferrer">Language-Conditioned World Modeling for Visual Navigation</a></h3>
+        <p class="detail-paper-venue">NeurIPS 2026 Oral</p>
+      </div>
+      <p class="detail-paper-authors">Y. Dong, F. Wu, Y. Dai, L. Kong, G. Chen, Y. Sha, Q. Hu, F. Liu, S. Huang, Q. Dai, Z.-Q. Cheng</p>
+      <div class="track-resource-links" role="group" aria-label="WorldNav paper resources">
+        <a href="https://arxiv.org/abs/2603.26741" target="_blank" rel="noopener noreferrer"><img src="./static/logo-image/arxiv.png" alt="" width="28" height="28">arXiv</a>
+        <a href="https://github.com/UWMILab/LCVN" target="_blank" rel="noopener noreferrer"><img src="./static/logo-image/github.png" alt="" width="28" height="28">GitHub</a>
+      </div>
+    </div>
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
     <h2 id="contact">Contact &amp; Organizers</h2>
-    <p>Track organizers and dedicated contacts will be announced. For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+    <p>View the <a href="./index.html#track-1">track organizers on the challenge homepage</a>. For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
   </section>
 </main>
 <footer class="challenge-footer">
