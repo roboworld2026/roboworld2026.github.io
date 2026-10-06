@@ -64,6 +64,28 @@
             --card-glow: rgba(255, 192, 0, 0.1);
         }
 
+        .intro-track-card .card-header {
+            display: flex;
+            align-items: center;
+            min-height: 4.75rem;
+        }
+
+        .intro-track-art {
+            display: grid;
+            place-items: center;
+            padding: 0.75rem;
+            background: transparent;
+        }
+
+        .intro-track-logo {
+            display: block;
+            width: 100%;
+            max-width: 240px;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: contain;
+        }
+
         main .card:focus-within {
             border-color: var(--card-accent) !important;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 18px var(--card-glow) !important;
@@ -621,29 +643,38 @@
 
                 <div class="row row-cols-1 row-cols-lg-3 g-4">
                 <div class="col">
-                    <div class="card h-100 bg-black text-white border-secondary">
+                    <div class="card intro-track-card h-100 bg-black text-white border-secondary">
                         <div class="card-header py-3 bg-openmmlab"><h3 class="h4 text-black mb-0">Track 1: WorldNav</h3></div>
-                        <div class="card-body">
+                        <div class="intro-track-art">
+                            <img src="static/logo-image/track-worldnav-mascot-transparent.png" class="intro-track-logo" width="1024" height="1024" loading="lazy" decoding="async" alt="WorldNav mascot with a navigation map and language bubble">
+                        </div>
+                        <div class="card-body d-flex flex-column">
                             <p class="text-white-50">Open-loop visual navigation from one initial RGB observation and a natural-language instruction.</p>
-                            <a href="./track1.html" class="btn btn-outline-warning">Track Details</a>
+                            <a href="./track1.html" class="btn btn-outline-warning mt-auto align-self-start" target="_blank" rel="noopener noreferrer">Track Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card card--yellow h-100 bg-black text-white border-secondary">
+                    <div class="card intro-track-card card--yellow h-100 bg-black text-white border-secondary">
                         <div class="card-header py-3 bg-roboworld-yellow"><h3 class="h4 text-black mb-0">Track 2: HA-VLN 2.0</h3></div>
-                        <div class="card-body">
+                        <div class="intro-track-art">
+                            <img src="static/logo-image/track-havln-mascot-transparent.png" class="intro-track-logo" width="1024" height="1024" loading="lazy" decoding="async" alt="HA-VLN 2.0 mascot with pedestrians and a socially aware navigation route">
+                        </div>
+                        <div class="card-body d-flex flex-column">
                             <p class="text-white-50">Closed-loop RGB-D navigation with socially grounded language and dynamic, interacting humans.</p>
-                            <a href="./track2.html" class="btn btn-outline-warning">Track Details</a>
+                            <a href="./track2.html" class="btn btn-outline-warning mt-auto align-self-start" target="_blank" rel="noopener noreferrer">Track Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100 bg-black text-white border-secondary">
+                    <div class="card intro-track-card h-100 bg-black text-white border-secondary">
                         <div class="card-header py-3 bg-openmmlab"><h3 class="h4 text-black mb-0">Track 3: SafeDrive-VLA</h3></div>
-                        <div class="card-body">
+                        <div class="intro-track-art">
+                            <img src="static/logo-image/track-safedrive-mascot-transparent.png" class="intro-track-logo" width="1024" height="1024" loading="lazy" decoding="async" alt="SafeDrive-VLA mascot holding a steering wheel beside a safety shield">
+                        </div>
+                        <div class="card-body d-flex flex-column">
                             <p class="text-white-50">Language-guided driving that follows safe instructions and responds safely to instruction-scene conflicts.</p>
-                            <a href="./track3.html" class="btn btn-outline-warning">Track Details</a>
+                            <a href="./track3.html" class="btn btn-outline-warning mt-auto align-self-start" target="_blank" rel="noopener noreferrer">Track Details</a>
                         </div>
                     </div>
                 </div>
@@ -718,7 +749,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a href="./track1.html" class="btn btn-outline-warning" aria-label="WorldNav: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                            <a href="./track1.html" class="btn btn-outline-warning" target="_blank" rel="noopener noreferrer" aria-label="WorldNav: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
                             <div class="track-paper" role="group" aria-labelledby="worldnav-paper-title">
                                 <div class="track-paper-heading">
                                     <h3 id="worldnav-paper-title" class="track-paper-title"><a href="https://arxiv.org/abs/2603.26741" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">Language-Conditioned World Modeling for Visual Navigation</a></h3>
@@ -792,7 +823,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a href="./track2.html" class="btn btn-outline-warning" aria-label="HA-VLN 2.0: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                            <a href="./track2.html" class="btn btn-outline-warning" target="_blank" rel="noopener noreferrer" aria-label="HA-VLN 2.0: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
                             <div class="track-paper" role="group" aria-labelledby="ha-vln-paper-title">
                                 <div class="track-paper-heading">
                                     <h3 id="ha-vln-paper-title" class="track-paper-title"><a href="https://arxiv.org/abs/2503.14229" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">HA-VLN 2.0: An Open Benchmark and Leaderboard for Human-Aware Navigation in Discrete and Continuous Environments with Dynamic Multi-Human Interactions</a></h3>
@@ -861,7 +892,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <a href="./track3.html" class="btn btn-outline-warning" aria-label="SafeDrive-VLA: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                            <a href="./track3.html" class="btn btn-outline-warning" target="_blank" rel="noopener noreferrer" aria-label="SafeDrive-VLA: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
                             <div class="track-paper" role="group" aria-labelledby="safedrive-paper-title">
                                 <div class="track-paper-heading">
                                     <h3 id="safedrive-paper-title" class="track-paper-title"><span class="track-paper-title-link" title="arXiv link coming soon">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</span></h3>
