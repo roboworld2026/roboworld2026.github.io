@@ -263,8 +263,8 @@
 
         .track-organizer-avatar {
             display: block;
-            width: 72px;
-            height: 72px;
+            width: 64px;
+            height: 64px;
             border: 1px solid var(--track-border);
             border-radius: 50%;
             overflow: hidden;
@@ -280,6 +280,86 @@
         .track-organizer-avatar:focus-visible {
             outline: 2px solid #ffc000;
             outline-offset: 3px;
+        }
+
+        .track-paper {
+            flex: 0 0 100%;
+            min-width: 0;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--track-border);
+        }
+
+        .track-paper-heading {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem 1rem;
+        }
+
+        .track-paper-title {
+            flex: 1 1 28rem;
+            min-width: 0;
+            margin-bottom: 0;
+            color: #e0e8e8;
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .track-paper-venue {
+            margin-bottom: 0;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: #ffc000;
+            color: #080e0e;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .track-paper-authors {
+            margin: 0.75rem 0 0;
+            color: #bfcaca;
+            font-size: 1.125rem;
+            line-height: 1.65;
+        }
+
+        .track-paper-resources {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .track-paper-resource {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: #bfcaca;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-decoration: none;
+        }
+
+        .track-paper-resource:hover {
+            color: var(--track-accent);
+        }
+
+        .track-paper-resource:focus-visible {
+            outline: 2px solid #ffc000;
+            outline-offset: 4px;
+        }
+
+        .track-paper-resource img {
+            flex: 0 0 28px;
+            width: 28px;
+            height: 28px;
+            border-radius: 4px;
+            object-fit: contain;
         }
 
         @media (max-width: 991px) {
@@ -545,6 +625,23 @@
                                 </ul>
                             </div>
                             <a href="./track1.html" class="btn btn-outline-warning" aria-label="WorldNav: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                            <div class="track-paper" role="group" aria-labelledby="worldnav-paper-title">
+                                <div class="track-paper-heading">
+                                    <h3 id="worldnav-paper-title" class="track-paper-title">Language-Conditioned World Modeling for Visual Navigation</h3>
+                                    <p class="track-paper-venue">NeurIPS 2026 Oral</p>
+                                </div>
+                                <p class="track-paper-authors">Y. Dong, F. Wu, Y. Dai, L. Kong, G. Chen, Y. Sha, Q. Hu, F. Liu, S. Huang, Q. Dai, Z.-Q. Cheng</p>
+                                <div class="track-paper-resources" role="group" aria-label="WorldNav paper resources">
+                                    <a href="https://arxiv.org/abs/2603.26741" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="WorldNav paper on arXiv">
+                                        <img src="static/logo-image/arxiv.png" alt="" width="28" height="28">
+                                        <span>arXiv</span>
+                                    </a>
+                                    <a href="https://github.com/UWMILab/LCVN" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="WorldNav code on GitHub">
+                                        <img src="static/logo-image/github.png" alt="" width="28" height="28">
+                                        <span>GitHub</span>
+                                    </a>
+                                </div>
+                            </div>
                         </footer>
                     </article>
                     <article class="track-panel track-panel--yellow" aria-labelledby="track-2">
