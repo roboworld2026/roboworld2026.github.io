@@ -306,6 +306,21 @@
             line-height: 1.5;
         }
 
+        .track-paper-title-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .track-paper-title-link:hover,
+        .track-paper-title-link:focus-visible {
+            color: #ffc000;
+        }
+
+        .track-paper-title-link:focus-visible {
+            outline: 2px solid #ffc000;
+            outline-offset: 4px;
+        }
+
         .track-paper-venue {
             margin-bottom: 0;
             padding: 0.35rem 0.75rem;
@@ -609,12 +624,12 @@
                                 <ul class="track-organizer-list" aria-label="WorldNav organizers">
                                     <li>
                                         <a href="#challenge-organizers" class="track-organizer-avatar" title="Yifei Dong" aria-label="Yifei Dong - Organizing Team">
-                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Yifei Dong">
+                                            <img src="static/people-image/yifei.jpg" width="72" height="72" alt="Yifei Dong">
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
-                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Fengyi Wu">
+                                            <img src="static/people-image/fengyi.jpg" width="72" height="72" alt="Fengyi Wu">
                                         </a>
                                     </li>
                                     <li>
@@ -622,12 +637,17 @@
                                             <img src="static/people-image/lingdong.jpg" width="72" height="72" alt="Lingdong Kong">
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
+                                            <img src="static/people-image/zhi_qi_cheng.png" width="72" height="72" alt="Fengyi Wu">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <a href="./track1.html" class="btn btn-outline-warning" aria-label="WorldNav: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
                             <div class="track-paper" role="group" aria-labelledby="worldnav-paper-title">
                                 <div class="track-paper-heading">
-                                    <h3 id="worldnav-paper-title" class="track-paper-title">Language-Conditioned World Modeling for Visual Navigation</h3>
+                                    <h3 id="worldnav-paper-title" class="track-paper-title"><a href="https://arxiv.org/abs/2603.26741" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">Language-Conditioned World Modeling for Visual Navigation</a></h3>
                                     <p class="track-paper-venue">NeurIPS 2026 Oral</p>
                                 </div>
                                 <p class="track-paper-authors">Y. Dong, F. Wu, Y. Dai, L. Kong, G. Chen, Y. Sha, Q. Hu, F. Liu, S. Huang, Q. Dai, Z.-Q. Cheng</p>
@@ -678,12 +698,12 @@
                                 <ul class="track-organizer-list" aria-label="HA-VLN organizers">
                                     <li>
                                         <a href="#challenge-organizers" class="track-organizer-avatar" title="Yifei Dong" aria-label="Yifei Dong - Organizing Team">
-                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Yifei Dong">
+                                            <img src="static/people-image/yifei.jpg" width="72" height="72" alt="Yifei Dong">
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
-                                            <img src="static/people-image/placeholder.png" width="72" height="72" alt="Fengyi Wu">
+                                            <img src="static/people-image/fengyi.jpg" width="72" height="72" alt="Fengyi Wu">
                                         </a>
                                     </li>
                                     <li>
@@ -691,9 +711,31 @@
                                             <img src="static/people-image/lingdong.jpg" width="72" height="72" alt="Lingdong Kong">
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
+                                            <img src="static/people-image/zhi_qi_cheng.png" width="72" height="72" alt="Fengyi Wu">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <a href="./track2.html" class="btn btn-outline-warning" aria-label="HA-VLN: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                            <div class="track-paper" role="group" aria-labelledby="ha-vln-paper-title">
+                                <div class="track-paper-heading">
+                                    <h3 id="ha-vln-paper-title" class="track-paper-title"><a href="https://arxiv.org/abs/2503.14229" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">HA-VLN 2.0: An Open Benchmark and Leaderboard for Human-Aware Navigation in Discrete and Continuous Environments with Dynamic Multi-Human Interactions</a></h3>
+                                    <p class="track-paper-venue">IROS 2026</p>
+                                </div>
+                                <p class="track-paper-authors">Y. Dong, F. Wu, Q. He, L. Kong, H. Li, M. Li, Z. Cheng, Y. Zhou, J. Sun, Q. Dai, A. G. Hauptmann, Z.-Q. Cheng</p>
+                                <div class="track-paper-resources" role="group" aria-label="HA-VLN paper resources">
+                                    <a href="https://arxiv.org/abs/2503.14229" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="HA-VLN paper on arXiv">
+                                        <img src="static/logo-image/arxiv.png" alt="" width="28" height="28">
+                                        <span>arXiv</span>
+                                    </a>
+                                    <a href="https://github.com/F1y1113/HA-VLN" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="HA-VLN code on GitHub">
+                                        <img src="static/logo-image/github.png" alt="" width="28" height="28">
+                                        <span>GitHub</span>
+                                    </a>
+                                </div>
+                            </div>
                         </footer>
                     </article>
                     <article class="track-panel" aria-labelledby="track-3">
@@ -738,9 +780,31 @@
                                             <img src="static/people-image/lingdong.jpg" width="72" height="72" alt="Lingdong Kong">
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#challenge-organizers" class="track-organizer-avatar" title="Fengyi Wu" aria-label="Fengyi Wu - Organizing Team">
+                                            <img src="static/people-image/alfred_chen.jpg" width="72" height="72" alt="Fengyi Wu">
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <a href="./track3.html" class="btn btn-outline-warning" aria-label="SafeDrive-VLA: Task, Evaluation and Baselines">Task, Evaluation &amp; Baselines</a>
+                            <div class="track-paper" role="group" aria-labelledby="safedrive-paper-title">
+                                <div class="track-paper-heading">
+                                    <h3 id="safedrive-paper-title" class="track-paper-title"><span class="track-paper-title-link" title="arXiv link coming soon">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</span></h3>
+                                    <p class="track-paper-venue">CoRL 2026</p>
+                                </div>
+                                <p class="track-paper-authors">S. Xie, Z. Zhang, J. Wang, J. Qu, X. Liang, L. Kong, J. Lu, H. I. Christensen, Q. A. Chen</p>
+                                <div class="track-paper-resources" role="group" aria-label="SafeDriveVLA paper resources">
+                                    <button type="button" class="track-paper-resource" disabled title="arXiv link coming soon" aria-label="SafeDriveVLA on arXiv (link coming soon)">
+                                        <img src="static/logo-image/arxiv.png" alt="" width="28" height="28">
+                                        <span>arXiv</span>
+                                    </button>
+                                    <button type="button" class="track-paper-resource" disabled title="GitHub link coming soon" aria-label="SafeDriveVLA code on GitHub (link coming soon)">
+                                        <img src="static/logo-image/github.png" alt="" width="28" height="28">
+                                        <span>GitHub</span>
+                                    </button>
+                                </div>
+                            </div>
                         </footer>
                     </article>
                 </div>
@@ -772,6 +836,7 @@
                         </li>
                     </ul>
                 </div>
+                <br>
             </section>
 
 
@@ -842,7 +907,7 @@
                             </p>
                         </div>
                         <div class="col organizer-card">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Yifei Dong">
+                            <img src="static/people-image/yifei.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Yifei Dong">
                             <h4>Yifei Dong</h4>
                             <p>
                                 <img src="static/logo-image/logo_uw.png" alt="University of Washington Logo" height="28" style="padding-bottom: 5px;">
@@ -850,7 +915,7 @@
                             </p>
                         </div>
                         <div class="col organizer-card">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Fengyi Wu">
+                            <img src="static/people-image/fengyi.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Fengyi Wu">
                             <h4>Fengyi Wu</h4>
                             <p>
                                 <img src="static/logo-image/logo_uw.png" alt="University of Washington Logo" height="28" style="padding-bottom: 5px;">
@@ -864,7 +929,17 @@
                             <h4>Shaoyuan Xie</h4>
                             <p>
                                 <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
-                                UC, Irvine
+                                UC Irvine
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <a href="https://jhliu17.github.io/" target="_blank">
+                                <img src="static/people-image/junhao_liu.jpeg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Junhao Liu">
+                            </a>
+                            <h4>Junhao Liu</h4>
+                            <p>
+                                <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
+                                UC Irvine
                             </p>
                         </div>
                         <div class="col organizer-card">
@@ -875,6 +950,30 @@
                             <p>
                                 <img src="static/logo-image/logo_nus.png" alt="NUS Logo" height="27" style="padding-bottom: 5px;">
                                 NUS Computing
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/yingshuo_wang.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Yingshuo Wang">
+                            <h4>Yingshuo Wang</h4>
+                            <p>
+                                <img src="static/logo-image/logo_ucb.svg" alt="UCB Logo" height="27" style="padding-bottom: 5px;">
+                                UC Berkeley
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/wei_gao.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Wei Gao">
+                            <h4>Wei Gao</h4>
+                            <p>
+                                <img src="static/logo-image/logo_neu.png" alt="NEU Logo" height="27" style="padding-bottom: 5px;">
+                                Northeastern U.
+                            </p>
+                        </div>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/qing.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Qing Wu">
+                            <h4>Qing Wu</h4>
+                            <p>
+                                <img src="static/logo-image/logo_ntu.png" alt="NTU Logo" height="27" style="padding-bottom: 5px;">
+                                NTU, Singapore
                             </p>
                         </div>
                     </div>
@@ -889,7 +988,7 @@
                             <h4>Shijie Li</h4>
                             <p>
                                 <img src="static/logo-image/logo_astar.png" alt="A*STAR Logo" height="28" style="padding-bottom: 5px;">
-                                A*STAR, I2R
+                                A*STAR
                             </p>
                         </div>
                         <div class="col organizer-card">
@@ -899,7 +998,7 @@
                             <h4>Lai Xing Ng</h4>
                             <p>
                                 <img src="static/logo-image/logo_astar.png" alt="A*STAR Logo" height="28" style="padding-bottom: 5px;">
-                                A*STAR, I2R
+                                A*STAR
                             </p>
                         </div>
                         <div class="col organizer-card">
@@ -913,11 +1012,11 @@
                             </p>
                         </div>
                         <div class="col organizer-card">
-                            <img src="static/people-image/placeholder.png" class="rounded-circle organizer-portrait" width="145" height="145" alt="Alfred Chen">
+                            <img src="static/people-image/alfred_chen.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Alfred Chen">
                             <h4>Alfred Chen</h4>
                             <p>
                                 <img src="static/logo-image/logo_uci.png" alt="UCI Logo" height="28" style="padding-bottom: 5px;">
-                                UC, Irvine
+                                UC Irvine
                             </p>
                         </div>
                         <div class="col organizer-card">
@@ -947,24 +1046,31 @@
                             <h4>Ziwei Liu</h4>
                             <p>
                                 <img src="static/logo-image/logo_ntu.png" alt="NTU Logo" height="27" style="padding-bottom: 5px;">
-                                NTU, S-Lab
+                                NTU, Singapore
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="organizer-group" aria-labelledby="industry-mentors">
                     <h2 id="industry-mentors">Industry Mentors</h2>
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4 text-center">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4 text-center">
                         <div class="col organizer-card">
                             <a href="https://wenhao.pub/" target="_blank">
                                 <img src="static/people-image/wenhao_ding.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Wenhao Ding">
                             </a>
                             <h4>Wenhao Ding</h4>
-                            <p>
-                                <img src="static/logo-image/logo_nvidia.png" alt="Logo" height="25" style="padding-bottom: 5px;">
+                            <p><img src="static/logo-image/logo_nvidia.png" alt="Logo" height="25" style="padding-bottom: 5px;">
                                 NVIDIA
                             </p>
                         </div>
+                        <div class="col organizer-card">
+                            <img src="static/people-image/xian_sun.jpg" class="rounded-circle organizer-portrait" width="145" height="145" alt="Xian Sun">
+                            <h4>Xian Sun</h4>
+                            <p><img src="static/logo-image/logo_meta.png" alt="Logo" height="25" style="padding-bottom: 5px;">
+                                Meta
+                            </p>
+                        </div>
+                        <div></div>
                     </div>
                 </div>
             </section>
