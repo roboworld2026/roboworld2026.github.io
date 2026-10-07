@@ -332,6 +332,32 @@ body {
   margin-bottom: 0;
 }
 
+.track-page .track-organizer-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.track-page .track-organizer-avatar {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #3b4444;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.track-page .track-organizer-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .track-page strong {
   color: #e0e8e8;
   font-weight: 600;
@@ -614,10 +640,15 @@ body {
     transform: translateX(3px);
   }
 
-  .track-page .challenge-section:hover,
-  .track-page .challenge-section:focus-within {
+  .track-page .challenge-section:not(.track-organizer-section):hover,
+  .track-page .challenge-section:not(.track-organizer-section):focus-within {
     border-color: var(--challenge-accent);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .track-page .track-organizer-avatar:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
   }
 
   .track-page .track-resource-links a:hover {
@@ -714,12 +745,14 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .track-page .challenge-section,
+  .track-page .track-organizer-avatar,
   .track-page .submission-portal,
   .track-page .submission-portal-arrow {
     transition: none;
   }
 
   .track-page .submission-portal:hover,
+  .track-page .track-organizer-avatar:hover,
   .track-page .submission-portal:hover .submission-portal-arrow {
     transform: none;
   }

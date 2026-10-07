@@ -170,6 +170,12 @@
             object-fit: contain;
         }
 
+        .award-card-icon--oral {
+            width: 70px;
+            height: 70px;
+            justify-self: center;
+        }
+
         .award-card .card-body {
             display: flex;
             flex-direction: column;
@@ -896,6 +902,8 @@
 
 
 
+    <link href="./back-to-top.css?v=20261007-2" rel="stylesheet">
+    <script src="./back-to-top.js?v=20261007-1" defer></script>
 </head>
 <body>
     <div class="bg-black">
@@ -1340,7 +1348,7 @@
                             <div class="card-body">
                                 <div class="award-card-heading">
                                     <h2 id="award-presentations">Oral Presentations</h2>
-                                    <img src="static/logo-image/icon-oral-presentation-v1.png" class="award-card-icon" width="88" height="88" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                                    <img src="static/logo-image/icon-oral-presentation-v1.png" class="award-card-icon award-card-icon--oral" width="70" height="70" loading="lazy" decoding="async" alt="" aria-hidden="true">
                                 </div>
                                 <p class="mb-0">Selected top-performing teams will be invited to give <strong>oral presentations</strong> at the <strong>RoboPAD Workshop</strong> at <strong>NeurIPS 2026</strong>, sharing their methods, results, and insights with the research community.</p>
                                 <figure class="award-card-art">
@@ -1578,5 +1586,9 @@
             </footer>
         </main>
     </div>
+    <button type="button" class="mascot-back-to-top" data-back-to-top aria-label="Back to top" hidden>
+        <img src="./static/logo-image/back-to-top-mascot-v1.png" width="104" height="104" decoding="async" alt="">
+        <span class="mascot-back-to-top-label" aria-hidden="true">Back to top</span>
+    </button>
 </body>
 </html>
