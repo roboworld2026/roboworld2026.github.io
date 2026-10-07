@@ -451,6 +451,11 @@ body {
   opacity: 1;
 }
 
+.track-page .challenge-page a.submission-portal,
+.track-page .challenge-page a.submission-portal:hover {
+  color: var(--submission-portal-ink, #fff);
+}
+
 .track-page .submission-portal-label {
   flex: 1 1 auto;
   min-width: 0;
@@ -477,6 +482,7 @@ body {
 
 .track-page--yellow .submission-portal {
   --submission-portal-glow: rgba(255, 192, 0, 0.16);
+  --submission-portal-ink: #fff5d7;
   color: #fff5d7;
   background: linear-gradient(115deg, #4a370c, #2b230f);
 }
