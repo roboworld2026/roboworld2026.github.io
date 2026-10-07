@@ -11,6 +11,38 @@
   <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
     <link href="./back-to-top.css?v=20261007-2" rel="stylesheet">
     <script src="./back-to-top.js?v=20261007-1" defer></script>
+<style>
+  .evaluation-formula {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    margin: 24px 0;
+    padding: 28px 24px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(83, 211, 222, 0.22);
+    border-radius: 12px;
+  }
+
+  .evaluation-formula math {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    color: inherit;
+    font-family: "Cambria Math", "STIX Two Math", math;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .evaluation-formula {
+      padding: 22px 16px;
+    }
+
+    .evaluation-formula math {
+      font-size: 1.05rem;
+    }
+  }
+</style>
 </head>
 <body class="track-page">
 <nav class="challenge-nav" aria-label="Main navigation">
@@ -81,6 +113,8 @@
 <tr><th scope="row">Validation: unseen</th><td>1,500 trajectories</td><td>Drawn exclusively from TartanDrive</td></tr>
 <tr><th scope="row">Held-out test</th><td>5,101 trajectories</td><td>TartanDrive and in-domain sources; annotations withheld</td></tr></tbody>
 </table></div>
+  </section>
+
     <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
     <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), Relative Pose Error (RPE), Full-route fidelity, and Heading and turn fidelity.</p>
@@ -95,8 +129,69 @@
 </table></div>
     <h3>Composite Score</h3>
     <p>The final ranking uses the following Score, averaged over all evaluated episodes:</p>
-    <div class="table-container" tabindex="0" role="region" aria-label="Composite score formula">
-      <p style="white-space: nowrap;"><strong>Score</strong> = (100 / N) &sum;<sub>i=1</sub><sup>N</sup> [F<sub>i</sub>(1 + H<sub>i</sub>) / 2] &times; [0.70 + 0.10 SR<sub>i</sub> + 0.10 / (1 + ATE<sub>i</sub>) + 0.10 / (1 + RPE<sub>i</sub>)]</p>
+    <div class="evaluation-formula" tabindex="0" role="region"
+         aria-label="Composite score formula">
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mrow>
+          <mi mathvariant="normal">Score</mi>
+          <mo>=</mo>
+
+          <mfrac>
+            <mn>100</mn>
+            <mi>N</mi>
+          </mfrac>
+
+          <munderover>
+            <mo>∑</mo>
+            <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
+            <mi>N</mi>
+          </munderover>
+
+          <mfrac>
+            <mrow>
+              <msub><mi>F</mi><mi>i</mi></msub>
+              <mo>(</mo>
+              <mn>1</mn>
+              <mo>+</mo>
+              <msub><mi>H</mi><mi>i</mi></msub>
+              <mo>)</mo>
+            </mrow>
+            <mn>2</mn>
+          </mfrac>
+
+          <mo>×</mo>
+
+          <mrow>
+            <mo>(</mo>
+            <mn>0.70</mn>
+            <mo>+</mo>
+            <mn>0.10</mn>
+            <msub><mi mathvariant="normal">SR</mi><mi>i</mi></msub>
+            <mo>+</mo>
+
+            <mfrac>
+              <mn>0.10</mn>
+              <mrow>
+                <mn>1</mn>
+                <mo>+</mo>
+                <msub><mi mathvariant="normal">ATE</mi><mi>i</mi></msub>
+              </mrow>
+            </mfrac>
+
+            <mo>+</mo>
+
+            <mfrac>
+              <mn>0.10</mn>
+              <mrow>
+                <mn>1</mn>
+                <mo>+</mo>
+                <msub><mi mathvariant="normal">RPE</mi><mi>i</mi></msub>
+              </mrow>
+            </mfrac>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </math>
     </div>
     <p>Here, N is the number of evaluated episodes. F<sub>i</sub> and H<sub>i</sub> denote Full-route fidelity and Heading and turn fidelity for episode i, respectively. SR<sub>i</sub> is binary success; ATE<sub>i</sub> and RPE<sub>i</sub> are per-episode errors in dataset coordinate units.</p>
   </section>
