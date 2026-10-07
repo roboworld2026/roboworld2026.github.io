@@ -7,7 +7,7 @@
   <title>WorldNav: Language-Conditioned World Navigation | RoboWorld Challenge 2026</title>
   <link rel="icon" href="./logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css?family=Chivo:300,400,600,700|Saira:400,500,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="./challenge.css?v=20261006-track-update-6">
+  <link rel="stylesheet" href="./challenge.css?v=20261007-submission-hover-1">
   <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
 </head>
 <body class="track-page">
@@ -37,7 +37,7 @@
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
-    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#submission">Submission</a><a href="#contact">Contact</a>
+    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#contact">Contact</a>
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
@@ -58,6 +58,16 @@
         </div>
       </div>
     </div>
+  </section>
+  <section class="content challenge-section" aria-labelledby="submission">
+    <h2 id="submission">Submission &amp; Timeline</h2>
+    <p>Submissions provide full predicted continuous-action trajectories from the initial observation and instruction, without intermediate environmental feedback. The official file format, scoring implementation, and submission endpoint will be announced.</p>
+    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
+    <button type="button" class="submission-portal" disabled aria-label="WorldNav submission portal (link not configured)" title="Submission link not configured">
+      <span class="submission-portal-label">Submission portal</span>
+      <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
+      <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
+    </button>
   </section>
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
@@ -92,16 +102,6 @@
 <tr><th scope="row">LCVN-WM + LCVN-AC</th><td>0.34</td><td>0.76</td><td>0.26</td></tr></tbody>
 </table></div>
 
-  </section>
-  <section class="content challenge-section" aria-labelledby="submission">
-    <h2 id="submission">Submission &amp; Timeline</h2>
-    <p>Submissions provide full predicted continuous-action trajectories from the initial observation and instruction, without intermediate environmental feedback. The official file format, scoring implementation, and submission endpoint will be announced.</p>
-    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
-    <button type="button" class="submission-portal" disabled aria-label="WorldNav submission portal (link not configured)" title="Submission link not configured">
-      <span class="submission-portal-label">Submission portal</span>
-      <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
-      <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
-    </button>
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
     <h2 id="contact">Contact</h2>

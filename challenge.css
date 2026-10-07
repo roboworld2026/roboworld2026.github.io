@@ -426,6 +426,7 @@ body {
 }
 
 .track-page .submission-portal {
+  --submission-portal-glow: rgba(52, 204, 204, 0.16);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -442,6 +443,7 @@ body {
   line-height: 1.3;
   text-align: left;
   text-decoration: none;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease;
 }
 
 .track-page .submission-portal:disabled {
@@ -463,23 +465,20 @@ body {
   flex: 0 0 auto;
   color: #ffc000;
   font-size: 1.75rem;
+  transition: transform 180ms ease;
 }
 
-.track-page .submission-portal:not(:disabled):hover,
 .track-page .submission-portal:not(:disabled):focus-visible {
-  color: #fff;
-  background: #1b4a4a;
+  outline: 2px solid var(--challenge-accent);
+  outline-offset: 3px;
+  filter: brightness(1.1);
+  box-shadow: 0 6px 18px var(--submission-portal-glow);
 }
 
 .track-page--yellow .submission-portal {
+  --submission-portal-glow: rgba(255, 192, 0, 0.16);
   color: #fff5d7;
   background: linear-gradient(115deg, #4a370c, #2b230f);
-}
-
-.track-page--yellow .submission-portal:not(:disabled):hover,
-.track-page--yellow .submission-portal:not(:disabled):focus-visible {
-  color: #fff5d7;
-  background: #624811;
 }
 
 .track-page .track-reference {
@@ -599,6 +598,16 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .track-page .submission-portal:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 18px var(--submission-portal-glow);
+  }
+
+  .track-page .submission-portal:hover .submission-portal-arrow {
+    transform: translateX(3px);
+  }
+
   .track-page .challenge-section:hover,
   .track-page .challenge-section:focus-within {
     border-color: var(--challenge-accent);
@@ -698,7 +707,14 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .track-page .challenge-section {
+  .track-page .challenge-section,
+  .track-page .submission-portal,
+  .track-page .submission-portal-arrow {
     transition: none;
+  }
+
+  .track-page .submission-portal:hover,
+  .track-page .submission-portal:hover .submission-portal-arrow {
+    transform: none;
   }
 }
