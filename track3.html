@@ -35,7 +35,7 @@
     <dl class="track-overview" aria-label="SafeDrive-VLA at a glance">
       <div><dt>Benchmark</dt><dd>CARLA-F / B2D-C</dd></div>
       <div><dt>Setting</dt><dd>Closed-loop safety-aware driving</dd></div>
-      <div><dt>Metrics</dt><dd>Pass rates, NCR, speed error; DS, SR, infractions</dd></div>
+      <div><dt>Metrics</dt><dd>NCR, speed error; DS, SR, infractions</dd></div>
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
@@ -72,21 +72,20 @@
   </section>
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
-    <p>Evaluation consists of 360 closed-loop simulation routes across two complementary test sets.</p>
+    <p>Evaluation consists of 40 closed-loop simulation routes across two complementary test sets.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Dataset and evaluation splits"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Split / Test Set</th><th scope="col">Size</th><th scope="col">Details</th></tr></thead>
-  <tbody><tr><th scope="row">CARLA-F</th><td>210 routes</td><td>Safe instruction following; background traffic disabled; all traffic lights green</td></tr>
-<tr><th scope="row">B2D-C</th><td>150 routes</td><td>30 safety-critical scenario types; conflicting instructions issued when hazards occur</td></tr></tbody>
+  <tbody><tr><th scope="row">CARLA-F</th><td>20 routes</td><td>Safe instruction following</td></tr>
+<tr><th scope="row">B2D-C</th><td>20 routes</td><td>Conflicting instructions issued when hazards occur</td></tr></tbody>
 </table></div>
   </section>
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
-    <p>CARLA-F evaluates safe instruction following using per-instruction pass rates, route-level Navigation Compliance Rate (NCR), and target-speed error in m/s.</p>
+    <p>CARLA-F evaluates safe instruction following using per-instruction Navigation Compliance Rate (NCR) and target-speed error in m/s.</p>
     <p>B2D-C evaluates safety-critical driving using Driving Score (DS), Success Rate (SR), and counts of collisions, traffic violations, and route departures. Results from the two test sets will be reported separately; the final ranking rule will be announced.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
-  <tbody><tr><th scope="row">CARLA-F: instruction pass rates</th><td>Higher</td><td>Pass rates for individual instruction types.</td></tr>
-<tr><th scope="row">CARLA-F: Navigation Compliance Rate (NCR)</th><td>Higher</td><td>Route-level navigation compliance.</td></tr>
+  <tbody><tr><th scope="row">CARLA-F: Navigation Compliance Rate (NCR)</th><td>Higher</td><td>Per-instruction navigation compliance.</td></tr>
 <tr><th scope="row">CARLA-F: target-speed error (m/s)</th><td>Lower</td><td>Deviation from the instructed target speed.</td></tr>
 <tr><th scope="row">B2D-C: Driving Score (DS) and Success Rate (SR)</th><td>Higher</td><td>Closed-loop driving performance and route success.</td></tr>
 <tr><th scope="row">B2D-C: collisions, traffic violations, route departures</th><td>Lower</td><td>Counts of safety and route-following failures.</td></tr></tbody>
@@ -95,13 +94,13 @@
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
     <p>SimLingo and SafeDriveVLA both generate driving actions from visual observations and language instructions. SafeDriveVLA additionally uses explicit driving-mode selection and world-model predictions to handle conflicts between instructions and the traffic scene.</p>
-    <p>Reference benchmark results are shown below; these are baseline results, not competition submissions.</p>
+    <p>Reference benchmark results are shown below; these are baseline results reported in the SafeDriveVLA paper on the full benchmark routes, not competition submissions.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Reference baseline results"><table class="table is-fullwidth is-striped">
-  <thead><tr><th scope="col">Baseline</th><th scope="col">CARLA-F: aggregate instruction following</th><th scope="col">B2D-C: Driving Score</th></tr></thead>
+  <thead><tr><th scope="col">Baseline</th><th scope="col">CARLA-F (NCR)</th><th scope="col">B2D-C (DS)</th></tr></thead>
   <tbody><tr><th scope="row">SimLingo</th><td>52.4%</td><td>72.8</td></tr>
 <tr><th scope="row">SafeDriveVLA</th><td>82.7%</td><td>67.3</td></tr></tbody>
 </table></div>
-    <p>The CARLA-F values are aggregate instruction-following scores, not route-level NCR. The two test sets measure different aspects of performance: SafeDriveVLA has the higher reference instruction-following score, while SimLingo has the higher reference B2D-C Driving Score.</p>
+    <p>The CARLA-F values are the average Navigation Compliance Rate (NCR), and the B2D-C values are the average Driving Score (DS). The two test sets measure different aspects of performance: (1) instruction following in safe scenarios and (2) awareness of unsafe instructions.</p>
   </section>
   <section class="content challenge-section track-organizer-section" aria-labelledby="track-organizers">
     <h2 id="track-organizers">Track Organizer</h2>
