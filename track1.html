@@ -81,17 +81,24 @@
 <tr><th scope="row">Validation: unseen</th><td>1,500 trajectories</td><td>Drawn exclusively from TartanDrive</td></tr>
 <tr><th scope="row">Held-out test</th><td>5,101 trajectories</td><td>TartanDrive and in-domain sources; annotations withheld</td></tr></tbody>
 </table></div>
-  </section>
-  <section class="content challenge-section" aria-labelledby="evaluation">
+    <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
-    <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), and Relative Pose Error (RPE).</p>
-    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size. The final ranking rule across the three metrics will be announced.</p>
+    <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), Relative Pose Error (RPE), Full-route fidelity, and Heading and turn fidelity.</p>
+    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size. Submissions are ranked by the composite Score defined below, with higher scores indicating better performance.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Success Rate (SR)</th><td>Higher</td><td>Fraction of trajectories satisfying the goal-distance success criterion.</td></tr>
 <tr><th scope="row">Absolute Trajectory Error (ATE)</th><td>Lower</td><td>Absolute trajectory error against the reference trajectory.</td></tr>
-<tr><th scope="row">Relative Pose Error (RPE)</th><td>Lower</td><td>Relative pose error against the reference trajectory.</td></tr></tbody>
+<tr><th scope="row">Relative Pose Error (RPE)</th><td>Lower</td><td>Relative pose error against the reference trajectory.</td></tr>
+<tr><th scope="row">Full-route fidelity</th><td>Higher</td><td>Similarity of the entire ordered predicted route to the recorded route, with excess travel penalized.</td></tr>
+<tr><th scope="row">Heading and turn fidelity</th><td>Higher</td><td>Agreement of facing direction during travel and of the direction, location, and amount of turns.</td></tr></tbody>
 </table></div>
+    <h3>Composite Score</h3>
+    <p>The final ranking uses the following Score, averaged over all evaluated episodes:</p>
+    <div class="table-container" tabindex="0" role="region" aria-label="Composite score formula">
+      <p style="white-space: nowrap;"><strong>Score</strong> = (100 / N) &sum;<sub>i=1</sub><sup>N</sup> [F<sub>i</sub>(1 + H<sub>i</sub>) / 2] &times; [0.70 + 0.10 SR<sub>i</sub> + 0.10 / (1 + ATE<sub>i</sub>) + 0.10 / (1 + RPE<sub>i</sub>)]</p>
+    </div>
+    <p>Here, N is the number of evaluated episodes. F<sub>i</sub> and H<sub>i</sub> denote Full-route fidelity and Heading and turn fidelity for episode i, respectively. SR<sub>i</sub> is binary success; ATE<sub>i</sub> and RPE<sub>i</sub> are per-episode errors in dataset coordinate units.</p>
   </section>
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
