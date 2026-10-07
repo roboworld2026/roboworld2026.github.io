@@ -148,6 +148,48 @@
             margin: 0 auto 1rem;
         }
 
+        .award-card-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 88px;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .award-card-heading h2 {
+            margin: 0;
+            color: #fff;
+            font-size: 2rem;
+            line-height: 1.3;
+        }
+
+        .award-card-icon {
+            display: block;
+            width: 88px;
+            height: 88px;
+            object-fit: contain;
+        }
+
+        .award-card .card-body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .award-card-art {
+            margin: auto 0 0;
+            padding-top: 1.5rem;
+        }
+
+        .award-card-art img {
+            display: block;
+            width: 100%;
+            max-width: 440px;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
         .registration-card .card-body {
             display: grid;
             grid-template-columns: minmax(0, 1fr) minmax(220px, 30%);
@@ -662,6 +704,20 @@
         }
 
         @media (max-width: 575px) {
+            .award-card-heading {
+                grid-template-columns: minmax(0, 1fr) 56px;
+                gap: 0.75rem;
+            }
+
+            .award-card-heading h2 {
+                font-size: 1.55rem;
+            }
+
+            .award-card-icon {
+                width: 56px;
+                height: 56px;
+            }
+
             .timeline-award-mark {
                 width: 3.5rem;
             }
@@ -854,6 +910,7 @@
                         <li class="nav-item"><a href="#tracks" class="nav-link text-white">Tracks</a></li>
                         <li class="nav-item"><a href="#timeline" class="nav-link text-white">Timeline</a></li>
                         <li class="nav-item"><a href="#evaluation" class="nav-link text-white">Evaluation</a></li>
+                        <li class="nav-item"><a href="#awards" class="nav-link text-white">Awards</a></li>
                         <li class="nav-item"><a href="#organizers" class="nav-link text-white">Organizers</a></li>
                     </ul>
                 </div>
@@ -866,7 +923,7 @@
             <section class="py-4" aria-labelledby="introduction">
                 <h1 id="introduction">Introduction</h1><hr>
                 <p class="text-white-50">The <strong>RoboWorld Challenge 2026</strong> advances <strong>embodied world modeling for robotics and autonomous driving</strong>. It brings together world models, vision-language-action (VLA) models, and embodied policies to study how agents ground language in visual observations, anticipate future states, and act safely.</p>
-                <p class="text-white-50">Three tracks cover complementary settings: <strong>WorldNav</strong> for language-conditioned navigation without intermediate feedback, <strong>HA-VLN</strong> for human-aware social navigation with continuous observations, and <strong>SafeDrive-VLA</strong> for language-guided driving under instruction-scene conflicts.</p>
+                <p class="text-white-50">Three tracks cover complementary settings: <strong style="color:#ffc000;">WorldNav</strong> for language-conditioned navigation without intermediate feedback, <strong style="color:#ffc000;">HA-VLN 2.0</strong> for human-aware social navigation with continuous observations, and <strong style="color:#ffc000;">SafeDrive-VLA</strong> for language-guided driving under instruction-scene conflicts.</p>
                 <p class="text-white-50">The competition combines offline trajectory evaluation and closed-loop simulation, with track-specific datasets, metrics, and reference baselines. World-model and VLA approaches are encouraged, alongside policy-based methods where permitted by each track.</p>
 
                 <br>
@@ -1193,7 +1250,7 @@
                     <ul class="timeline">
                         <li class="event" data-date="Oct 08, 2026">
                             <h3>Registration Opens</h3>
-                            <p>Register your team through the Google Form in the <a href="#registration">Registration</a> section.</p>
+                            <p>Register your team through the Google Form in the <a href="#registration" style="color:#ffc000;">Registration</a> section.</p>
                         </li>
                         <li class="event" data-date="Oct 15, 2026">
                             <h3>Release of Training Data and Baselines</h3>
@@ -1260,6 +1317,40 @@
                 </div>
             </section>
 
+
+            <section class="py-4" aria-labelledby="awards">
+                <h1 id="awards">Awards &amp; Recognition</h1><hr>
+                <div class="row row-cols-1 row-cols-lg-2 g-4">
+                    <div class="col">
+                        <article class="card challenge-card award-card h-100 text-white" aria-labelledby="award-certificates">
+                            <div class="card-body">
+                                <div class="award-card-heading">
+                                    <h2 id="award-certificates">Certificates of Recognition</h2>
+                                    <img src="static/logo-image/icon-award-trophy-v1.png" class="award-card-icon" width="88" height="88" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                                </div>
+                                <p class="mb-0">The <strong>Top 5 teams in each track</strong> will receive official certificates recognizing their achievements in the RoboWorld Challenge 2026. A <strong>Best Innovative Solution</strong> award will also recognize outstanding creativity and technical innovation.</p>
+                                <figure class="award-card-art">
+                                    <img src="static/logo-image/award-certificate-sample-v1.png" width="1536" height="1024" loading="lazy" decoding="async" alt="Sample RoboWorld 2026 certificate of recognition with a blue and yellow border and award seal.">
+                                </figure>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col">
+                        <article class="card challenge-card award-card card--yellow h-100 text-white" aria-labelledby="award-presentations">
+                            <div class="card-body">
+                                <div class="award-card-heading">
+                                    <h2 id="award-presentations">Oral Presentations</h2>
+                                    <img src="static/logo-image/icon-oral-presentation-v1.png" class="award-card-icon" width="88" height="88" loading="lazy" decoding="async" alt="" aria-hidden="true">
+                                </div>
+                                <p class="mb-0">Selected top-performing teams will be invited to give <strong>oral presentations</strong> at the <strong>RoboPAD Workshop</strong> at <strong>NeurIPS 2026</strong>, sharing their methods, results, and insights with the research community.</p>
+                                <figure class="award-card-art">
+                                    <img src="static/logo-image/award-oral-presentation-v1.png" width="1536" height="1024" loading="lazy" decoding="async" alt="RoboWorld mascot presenting research at a lectern beside a chart.">
+                                </figure>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
             <section class="py-4" aria-labelledby="organizers">
                 <h1 id="organizers">Organizing Team</h1>
