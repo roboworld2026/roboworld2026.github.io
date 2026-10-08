@@ -25,4 +25,4 @@ Open http://127.0.0.1:4000 in your browser. Edit the source HTML files in the re
 
 Organizing-team updates, competition dates, resource links, submission portals, and final ranking rules will be announced on the website.
 
-Contact: roboworld2026@outlook.com
+Contact: roboworld2026@gmail.com

@@ -39,7 +39,7 @@
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
-    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#track-organizers">Track Organizer</a><a href="#contact">Contact</a>
+    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#registration">Registration</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#track-organizers">Track Organizer</a><a href="#contact">Contact</a>
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
@@ -60,15 +60,23 @@
       </div>
     </div>
   </section>
+  <section class="content challenge-section" aria-labelledby="registration">
+    <h2 id="registration">Registration</h2>
+    <p>Register your team via the Google Form below and select SafeDrive-VLA and any other tracks you wish to enter.</p>
+    <a href="https://forms.gle/P2jH3c2VoGsNNWXG8" class="submission-portal registration-portal" target="_blank" rel="noopener noreferrer" aria-label="Register your team for SafeDrive-VLA via Google Form">
+      <span class="submission-portal-label">Register Your Team&nbsp; (Google Form)</span>
+      <img src="./static/logo-image/registration-mascot-invite-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
+      <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </section>
   <section class="content challenge-section" aria-labelledby="submission">
-    <h2 id="submission">Submission &amp; Timeline</h2>
-    <p>Models are evaluated on closed-loop driving routes. Agent packaging, simulation versions, runtime requirements, and the submission endpoint will be announced.</p>
-    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
-    <button type="button" class="submission-portal" disabled aria-label="SafeDrive-VLA submission portal (link not configured)" title="Submission link not configured">
+    <h2 id="submission">Submission</h2>
+    <p>Submissions consist of driving agents that generate trajectories or control actions from onboard visual observations and natural-language instructions. Agents are evaluated in closed-loop simulation on CARLA-F and B2D-C, assessing safe instruction following and responses to conflicts between instructions and traffic conditions.</p>
+    <a href="https://www.codabench.org/competitions/18333/" class="submission-portal" target="_blank" rel="noopener noreferrer" aria-label="SafeDrive-VLA submission portal on CodaBench">
       <span class="submission-portal-label">Submission Portal&nbsp; (CodaBench Server)</span>
       <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
       <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
-    </button>
+    </a>
   </section>
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
@@ -82,7 +90,7 @@
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
     <p>CARLA-F evaluates safe instruction following using per-instruction pass rates, route-level Navigation Compliance Rate (NCR), and target-speed error in m/s.</p>
-    <p>B2D-C evaluates safety-critical driving using Driving Score (DS), Success Rate (SR), and counts of collisions, traffic violations, and route departures. Results from the two test sets will be reported separately; the final ranking rule will be announced.</p>
+    <p>B2D-C evaluates safety-critical driving using Driving Score (DS), Success Rate (SR), and counts of collisions, traffic violations, and route departures.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">CARLA-F: instruction pass rates</th><td>Higher</td><td>Pass rates for individual instruction types.</td></tr>
@@ -130,7 +138,7 @@
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
     <h2 id="contact">Contact</h2>
-    <p>For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+    <p>For challenge questions, contact <a href="mailto:roboworld2026@gmail.com">roboworld2026@gmail.com</a>.</p>
   </section>
 </main>
 <footer class="challenge-footer">

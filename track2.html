@@ -39,7 +39,7 @@
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
-    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#track-organizers">Track Organizer</a><a href="#contact">Contact</a>
+    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#registration">Registration</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#track-organizers">Track Organizer</a><a href="#contact">Contact</a>
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
@@ -61,10 +61,18 @@
       </div>
     </div>
   </section>
+  <section class="content challenge-section" aria-labelledby="registration">
+    <h2 id="registration">Registration</h2>
+    <p>Register your team via the Google Form below and select HA-VLN 2.0 and any other tracks you wish to enter.</p>
+    <a href="https://forms.gle/P2jH3c2VoGsNNWXG8" class="submission-portal registration-portal" target="_blank" rel="noopener noreferrer" aria-label="Register your team for HA-VLN 2.0 via Google Form">
+      <span class="submission-portal-label">Register Your Team&nbsp; (Google Form)</span>
+      <img src="./static/logo-image/registration-mascot-invite-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
+      <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </section>
   <section class="content challenge-section" aria-labelledby="submission">
-    <h2 id="submission">Submission &amp; Timeline</h2>
-    <p>Agents are evaluated through closed-loop interaction with the HA-VLN 2.0 simulator. Packaging requirements and runtime limits will be announced. Submit via the CodaBench portal below.</p>
-    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
+    <h2 id="submission">Submission</h2>
+    <p>Submit navigation agents for closed-loop evaluation in the HA-VLN 2.0 simulator. Agents receive egocentric RGB-D observations and socially grounded language instructions, and must reach the goal while avoiding collisions with dynamic humans. Use the CodaBench portal below to submit your entry.</p>
     <a href="https://www.codabench.org/competitions/18135/" class="submission-portal" target="_blank" rel="noopener noreferrer" aria-label="HA-VLN 2.0 submission portal on CodaBench">
       <span class="submission-portal-label">Submission Portal&nbsp; (CodaBench Server)</span>
       <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
@@ -85,7 +93,7 @@
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
     <p>All submissions are scored server-side on the withheld test split. Test-split ground truth is not released.</p>
-    <p>Navigation accuracy and social compliance are reported separately. Success requires stopping within 3 m of the goal and completing the episode without collisions. The final ranking rule across the navigation and social metrics will be announced.</p>
+    <p>Navigation accuracy and social compliance are reported separately. Success requires stopping within 3 m of the goal and completing the episode without collisions.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Navigation Error (NE)</th><td>Lower</td><td>Final navigation error relative to the goal.</td></tr>
@@ -97,7 +105,7 @@
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
     <p>HA-VLN-CMA fuses BERT instruction embeddings with ResNet RGB-D features through cross-modal attention and decodes actions using a GRU policy.</p>
-    <p>Training uses environmental dropout and DAgger to improve re-planning under partial observability and unpredictable human motion. Numerical reference results will be announced.</p>
+    <p>Training uses environmental dropout and DAgger to improve re-planning under partial observability and unpredictable human motion.</p>
 
 
   </section>
@@ -133,7 +141,7 @@
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
     <h2 id="contact">Contact</h2>
-    <p>For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+    <p>For challenge questions, contact <a href="mailto:roboworld2026@gmail.com">roboworld2026@gmail.com</a>.</p>
   </section>
 </main>
 <footer class="challenge-footer">

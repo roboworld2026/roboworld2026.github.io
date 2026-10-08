@@ -39,7 +39,7 @@
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
-    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#track-organizers">Track Organizer</a><a href="#contact">Contact</a>
+    <a href="#introduction">Introduction</a><a href="#reference">Reference</a><a href="#registration">Registration</a><a href="#submission">Submission</a><a href="#dataset">Dataset</a><a href="#evaluation">Evaluation</a><a href="#baselines">Baselines</a><a href="#track-organizers">Track Organizer</a><a href="#contact">Contact</a>
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
@@ -61,10 +61,18 @@
       </div>
     </div>
   </section>
+  <section class="content challenge-section" aria-labelledby="registration">
+    <h2 id="registration">Registration</h2>
+    <p>Register your team via the Google Form below and select WorldNav and any other tracks you wish to enter.</p>
+    <a href="https://forms.gle/P2jH3c2VoGsNNWXG8" class="submission-portal registration-portal" target="_blank" rel="noopener noreferrer" aria-label="Register your team for WorldNav via Google Form">
+      <span class="submission-portal-label">Register Your Team&nbsp; (Google Form)</span>
+      <img src="./static/logo-image/registration-mascot-invite-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
+      <span class="submission-portal-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+  </section>
   <section class="content challenge-section" aria-labelledby="submission">
-    <h2 id="submission">Submission &amp; Timeline</h2>
-    <p>Submissions provide full predicted continuous-action trajectories from the initial observation and instruction, without intermediate environmental feedback. The official file format and scoring implementation will be announced. Submit via the CodaBench portal below.</p>
-    <p>See the <a href="./index.html#timeline">competition timeline</a> for registration and deadlines. Training-data and pretrained-model policies and final reproducibility requirements will be announced.</p>
+    <h2 id="submission">Submission</h2>
+    <p>Submit complete predicted trajectories as sequences of continuous actions, generated from the initial egocentric RGB observation and natural-language instruction without intermediate environmental feedback. Use the CodaBench portal below to submit your predictions for evaluation on the held-out test split.</p>
     <a href="https://www.codabench.org/competitions/18185/" class="submission-portal" target="_blank" rel="noopener noreferrer" aria-label="WorldNav submission portal on CodaBench">
       <span class="submission-portal-label">Submission Portal&nbsp; (CodaBench Server)</span>
       <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
@@ -85,7 +93,7 @@
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
     <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), and Relative Pose Error (RPE).</p>
-    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size. The final ranking rule across the three metrics will be announced.</p>
+    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Success Rate (SR)</th><td>Higher</td><td>Fraction of trajectories satisfying the goal-distance success criterion.</td></tr>
@@ -137,7 +145,7 @@
   </section>
   <section class="content challenge-section" aria-labelledby="contact">
     <h2 id="contact">Contact</h2>
-    <p>For challenge questions, contact <a href="mailto:roboworld2026@outlook.com">roboworld2026@outlook.com</a>.</p>
+    <p>For challenge questions, contact <a href="mailto:roboworld2026@gmail.com">roboworld2026@gmail.com</a>.</p>
   </section>
 </main>
 <footer class="challenge-footer">
