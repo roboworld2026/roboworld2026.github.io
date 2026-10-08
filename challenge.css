@@ -759,3 +759,38 @@ body {
     transform: none;
   }
 }
+
+/* Method figures on track pages: the source images have white backgrounds, so frame them as light cards. */
+.track-page .track-figure {
+  margin: 1.5rem 0 1.25rem;
+}
+
+.track-page .track-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem;
+  border: 1px solid var(--challenge-line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.track-page .track-detail-list {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.track-page .track-detail-list li + li {
+  margin-top: 0.6rem;
+}
+
+.track-page .track-detail-list strong {
+  color: #e0e8e8;
+}
+
+.track-page .track-subheading {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.375rem;
+  line-height: 1.3;
+  scroll-margin-top: 13rem;
+}

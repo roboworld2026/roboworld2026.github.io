@@ -7,7 +7,7 @@
   <title>SafeDrive-VLA: Towards Safety in Autonomous Driving | RoboWorld Challenge 2026</title>
   <link rel="icon" href="./logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css?family=Chivo:300,400,600,700|Saira:400,500,600,700" rel="stylesheet">
-  <link rel="stylesheet" href="./challenge.css?v=20261008-paper-title-colors">
+  <link rel="stylesheet" href="./challenge.css?v=20261008-track3-details">
   <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
     <link href="./back-to-top.css?v=20261007-2" rel="stylesheet">
     <script src="./back-to-top.js?v=20261007-1" defer></script>
@@ -84,6 +84,14 @@
   <tbody><tr><th scope="row">CARLA-F</th><td>20 routes</td><td>Safe instruction following</td></tr>
 <tr><th scope="row">B2D-C</th><td>20 routes</td><td>Conflicting instructions issued when hazards occur</td></tr></tbody>
 </table></div>
+    <h3 id="training-data" class="track-subheading">Training Data</h3>
+    <p>Training uses the CARLA driving dataset that <a href="https://github.com/RenzKa/simlingo" target="_blank" rel="noopener noreferrer">SimLingo</a> (CVPR 2025) collected with <a href="https://github.com/OpenDriveLab/DriveLM/tree/DriveLM-CARLA/pdm_lite" target="_blank" rel="noopener noreferrer">PDM-Lite</a>, a privileged rule-based expert. The dataset is released on Hugging Face as <a href="https://huggingface.co/datasets/RenzKa/simlingo" target="_blank" rel="noopener noreferrer">RenzKa/simlingo</a>.</p>
+    <ul class="track-detail-list">
+      <li><strong>Scale.</strong> 3,308,315 samples recorded at 4&nbsp;fps, distributed as about 1.2&nbsp;TB of compressed archives. Samples are not from unique routes, because the available CARLA route files are limited.</li>
+      <li><strong>Routes and scenarios.</strong> Routes come from Towns 1&ndash;10 and from the official CARLA Leaderboard 2.0 routes in Towns 12 and 13. All are short routes with one scenario (62.1%) or three scenarios (37.9%), driven under random weather. They cover 38 complex scenarios, including urban traffic, participants violating traffic rules, and high-speed highway driving.</li>
+      <li><strong>Language annotations.</strong> Commentary that explains driving decisions; instruction-following (&ldquo;Dreamer&rdquo;) data with multiple alternative instruction&ndash;action pairs per sample, each labeled with whether the instructed action is safe to execute and, if not, why; and VQA based on DriveLM.</li>
+      <li><strong>Use in the reference baseline.</strong> SafeDriveVLA uses the driving frames and measurements, the instruction-following data, and the scenario buckets for balanced sampling, and trains on a 20% subsample; it does not use the commentary or VQA annotations.</li>
+    </ul>
   </section>
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
@@ -100,6 +108,15 @@
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
     <p>SimLingo and SafeDriveVLA both generate driving actions from visual observations and language instructions. SafeDriveVLA additionally uses explicit driving-mode selection and world-model predictions to handle conflicts between instructions and the traffic scene.</p>
+    <figure class="track-figure">
+      <img src="./images/track3/safedrivevla_overview.png" width="1236" height="588" loading="lazy" decoding="async" alt="SafeDriveVLA overview. Left: world-model pre-training, where a frozen V-JEPA 2 encoder embeds camera frames and a world state predictor forecasts future latents from action and state tokens. Right: the SafeDriveVLA policy, where InternVL3-1B reads interleaved text, visual, and world tokens and emits a mode token, a begin-of-action token, and action tokens.">
+    </figure>
+    <p>SafeDriveVLA decouples conflict reasoning from action generation:</p>
+    <ul class="track-detail-list">
+      <li><strong>Driving mode.</strong> Every expert frame is relabeled with a discrete driving mode (strict, cautious, or fallback) that states whether the trajectory executes, cautiously follows, or overrides the navigation signal. The model emits this mode token before its actions, so conflict awareness is supervised directly.</li>
+      <li><strong>Navigation-conditioned world-model dreaming.</strong> A frozen latent world model, a V-JEPA 2 encoder with an action-conditioned predictor, rolls the scene forward under the action anchor of the instructed maneuver. The policy reads these predicted world tokens and can see whether the maneuver is feasible before it commits.</li>
+    </ul>
+    <p>The <a href="https://github.com/Daniel-xsy/safedrive-vla" target="_blank" rel="noopener noreferrer">SafeDriveVLA repository</a> provides world-model pre-training, VLA training, and closed-loop evaluation code for CARLA-F and B2D-C, together with the benchmark route files and data-preparation instructions.</p>
     <p>Reference benchmark results are shown below; these are baseline results reported in the SafeDriveVLA paper on the full benchmark routes, not competition submissions.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Reference baseline results"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Baseline</th><th scope="col">CARLA-F (NCR)</th><th scope="col">B2D-C (DS)</th></tr></thead>
