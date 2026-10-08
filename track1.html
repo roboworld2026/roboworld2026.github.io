@@ -11,6 +11,38 @@
   <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
     <link href="./back-to-top.css?v=20261007-2" rel="stylesheet">
     <script src="./back-to-top.js?v=20261007-1" defer></script>
+<style>
+  .evaluation-formula {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    margin: 24px 0;
+    padding: 28px 24px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(83, 211, 222, 0.22);
+    border-radius: 12px;
+  }
+
+  .evaluation-formula math {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    color: inherit;
+    font-family: "Cambria Math", "STIX Two Math", math;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .evaluation-formula {
+      padding: 22px 16px;
+    }
+
+    .evaluation-formula math {
+      font-size: 1.05rem;
+    }
+  }
+</style>
 </head>
 <body class="track-page">
 <nav class="challenge-nav" aria-label="Main navigation">
@@ -35,7 +67,7 @@
     <dl class="track-overview" aria-label="WorldNav at a glance">
       <div><dt>Benchmark</dt><dd>LCVN</dd></div>
       <div><dt>Setting</dt><dd>Open-loop navigation</dd></div>
-      <div><dt>Metrics</dt><dd>SR, ATE, RPE</dd></div>
+      <div><dt>Metrics</dt><dd>SR, ATE, RPE, Full-route fidelity, Heading and turn fidelity</dd></div>
     </dl>
   </header>
   <nav class="section-links" aria-label="On this page">
@@ -88,16 +120,86 @@
 <tr><th scope="row">Held-out test</th><td>5,101 trajectories</td><td>TartanDrive and in-domain sources; annotations withheld</td></tr></tbody>
 </table></div>
   </section>
-  <section class="content challenge-section" aria-labelledby="evaluation">
+
+    <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
-    <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), and Relative Pose Error (RPE).</p>
-    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size.</p>
+    <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), Relative Pose Error (RPE), Full-route fidelity, and Heading and turn fidelity.</p>
+    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size. Submissions are ranked by the composite Score defined below, with higher scores indicating better performance.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Success Rate (SR)</th><td>Higher</td><td>Fraction of trajectories satisfying the goal-distance success criterion.</td></tr>
 <tr><th scope="row">Absolute Trajectory Error (ATE)</th><td>Lower</td><td>Absolute trajectory error against the reference trajectory.</td></tr>
-<tr><th scope="row">Relative Pose Error (RPE)</th><td>Lower</td><td>Relative pose error against the reference trajectory.</td></tr></tbody>
+<tr><th scope="row">Relative Pose Error (RPE)</th><td>Lower</td><td>Relative pose error against the reference trajectory.</td></tr>
+<tr><th scope="row">Full-route fidelity</th><td>Higher</td><td>Similarity of the entire ordered predicted route to the recorded route, with excess travel penalized.</td></tr>
+<tr><th scope="row">Heading and turn fidelity</th><td>Higher</td><td>Agreement of facing direction during travel and of the direction, location, and amount of turns.</td></tr></tbody>
 </table></div>
+    <h3>Composite Score</h3>
+    <p>The final ranking uses the following Score, averaged over all evaluated episodes:</p>
+    <div class="evaluation-formula" tabindex="0" role="region"
+         aria-label="Composite score formula">
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mrow>
+          <mi mathvariant="normal">Score</mi>
+          <mo>=</mo>
+
+          <mfrac>
+            <mn>100</mn>
+            <mi>N</mi>
+          </mfrac>
+
+          <munderover>
+            <mo>∑</mo>
+            <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow>
+            <mi>N</mi>
+          </munderover>
+
+          <mfrac>
+            <mrow>
+              <msub><mi>F</mi><mi>i</mi></msub>
+              <mo>(</mo>
+              <mn>1</mn>
+              <mo>+</mo>
+              <msub><mi>H</mi><mi>i</mi></msub>
+              <mo>)</mo>
+            </mrow>
+            <mn>2</mn>
+          </mfrac>
+
+          <mo>×</mo>
+
+          <mrow>
+            <mo>(</mo>
+            <mn>0.70</mn>
+            <mo>+</mo>
+            <mn>0.10</mn>
+            <msub><mi mathvariant="normal">SR</mi><mi>i</mi></msub>
+            <mo>+</mo>
+
+            <mfrac>
+              <mn>0.10</mn>
+              <mrow>
+                <mn>1</mn>
+                <mo>+</mo>
+                <msub><mi mathvariant="normal">ATE</mi><mi>i</mi></msub>
+              </mrow>
+            </mfrac>
+
+            <mo>+</mo>
+
+            <mfrac>
+              <mn>0.10</mn>
+              <mrow>
+                <mn>1</mn>
+                <mo>+</mo>
+                <msub><mi mathvariant="normal">RPE</mi><mi>i</mi></msub>
+              </mrow>
+            </mfrac>
+            <mo>)</mo>
+          </mrow>
+        </mrow>
+      </math>
+    </div>
+    <p>Here, N is the number of evaluated episodes. F<sub>i</sub> and H<sub>i</sub> denote Full-route fidelity and Heading and turn fidelity for episode i, respectively. SR<sub>i</sub> is binary success; ATE<sub>i</sub> and RPE<sub>i</sub> are per-episode errors in dataset coordinate units.</p>
   </section>
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>

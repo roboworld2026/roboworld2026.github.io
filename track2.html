@@ -11,6 +11,38 @@
   <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
     <link href="./back-to-top.css?v=20261007-2" rel="stylesheet">
     <script src="./back-to-top.js?v=20261007-1" defer></script>
+<style>
+  .evaluation-formula {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    margin: 24px 0;
+    padding: 28px 24px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(240, 200, 80, 0.22);
+    border-radius: 12px;
+  }
+
+  .evaluation-formula math {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    color: inherit;
+    font-family: "Cambria Math", "STIX Two Math", math;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .evaluation-formula {
+      padding: 22px 16px;
+    }
+
+    .evaluation-formula math {
+      font-size: 1.05rem;
+    }
+  }
+</style>
 </head>
 <body class="track-page track-page--yellow">
 <nav class="challenge-nav" aria-label="Main navigation">
@@ -91,7 +123,7 @@
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
     <p>All submissions are scored server-side on the withheld test split. Test-split ground truth is not released.</p>
-    <p>Navigation accuracy and social compliance are reported separately. Success requires stopping within 3 m of the goal and completing the episode without collisions.</p>
+    <p>Navigation accuracy and social compliance are reported separately. Success requires stopping within 3 m of the goal and completing the episode without collisions. Submissions are ranked by the composite Score defined below.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Navigation Error (NE)</th><td>Lower</td><td>Final navigation error relative to the goal.</td></tr>
@@ -99,6 +131,56 @@
 <tr><th scope="row">Total Collision Rate (TCR)</th><td>Lower</td><td>Frequency of collisions in human-occupied zones.</td></tr>
 <tr><th scope="row">Collision Rate (CR)</th><td>Lower</td><td>Fraction of human-influenced episodes with at least one collision.</td></tr></tbody>
 </table></div>
+    <h3>Composite Score</h3>
+    <p>The composite Score uses the full-precision metrics, with higher scores indicating better performance:</p>
+    <div class="evaluation-formula" tabindex="0" role="region" aria-label="Composite score formula">
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mtable displaystyle="true" columnalign="right center left" columnspacing="0.7em" rowspacing="0.9em">
+          <mtr>
+            <mtd><mi mathvariant="normal">Navigation</mi></mtd>
+            <mtd><mo>=</mo></mtd>
+            <mtd>
+              <mrow>
+                <mn>0.80</mn><mo>×</mo><mi mathvariant="normal">SR</mi>
+                <mo>+</mo>
+                <mn>0.20</mn><mo>×</mo>
+                <mfrac>
+                  <mn>3</mn>
+                  <mrow><mn>3</mn><mo>+</mo><mi mathvariant="normal">NE</mi></mrow>
+                </mfrac>
+              </mrow>
+            </mtd>
+          </mtr>
+          <mtr>
+            <mtd><mi mathvariant="normal">Social</mi></mtd>
+            <mtd><mo>=</mo></mtd>
+            <mtd>
+              <mrow>
+                <mn>0.75</mn><mo>×</mo>
+                <mrow><mo>(</mo><mn>1</mn><mo>−</mo><mi mathvariant="normal">CR</mi><mo>)</mo></mrow>
+                <mo>+</mo>
+                <mn>0.25</mn><mo>×</mo>
+                <mfrac>
+                  <mn>1</mn>
+                  <mrow><mn>1</mn><mo>+</mo><mi mathvariant="normal">TCR</mi></mrow>
+                </mfrac>
+              </mrow>
+            </mtd>
+          </mtr>
+          <mtr>
+            <mtd><mi mathvariant="normal">Score</mi></mtd>
+            <mtd><mo>=</mo></mtd>
+            <mtd>
+              <mrow>
+                <mn>100</mn><mo>×</mo><mi mathvariant="normal">Navigation</mi><mo>×</mo>
+                <mrow><mo>(</mo><mn>0.70</mn><mo>+</mo><mn>0.30</mn><mo>×</mo><mi mathvariant="normal">Social</mi><mo>)</mo></mrow>
+              </mrow>
+            </mtd>
+          </mtr>
+        </mtable>
+      </math>
+    </div>
+    <p>Higher Score ranks first. Exact ties use higher SR, lower NE, lower CR, lower TCR, then earlier submission time. Calculation and comparison retain full precision.</p>
   </section>
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
