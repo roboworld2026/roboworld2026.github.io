@@ -116,6 +116,56 @@
             line-height: 1.3;
         }
 
+        .previous-competition-card .card-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1rem 2rem;
+        }
+
+        .previous-competition-card .card-header h3 {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        .previous-competition-logo {
+            flex: 0 0 auto;
+            width: auto;
+            max-width: 40%;
+            height: 2.275rem;
+            object-fit: contain;
+            object-position: right center;
+        }
+
+        .previous-competition-logo--monochrome {
+            filter: brightness(0) invert(1);
+        }
+
+        .previous-competition-card .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .previous-competition-report {
+            margin: 0;
+            color: #e0e8e8;
+            font-size: 1.375rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .previous-competition-card .track-paper-resource {
+            align-self: flex-start;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+
+        .previous-competition-card .track-paper-resource:hover {
+            color: var(--card-accent);
+        }
+
         .intro-track-card .card-header {
             display: flex;
             align-items: center;
@@ -626,13 +676,13 @@
         }
 
         .track-paper-title-link {
-            color: inherit;
+            color: #ffc000;
             text-decoration: none;
         }
 
         .track-paper-title-link:hover,
         .track-paper-title-link:focus-visible {
-            color: #ffc000;
+            color: #fff;
         }
 
         .track-paper-title-link:focus-visible {
@@ -715,6 +765,19 @@
         }
 
         @media (max-width: 575px) {
+            .previous-competition-card .card-header {
+                flex-wrap: nowrap;
+                gap: 0.75rem;
+            }
+
+            .previous-competition-card .challenge-card-title {
+                font-size: 1.5rem;
+            }
+
+            .previous-competition-logo {
+                height: 1.95rem;
+            }
+
             .award-card-heading {
                 grid-template-columns: minmax(0, 1fr) 56px;
                 gap: 0.75rem;
@@ -1593,6 +1656,55 @@
             </p>
 
             <img1><img src="logo_descartes.png" class="img-fluid" alt="img-responsive"></img1>
+            </section>
+
+            <section class="py-4" aria-labelledby="previous-competitions">
+                <h1 class="text-white" id="previous-competitions">Previous Competitions</h1>
+                <hr>
+                <div class="row row-cols-1 g-4">
+                    <div class="col">
+                        <article class="card challenge-card previous-competition-card h-100 text-white" aria-labelledby="robosense-competition">
+                            <div class="card-header">
+                                <h3 class="mb-0" id="robosense-competition"><span class="challenge-card-kicker">@ IROS 2025</span><span class="challenge-card-title">RoboSense Challenge</span></h3>
+                                <img src="static/logo-image/conference-iros2025.png" class="previous-competition-logo" width="298" height="127" loading="lazy" decoding="async" alt="IROS 2025 Hangzhou logo">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="previous-competition-report"><a href="https://arxiv.org/abs/2601.05014" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">The RoboSense Challenge: Sense Anything, Navigate Anywhere, Adapt Across Platforms</a></h4>
+                                <a href="https://arxiv.org/abs/2601.05014" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="RoboSense Challenge technical report on arXiv">
+                                    <img src="static/logo-image/arxiv.png" width="28" height="28" loading="lazy" decoding="async" alt="" aria-hidden="true"><span>arXiv</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col">
+                        <article class="card challenge-card previous-competition-card card--yellow h-100 text-white" aria-labelledby="robodrive-competition">
+                            <div class="card-header">
+                                <h3 class="mb-0" id="robodrive-competition"><span class="challenge-card-kicker">@ ICRA 2024</span><span class="challenge-card-title">RoboDrive Challenge</span></h3>
+                                <img src="static/logo-image/conference-icra2024.svg" class="previous-competition-logo previous-competition-logo--monochrome" width="132" height="37" loading="lazy" decoding="async" alt="ICRA 2024 Yokohama logo">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="previous-competition-report"><a href="https://arxiv.org/abs/2405.08816" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">The RoboDrive Challenge: Drive Anytime Anywhere in Any Condition</a></h4>
+                                <a href="https://arxiv.org/abs/2405.08816" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="RoboDrive Challenge technical report on arXiv">
+                                    <img src="static/logo-image/arxiv.png" width="28" height="28" loading="lazy" decoding="async" alt="" aria-hidden="true"><span>arXiv</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col">
+                        <article class="card challenge-card previous-competition-card h-100 text-white" aria-labelledby="robodepth-competition">
+                            <div class="card-header">
+                                <h3 class="mb-0" id="robodepth-competition"><span class="challenge-card-kicker">@ ICRA 2023</span><span class="challenge-card-title">RoboDepth Challenge</span></h3>
+                                <img src="static/logo-image/conference-icra2023-horizontal.png" class="previous-competition-logo" width="800" height="233" loading="lazy" decoding="async" alt="ICRA 2023 London horizontal logo">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="previous-competition-report"><a href="https://arxiv.org/abs/2307.15061" class="track-paper-title-link" target="_blank" rel="noopener noreferrer">The RoboDepth Challenge: Methods and Advancements Towards Robust Depth Estimation</a></h4>
+                                <a href="https://arxiv.org/abs/2307.15061" class="track-paper-resource" target="_blank" rel="noopener noreferrer" aria-label="RoboDepth Challenge technical report on arXiv">
+                                    <img src="static/logo-image/arxiv.png" width="28" height="28" loading="lazy" decoding="async" alt="" aria-hidden="true"><span>arXiv</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
             </section>
 
             <footer class="container py-5">

@@ -549,7 +549,7 @@ body {
   flex: 1 1 28rem;
   min-width: 0;
   margin: 0;
-  color: #e0e8e8;
+  color: #ffc000;
   font-family: 'Chivo', sans-serif;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -560,8 +560,10 @@ body {
   text-decoration: none;
 }
 
-.track-page .detail-paper-heading h4 a:hover {
-  color: #ffc000;
+.track-page .detail-paper-heading h4:hover,
+.track-page .detail-paper-heading h4 a:hover,
+.track-page .detail-paper-heading h4 a:focus-visible {
+  color: #fff;
 }
 
 .track-page .detail-paper-heading .detail-paper-venue {
