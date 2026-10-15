@@ -13,6 +13,38 @@
   <link rel="stylesheet" href="./track-mark.css?v=20261006-track-update-3">
     <link href="./back-to-top.css?v=20261007-2" rel="stylesheet">
     <script src="./back-to-top.js?v=20261007-1" defer></script>
+<style>
+  .evaluation-formula {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 0;
+    margin: 24px 0;
+    padding: 28px 24px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(240, 200, 80, 0.22);
+    border-radius: 12px;
+  }
+
+  .evaluation-formula math {
+    display: block;
+    width: max-content;
+    margin: 0 auto;
+    color: inherit;
+    font-family: "Cambria Math", "STIX Two Math", math;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .evaluation-formula {
+      padding: 22px 16px;
+    }
+
+    .evaluation-formula math {
+      font-size: 1.05rem;
+    }
+  }
+</style>
 </head>
 <body class="track-page">
 <nav class="challenge-nav" aria-label="Main navigation">
@@ -36,7 +68,7 @@
     </div>
     <dl class="track-overview" aria-label="SafeDrive-VLA at a glance">
       <div><dt>Benchmark</dt><dd>CARLA-F / B2D-C</dd></div>
-      <div><dt>Setting</dt><dd>Closed-loop safety-aware driving</dd></div>
+      <div><dt>Setting</dt><dd>Closed-loop driving in CARLA</dd></div>
       <div><dt>Metrics</dt><dd>NCR, speed error; DS, SR, infractions</dd></div>
     </dl>
   </header>
@@ -45,19 +77,20 @@
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
-    <p>Participants develop vision-language-action models (VLAs) for safe navigation guided by natural-language instructions. Given onboard visual observations and an instruction, models generate driving trajectories or control actions that account for surrounding traffic conditions.</p>
-    <p>Models should follow safe instructions, including turns, lane changes, and target-speed requests. When an instruction conflicts with the traffic scene, models must respond appropriately by slowing down, waiting, or selecting a safe alternative.</p>
+    <p>Participants develop vision-language-action models (VLAs) that drive safely under natural-language navigation instructions. Given onboard camera observations and a stream of instructions, agents drive closed-loop in CARLA and output driving trajectories or control actions.</p>
+    <p>Agents must follow safe instructions, such as turns, lane changes and target speeds. When an instruction conflicts with the traffic scene, they must respond safely by slowing down, waiting or choosing a safe alternative. The same instruction can be safe in one scene and unsafe in another, so the agent must judge it against what it sees.</p>
+    <p>End-to-end policies, VLA models, world-model approaches and reinforcement learning are all welcome.</p>
     <div class="track-reference" role="region" aria-labelledby="reference">
       <h3 id="reference">Reference</h3>
       <div class="detail-paper" role="group" aria-labelledby="paper-title">
         <div class="detail-paper-heading">
-          <h4 id="paper-title">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</h4>
+          <h4 id="paper-title"><a href="https://safedrive-vla.github.io/SafeDriveVLA/" target="_blank" rel="noopener noreferrer">SafeDriveVLA: Navigation-Conditioned World Model Dreaming for Conflict-Aware End-to-End Autonomous Driving</a></h4>
           <p class="detail-paper-venue">CoRL 2026</p>
         </div>
         <p class="detail-paper-authors">S. Xie, Z. Zhang, J. Wang, J. Qu, X. Liang, L. Kong, J. Lu, H. I. Christensen, Q. A. Chen</p>
         <div class="track-resource-links" role="group" aria-label="SafeDrive-VLA paper resources">
           <button type="button" disabled title="arXiv link coming soon"><img src="./static/logo-image/arxiv.png" alt="" width="28" height="28">arXiv</button>
-          <a href="https://github.com/Daniel-xsy/safedrive-vla" target="_blank" rel="noopener noreferrer" aria-label="SafeDriveVLA code on GitHub"><img src="./static/logo-image/github.png" alt="" width="28" height="28">GitHub</a>
+          <a href="https://github.com/ASGuard-UCI/safedrive-vla" target="_blank" rel="noopener noreferrer" aria-label="SafeDriveVLA code on GitHub"><img src="./static/logo-image/github.png" alt="" width="28" height="28">GitHub</a>
         </div>
       </div>
     </div>
@@ -72,6 +105,7 @@
   </section>
   <section class="content challenge-section" aria-labelledby="submission">
     <h2 id="submission">Submission</h2>
+    <p>Participants run their agent on the track routes in CARLA and upload one ZIP archive with the leaderboard record and the per-tick ego state of every route; the server computes the scores. The <a href="https://github.com/roboworld2026/track3" target="_blank" rel="noopener noreferrer">track toolkit</a> provides the routes, the getting-started guide and the packing script. Each team may submit up to three times per day, and the leaderboard keeps the best Score.</p>
     <a href="https://www.codabench.org/competitions/18333/" class="submission-portal" target="_blank" rel="noopener noreferrer" aria-label="SafeDrive-VLA submission portal on CodaBench">
       <span class="submission-portal-label">Submission Portal&nbsp; (CodaBench Server)</span>
       <img src="./static/logo-image/icon-evaluation-server-v1.png" class="challenge-inline-icon" width="56" height="56" loading="lazy" decoding="async" alt="" aria-hidden="true">
@@ -80,52 +114,64 @@
   </section>
   <section class="content challenge-section" aria-labelledby="dataset">
     <h2 id="dataset">Dataset &amp; Evaluation Setting</h2>
-    <p>Evaluation consists of 40 closed-loop simulation routes across two complementary test sets.</p>
+    <p>Evaluation uses 80 public closed-loop routes from the SafeDriveVLA benchmarks, released in the <a href="https://github.com/roboworld2026/track3/tree/main/routes" target="_blank" rel="noopener noreferrer">track toolkit</a>. The baseline is trained on the CARLA driving dataset of <a href="https://huggingface.co/datasets/RenzKa/simlingo" target="_blank" rel="noopener noreferrer">SimLingo</a>, collected by the PDM-Lite expert.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Dataset and evaluation splits"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Split / Test Set</th><th scope="col">Size</th><th scope="col">Details</th></tr></thead>
-  <tbody><tr><th scope="row">CARLA-F</th><td>20 routes</td><td>Safe instruction following</td></tr>
-<tr><th scope="row">B2D-C</th><td>20 routes</td><td>Conflicting instructions issued when hazards occur</td></tr></tbody>
+  <tbody><tr><th scope="row">Training</th><td>3.3M frames</td><td>SimLingo CARLA dataset with instruction-following annotations</td></tr>
+<tr><th scope="row">CARLA-F</th><td>40 routes</td><td>Safe instruction following; no background traffic, all lights green</td></tr>
+<tr><th scope="row">B2D-C</th><td>40 routes</td><td>Unsafe instructions issued at the safety-critical events of Bench2Drive scenarios</td></tr></tbody>
 </table></div>
-    <h3 id="training-data" class="track-subheading">Training Data</h3>
-    <p>Training uses the CARLA driving dataset that <a href="https://github.com/RenzKa/simlingo" target="_blank" rel="noopener noreferrer">SimLingo</a> (CVPR 2025) collected with <a href="https://github.com/OpenDriveLab/DriveLM/tree/DriveLM-CARLA/pdm_lite" target="_blank" rel="noopener noreferrer">PDM-Lite</a>, a privileged rule-based expert. The dataset is released on Hugging Face as <a href="https://huggingface.co/datasets/RenzKa/simlingo" target="_blank" rel="noopener noreferrer">RenzKa/simlingo</a>.</p>
+    <h3 id="navigation-rule" class="track-subheading">Navigation Signal Rule</h3>
     <ul class="track-detail-list">
-      <li><strong>Scale.</strong> 3,308,315 samples recorded at 4&nbsp;fps, distributed as about 1.2&nbsp;TB of compressed archives. Samples are not from unique routes, because the available CARLA route files are limited.</li>
-      <li><strong>Routes and scenarios.</strong> Routes come from Towns 1&ndash;10 and from the official CARLA Leaderboard 2.0 routes in Towns 12 and 13. All are short routes with one scenario (62.1%) or three scenarios (37.9%), driven under random weather. They cover 38 complex scenarios, including urban traffic, participants violating traffic rules, and high-speed highway driving.</li>
-      <li><strong>Language annotations.</strong> Commentary that explains driving decisions; instruction-following (&ldquo;Dreamer&rdquo;) data with multiple alternative instruction&ndash;action pairs per sample, each labeled with whether the instructed action is safe to execute and, if not, why; and VQA based on DriveLM.</li>
-      <li><strong>Use in the reference baseline.</strong> SafeDriveVLA uses the driving frames and measurements, the instruction-following data, and the scenario buckets for balanced sampling, and trains on a 20% subsample; it does not use the commentary or VQA annotations.</li>
+      <li><strong>Language only.</strong> The active language instruction is the model's only navigation signal; modules may use information parsed from the instruction text.</li>
+      <li><strong>No route-planner information.</strong> Route-planner commands, target waypoints and the route must not reach any part of the model.</li>
+      <li><strong>Reproduction.</strong> Compliance is checked when the results of the top teams are reproduced.</li>
     </ul>
   </section>
   <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
-    <p>CARLA-F evaluates safe instruction following using per-instruction Navigation Compliance Rate (NCR) and target-speed error in m/s.</p>
-    <p>B2D-C evaluates safety-critical driving using Driving Score (DS), Success Rate (SR), and counts of collisions, traffic violations, and route departures. Results from the two test sets will be reported separately.</p>
+    <p>CARLA-F evaluates safe instruction following; B2D-C evaluates safe responses to instructions that conflict with the scene. All metrics are computed by the server from the submitted per-route files.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
-  <tbody><tr><th scope="row">CARLA-F: Navigation Compliance Rate (NCR)</th><td>Higher</td><td>Per-instruction navigation compliance.</td></tr>
-<tr><th scope="row">CARLA-F: target-speed error (m/s)</th><td>Lower</td><td>Deviation from the instructed target speed.</td></tr>
-<tr><th scope="row">B2D-C: Driving Score (DS) and Success Rate (SR)</th><td>Higher</td><td>Closed-loop driving performance and route success.</td></tr>
-<tr><th scope="row">B2D-C: collisions, traffic violations, route departures</th><td>Lower</td><td>Counts of safety and route-following failures.</td></tr></tbody>
+  <tbody><tr><th scope="row">CARLA-F: Navigation Compliance Rate (NCR)</th><td>Higher</td><td>Share of turn, go-straight, lane-change and lane-follow instructions executed (%).</td></tr>
+<tr><th scope="row">CARLA-F: Speed Error (SE)</th><td>Lower</td><td>Deviation from the instructed target speed (m/s).</td></tr>
+<tr><th scope="row">B2D-C: Driving Score (DS)</th><td>Higher</td><td>Bench2Drive route completion times infraction penalty.</td></tr>
+<tr><th scope="row">B2D-C: Success Rate (SR)</th><td>Higher</td><td>Routes completed without infractions.</td></tr>
+<tr><th scope="row">B2D-C: collisions, traffic violations, out of route</th><td>Lower</td><td>Total counts over the 40 routes.</td></tr></tbody>
 </table></div>
+    <h3>Composite Score</h3>
+    <p>Submissions are ranked by the following Score, with higher scores indicating better performance:</p>
+    <div class="evaluation-formula" tabindex="0" role="region" aria-label="Composite score formula">
+      <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+        <mrow>
+          <mi mathvariant="normal">Score</mi>
+          <mo>=</mo>
+          <mfrac>
+            <mrow>
+              <msub><mi mathvariant="normal">NCR</mi><mtext>CARLA-F</mtext></msub>
+              <mo>+</mo>
+              <msub><mi mathvariant="normal">DS</mi><mtext>B2D-C</mtext></msub>
+            </mrow>
+            <mn>2</mn>
+          </mfrac>
+          <mo>&minus;</mo>
+          <msub><mi mathvariant="normal">SE</mi><mtext>CARLA-F</mtext></msub>
+        </mrow>
+      </math>
+    </div>
+    <p>NCR is averaged over all CARLA-F instructions (%), DS is the B2D-C Driving Score, and SE is the CARLA-F Speed Error (m/s). A missing or invalid route counts as failed.</p>
   </section>
   <section class="content challenge-section" aria-labelledby="baselines">
     <h2 id="baselines" class="challenge-heading-with-icon"><span>Reference Baselines</span><img src="./static/logo-image/icon-data-baselines-v1.png" class="challenge-inline-icon" width="48" height="48" loading="lazy" decoding="async" alt="" aria-hidden="true"></h2>
-    <p>SimLingo and SafeDriveVLA both generate driving actions from visual observations and language instructions. SafeDriveVLA additionally uses explicit driving-mode selection and world-model predictions to handle conflicts between instructions and the traffic scene.</p>
+    <p>SafeDriveVLA emits a driving mode (strict, cautious or fallback) before its actions, and reads the future predicted by a frozen latent world model under the instructed maneuver before it commits.</p>
     <figure class="track-figure">
-      <img src="./images/track3/safedrivevla_overview.png" width="1236" height="588" loading="lazy" decoding="async" alt="SafeDriveVLA overview. Left: world-model pre-training, where a frozen V-JEPA 2 encoder embeds camera frames and a world state predictor forecasts future latents from action and state tokens. Right: the SafeDriveVLA policy, where InternVL3-1B reads interleaved text, visual, and world tokens and emits a mode token, a begin-of-action token, and action tokens.">
+      <img src="./images/track3/safedrivevla_overview.png?v=20261014" width="1562" height="800" loading="lazy" decoding="async" alt="SafeDriveVLA overview. Left: world-model pre-training, where a frozen V-JEPA 2 encoder embeds camera frames and a world state predictor forecasts future latents from action and state tokens. Right: the SafeDriveVLA policy, where a VLM reads interleaved text, visual and world tokens and emits a driving mode, a path for the lateral controller, and action tokens decoded into a target speed.">
     </figure>
-    <p>SafeDriveVLA decouples conflict reasoning from action generation:</p>
-    <ul class="track-detail-list">
-      <li><strong>Driving mode.</strong> Every expert frame is relabeled with a discrete driving mode (strict, cautious, or fallback) that states whether the trajectory executes, cautiously follows, or overrides the navigation signal. The model emits this mode token before its actions, so conflict awareness is supervised directly.</li>
-      <li><strong>Navigation-conditioned world-model dreaming.</strong> A frozen latent world model, a V-JEPA 2 encoder with an action-conditioned predictor, rolls the scene forward under the action anchor of the instructed maneuver. The policy reads these predicted world tokens and can see whether the maneuver is feasible before it commits.</li>
-    </ul>
-    <p>The <a href="https://github.com/Daniel-xsy/safedrive-vla" target="_blank" rel="noopener noreferrer">SafeDriveVLA repository</a> provides world-model pre-training, VLA training, and closed-loop evaluation code for CARLA-F and B2D-C, together with the benchmark route files and data-preparation instructions.</p>
-    <p>Reference benchmark results are shown below; these are baseline results reported in the SafeDriveVLA paper on the full benchmark routes, not competition submissions.</p>
+    <p>Results of the released checkpoint on the 80 track routes are shown below; these are baseline results, not competition submissions.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Reference baseline results"><table class="table is-fullwidth is-striped">
-  <thead><tr><th scope="col">Baseline</th><th scope="col">CARLA-F (NCR)</th><th scope="col">B2D-C (DS)</th></tr></thead>
-  <tbody><tr><th scope="row">SimLingo</th><td>52.4%</td><td>72.8</td></tr>
-<tr><th scope="row">SafeDriveVLA</th><td>82.7%</td><td>67.3</td></tr></tbody>
+  <thead><tr><th scope="col">Baseline</th><th scope="col">Score</th><th scope="col">CARLA-F NCR</th><th scope="col">CARLA-F SE</th><th scope="col">B2D-C DS</th><th scope="col">B2D-C SR</th></tr></thead>
+  <tbody><tr><th scope="row">SafeDriveVLA</th><td>56.90</td><td>57.75%</td><td>5.24</td><td>66.55</td><td>20.0%</td></tr></tbody>
 </table></div>
-    <p>The CARLA-F values are the average Navigation Compliance Rate (NCR), and the B2D-C values are the average Driving Score (DS). The two test sets measure different aspects of performance: (1) instruction following in safe scenarios and (2) awareness of unsafe instructions.</p>
   </section>
   <section class="content challenge-section track-organizer-section" aria-labelledby="track-organizers">
     <h2 id="track-organizers">Track Organizer</h2>
