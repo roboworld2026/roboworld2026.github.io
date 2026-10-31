@@ -77,7 +77,7 @@
   </nav>
   <section class="content challenge-section" aria-labelledby="introduction">
     <h2 id="introduction">Introduction</h2>
-    <p>Participants develop world-model-based or vision-language-action (VLA) agents for language-conditioned visual navigation. Given a single initial egocentric RGB observation and a natural-language instruction, models generate the full future trajectory as continuous actions: planar displacement and yaw rotation, terminated by a Stop command or a null action.</p>
+    <p>Participants develop world-model-based or vision-language-action (VLA) agents for language-conditioned visual navigation. Given a single initial egocentric RGB observation and a natural-language instruction, models generate a variable-length sequence of [dx, dy, dyaw] actions: forward displacement, leftward displacement in the agent's current local frame, and yaw update in radians. The action list ends the trajectory; no separate Stop token is required.</p>
     <p>No goal image is provided, and no intermediate environmental feedback is available. Agents must ground the instruction in the initial observation and plan in an open-loop manner.</p>
     <p>The track encourages methods that couple imagination with control, including models that predict future observations to select actions, autoregressive models that interleave observation and action prediction, and VLAs that map vision and language directly to continuous actions. Policy-only baselines are also permitted.</p>
     <div class="track-reference" role="region" aria-labelledby="reference">
@@ -125,8 +125,8 @@
 
     <section class="content challenge-section" aria-labelledby="evaluation">
     <h2 id="evaluation">Evaluation</h2>
-    <p>All submissions are scored on the held-out test split. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), Relative Pose Error (RPE), Full-route fidelity, and Heading and turn fidelity.</p>
-    <p>A trajectory is successful when its final distance to the goal is below the agent's average step size. Submissions are ranked by the composite Score defined below, with higher scores indicating better performance.</p>
+    <p>Phase 1 evaluates validation predictions; Phase 2 evaluates held-out test predictions. Navigation quality is assessed using Success Rate (SR), Absolute Trajectory Error (ATE), Relative Pose Error (RPE), Full-route fidelity, and Heading and turn fidelity.</p>
+    <p>A trajectory is successful when it meets the official final-position criterion. Submissions are ranked by the composite Score defined below, with higher scores indicating better performance.</p>
     <div class="table-container" tabindex="0" role="region" aria-label="Evaluation metrics"><table class="table is-fullwidth is-striped">
   <thead><tr><th scope="col">Metric</th><th scope="col">Preferred Direction</th><th scope="col">Definition</th></tr></thead>
   <tbody><tr><th scope="row">Success Rate (SR)</th><td>Higher</td><td>Fraction of trajectories satisfying the goal-distance success criterion.</td></tr>
